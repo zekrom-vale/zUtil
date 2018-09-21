@@ -11,18 +11,18 @@ import java.util.Scanner;
 */
 
 public class Input{
-	public static final String rInt=wrap("\\d+"),
-		rDouble=wrap("\\d+(\\.\\d+)?"),
-		rBool=wrap("true|false");
-	private static Scanner user;
-	public static void Open(){
+	public static final String rInt=wrap("-?\\d+"),
+		rDouble=wrap("\\-?d+(\\.\\d+)?"),
+		rBool=wrap("true|false");//Deceleration for RegExp test strings
+	private static Scanner user;//Prevent change or redundant scanners
+	public static void Open(){//Cannot reopen scanner
 		user=new Scanner(System.in);
 	}
 	public static int Int(String sPrompt, String sErr){
 		while(true){
 			String sOut=get(sPrompt);
 			if(sOut.matches(rInt))return Integer.parseInt(sOut);
-			else System.out.println(sErr);
+			System.out.println(sErr);
 		}
 	}
 	public static int Int(String sPrompt, String sErr, String sBound, int iMin, int iMax){
@@ -31,7 +31,7 @@ public class Input{
 			if(sOut.matches(rInt)){
 				int iOut=Integer.parseInt(sOut);
 				if(iOut>=iMin&&(iOut<=iMax))return iOut;
-				else System.out.println(sBound + " ["+iMin+","+iMax+"]");
+				System.out.println(sBound + " ["+iMin+","+iMax+"]");
 					//continue;
 			}
 			else System.out.println(sErr);
@@ -41,7 +41,7 @@ public class Input{
 		while(true){
 			String sOut=get(sPrompt);
 			if(sOut.matches(rDouble))return Double.parseDouble(sOut);
-			else System.out.println(sErr);
+			System.out.println(sErr);
 		}
 	}
 	public static double Double(String sPrompt, String sErr, String sBound, double dMin, double dMax){
@@ -50,28 +50,26 @@ public class Input{
 			if(sOut.matches(rDouble)){
 				double iOut=Double.parseDouble(sOut);
 				if(iOut>=dMin&&iOut<=dMax)return iOut;
-				else{
-					System.out.println(sBound + " ["+dMin+","+dMax+"]");
-					//continue;
-				}
+				System.out.println(sBound + " ["+dMin+","+dMax+"]");
+				//continue;
 			}
 			else System.out.println(sErr);
 		}
 	}
-	public static String Any(String sPrompt, String reg, String sErr){
+	public static String Any(String sPrompt, String reg, String sErr){//String must match RegExp
 		String sOut="";
 		while(true){
 			sOut=get(sPrompt);
 			if(sOut.length()>0&&sOut.matches(reg))return sOut;
-			else System.out.println(sErr);
+			System.out.println(sErr);
 		}
 	}
-	public static String Any(String sPrompt, String sErr){
+	public static String Any(String sPrompt, String sErr){//String cannot be empty
 		String sOut="";
 		while(true){
 			sOut=get(sPrompt);
 			if(sOut.length()>0)return sOut;
-			else System.out.println(sErr);
+			System.out.println(sErr);
 		}
 	}
 	public static String Any(String sPrompt){
@@ -82,13 +80,13 @@ public class Input{
 		while(true){
 			sOut=get(sPrompt);
 			if(sOut.matches(rBool))return IsTrue(sOut);
-			else System.out.println(sErr);
+			System.out.println(sErr);
 		}
 	}
-	public static Boolean IsTrue(String sOut) {
+	public static Boolean IsTrue(String sOut) {//Returns a bool on if the string is (?i)"true"
 		return sOut.matches("^\\s*(?i)true\\s*$");
 	}
-	public static String[] Type(String sPrompt){
+	public static String[] Type(String sPrompt){//Returns the contents of the string
 		String[] sResult={get(sPrompt),null};
 		if(sResult[0].matches(rInt)) sResult[1]="int";
 		else if(sResult[0].matches(rDouble)) sResult[1]="double";
@@ -96,15 +94,15 @@ public class Input{
 		else sResult[1]="String";
 		return sResult;
 	}
-	private static final String wrap(String sReg) {
+	private static final String wrap(String sReg){//Prepare RegExp for use
 		return "(?i)^\\s*("+sReg+")\\s*$";
 	}
-	public static String get(String sPrompt){
+	public static String get(String sPrompt){//Print prompt and return input
 		//Scanner user=new Scanner(System.in);
-		if(sPrompt!=null)System.out.println(sPrompt);
+		if(sPrompt!=null)System.out.println(sPrompt);//Print prompt if it exists
 		return user.nextLine();
 	}
-	public static void Close(){
+	public static void Close(){//Closes the scanner
 		user.close();
 	}
 }
