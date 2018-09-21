@@ -1,6 +1,16 @@
 package zUtil;
 //import zUtil.*
-class Numbers{
+
+/*
+* Title:		Numbers utility
+* Author:		Shawn Graven
+* Email:		shawn.graven@my.uwrf.edu
+* Created: 		9/15/18//Estimated
+* Modified: 	9/21/19 7:34a//Ignoring testing and very minor edits
+* Description:	Various number utilities including number to word
+*/
+
+public class Numbers{//Must explicitly declare it as public to import
 	static final public String word(double in){
 		return word(String.format("%f",in));//Convert double to non-exponentiated string
 	}
@@ -8,43 +18,46 @@ class Numbers{
 		return word(String.format("%.0f",(double)in));//Convert long to non-exponentiated string
 	}
 	static final public String word(String in){
-		in=in.replaceAll("[ _,]","");//Remove junk
+		String result=in.matches("^-.*")?"negative ":"";//Check if negative
+		in=in.replaceAll("[ _,]|^-","");//Remove junk
 		if(!in.matches("\\d+(.\\d*)?"))throw new ArithmeticException("Not a number");
 		String[] split=in.split("\\.");//Split i-part and f-part
-		String result="";
 		if(split[0]!=null&&split[0]!=""){//if i-part exists
 			String[] ipart=altSplit(split[0]);//Split number by 3 places (standard) 
 			short _i=(short)ipart.length;
-			System.out.println(String.join(" ", ipart));
+			//System.out.println(String.join(" ", ipart));
 			for(byte i=0;i<_i;i++){//For all values in ipart
-				short number=(short)Integer.parseInt(ipart[i]);
+				short number=(short)Integer.parseInt(ipart[i]);//Convert the string in to a number
 				if(number==0)continue;//If 0 do nothing to result
 				result+=subWord(number)+(i!=_i-1?" "+mag[_i-i-1]+" ":"");//Get number value and attach magnitude
+				//Equivelent to `result=result+`...
 			}
 		}
 		if(split.length>1){//if f-part exists
 			String[] fpart=split[1].replaceAll("(\\d{3})","$1 ").split(" ");//Deliminate by 3 units ltr
+			//More stable method of spiting rather than dealing with look behind or ahead in split(Uses RegExp)
 			short _f=(short)fpart.length;
-			result+="\nand ";
+			result+="and ";
 			for(byte i=0;i<_f;i++){//For all values in fpart
 				//Fix values as it is not shifted correctly
 				byte mod=(byte)(fpart[i].length()%3);
 				if(mod==2)fpart[i]+="0";
 				else if(mod==1)fpart[i]+="00";
 				//Fix values END
-				short number=(short)Integer.parseInt(fpart[i]);
+				short number=(short)Integer.parseInt(fpart[i]);//Convert the string in to a number
 				if(number==0)continue;//Skip if zero
 				result+=subWord(number)+" "+mag[i+1]+"ths ";//Get number value and attach magnitude (with ths)
 			}
-			System.out.println("."+String.join(" ", fpart));
+			//System.out.println("."+String.join(" ", fpart));
 		}
 		return result;
 	}
 	private final static String subWord(short in){
 		String out=in/100!=0?num[in/100]+" hundred":"";//Attach the hundreds value if it exists
 		in%=100;//Remove the hundreds
-		if(in!=0&&in<=19)out+=" "+num[in];//one to nineteen as they follow different lexical rules
-		else if(in!=0) out+=" "+tens[in/10]+(in%10!=0?"-"+num[in%10]:"");
+		if(in!=0&&out!="")out+=" ";//Fixes spacing issue
+		if(in!=0&&in<=19)out+=num[in];//one to nineteen as they follow different lexical rules
+		else if(in!=0) out+=tens[in/10]+(in%10!=0?"-"+num[in%10]:"");
 		//in/10 returns tens; in%10 returns ones
 		return out;
 	}
@@ -70,7 +83,7 @@ class Numbers{
 		return arr;
 	}*/
 
-	private final static String[] altSplit(String str){
+	private final static String[] altSplit(String str){//Fixes the problems occurring with split
 		int mod=str.length()%3;
 		if(mod==1)str="00"+str;
 		else if(mod==2)str="0"+str;
@@ -83,6 +96,7 @@ class Numbers{
 	public static final void main(String[] iESA){
 		//System.out.println(Numbers.word(1000000000));
 		System.out.println(Numbers.word("000,009,223,372,036,854,775,807.9,223,372,036,854,775,807"));//Input
+		System.out.println(Numbers.word("-203"));//Input
 	}
 	public static final short intLength(long num){
 		return (short)Math.log10(num);
