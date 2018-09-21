@@ -1,22 +1,34 @@
 package zUtil;
 //import zUtil.*
 
-/*
-* Title:		Numbers utility
-* Author:		Shawn Graven
-* Email:		shawn.graven@my.uwrf.edu
-* Created: 		9/15/18//Estimated
-* Modified: 	9/21/19 7:34a//Ignoring testing and very minor edits
-* Description:	Various number utilities including number to word
+/**
+* Numbers utility
+* @author:		Shawn Graven
+* @email:		shawn.graven@my.uwrf.edu
+* @created: 		9/15/18//Estimated
+* @modified: 	9/21/19 7:34a//Ignoring testing and very minor edits
+* @Description:	Various number utilities including number to word
 */
 
 public class Numbers{//Must explicitly declare it as public to import
+	/**
+	 * @param in The double to convert
+	 * @return Written out word
+	 */
 	static final public String word(double in){
 		return word(String.format("%f",in));//Convert double to non-exponentiated string
 	}
+	/**
+	 * @param in The long to convert
+	 * @return Written out word
+	 */
 	static final public String word(long in){
 		return word(String.format("%.0f",(double)in));//Convert long to non-exponentiated string
 	}
+	/**
+	 * @param in The string to convert
+	 * @return Written out word
+	 */
 	static final public String word(String in){
 		String result=in.matches("^-.*")?"negative ":"";//Check if negative
 		in=in.replaceAll("[ _,]|^-","");//Remove junk
@@ -93,18 +105,34 @@ public class Numbers{//Must explicitly declare it as public to import
 	public static String[] num={null,"one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","therteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen"},
 		tens={null,null,"twenty","thirty","forty","fifty","sixty","seventy","eighty","ninety"},
 		mag={null,"thousand","million","billion","trillion","quadrillion","quintillion","sextillion","septillion","octillion","nonillion","decillion"};
+	/**
+	 * @param iESA
+	 * @deprecated
+	 */
 	public static final void main(String[] iESA){
 		//System.out.println(Numbers.word(1000000000));
 		System.out.println(Numbers.word("000,009,223,372,036,854,775,807.9,223,372,036,854,775,807"));//Input
 		System.out.println(Numbers.word("-203"));//Input
 	}
+	/**
+	 * @param long num
+	 * @return Length of the number from the decimal point
+	 */
 	public static final short intLength(long num){
 		return (short)Math.log10(num);
 	}
+	/**
+	 * @param long num
+	 * @return Length of the number from the decimal point base 2
+	 */
 	public static final int intLengthBinary(long num){
 		return (int)Math.log(num);
 	}
 	private static double ln16=1/Math.log(16);
+	/**
+	 * @param long num
+	 * @return Length of the number from the decimal point base 16
+	 */
 	public static final int intLengthHex(long num){
 		return (int)(Math.log(num)*ln16);
 	}
