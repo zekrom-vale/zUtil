@@ -10,8 +10,8 @@ import java.util.Scanner;
 * @description	Provides valid input from the user, weather it be an int, bool, or string.
 */
 public final class Input{
-	public static final String rInt=wrap("-?\\d+"),
-		rDouble=wrap("\\-?d+(\\.\\d+)?"),
+	public static final String rInt=wrap("(\\-)?\\d*"),
+		rDouble=wrap("(\\-)?\\d+(\\.\\d*)?"),
 		rBool=wrap("true|false");//Deceleration for RegExp test strings
 	private static Scanner user;//Prevent change or redundant scanners
 	/**
@@ -69,8 +69,8 @@ public final class Input{
 	 * @param sPrompt String to prompt the user (null will not prompt anything)
 	 * @param sErr Error to display on invalid input
 	 * @param sBound Error to display when the input is out of bounds
-	 * @param iMin Minimum valid double
-	 * @param iMax Maximum valid double
+	 * @param dMin Minimum valid double
+	 * @param dMax Maximum valid double
 	 * @return Double of the user's input
 	 */
 	public final static double Double(String sPrompt, String sErr, String sBound, double dMin, double dMax){
