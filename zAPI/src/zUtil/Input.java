@@ -156,9 +156,10 @@ public final class Input{
 	}
 	private static final String get(String sPrompt){//Print prompt and return input
 		//Scanner user=new Scanner(System.in);
-		if(sPrompt!=null)System.out.println(sPrompt);//Print prompt if it exists
-		return user.nextLine();
+		if(sPrompt!=null)System.out.print(sPrompt);//Print prompt if it exists
+		return (Multiple?user.next():user.nextLine()).replaceAll("[,_]", "");
 	}
+	public static boolean Multiple=false;
 	/**
 	 * Closes the scanner
 	 * @see zUtil.Input.Open
