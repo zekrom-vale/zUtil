@@ -199,18 +199,18 @@ public class Numbers{//Must explicitly declare it as public to import
 	}*/
 	/**
 	 * @param long num
+	 * @return Length of the number from the decimal point
+	 */
+	public static final short intLength(long num){
+		return (short)Math.log10(num);
+	}
+	/**
+	 * @param long num
 	 * @return Length of the number from the decimal point base 2
 	 */
 	enum length{
 		;
-		/**
-		 * @param long num
-		 * @return Length of the number from the decimal point
-		 */
-		public static final short int10(long num){
-			return (short)Math.log10(num);
-		}
-		public static final int int2(long num){
+		public static final int intLengthBinary(long num){
 			return (int)Math.log(num);
 		}
 		private static double ln16=1./Math.log(16.);
@@ -218,7 +218,7 @@ public class Numbers{//Must explicitly declare it as public to import
 		 * @param long num
 		 * @return Length of the number from the decimal point base 16
 		 */
-		public static final int int16(long num){
+		public static final int intLengthHex(long num){
 			return (int)(Math.log(num)*ln16);
 		}
 	}
@@ -265,13 +265,5 @@ public class Numbers{//Must explicitly declare it as public to import
 			String out="";
 			for(int i:array)out+=(out==""?"":delimiter)+Integer.toString(i);
 			return out;
-		}
-		/**
-		 * https://stackoverflow.com/questions/960431/how-to-convert-listinteger-to-int-in-java
-		 * @param liErr
-		 * @return
-		 */
-		public static int[] toIntArray(java.util.List<Integer> liErr){
-			return liErr.stream().mapToInt(i->i).toArray();
 		}
 }
