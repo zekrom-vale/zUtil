@@ -1,5 +1,4 @@
 package zUtil;
-import java.util.Scanner;
 
 /**
 * Input API
@@ -13,13 +12,13 @@ public final class Input{
 	public static final String rInt=wrap("(\\-)?\\d*"),
 		rDouble=wrap("(\\-)?\\d+(\\.\\d*)?"),
 		rBool=wrap("true|false");//Deceleration for RegExp test strings
-	private static Scanner user;//Prevent change or redundant scanners
+	private static java.util.Scanner user;//Prevent change or redundant scanners
 	/**
 	 * Opens a scanner, allowing user input
 	 * @see Input.Close
 	 */
 	public final static void Open(){//Cannot reopen scanner
-		user=new Scanner(System.in);
+		user=new java.util.Scanner(System.in);
 	}
 	/**
 	 * @param sPrompt String to prompt the user (null will not prompt anything)
@@ -166,5 +165,33 @@ public final class Input{
 	 */
 	public final static void Close(){
 		user.close();
+	}
+	static public class array{
+		/**
+		 * @param sPrompt String to prompt the user (null will not prompt anything)
+		 * @param sErr Error to display on invalid input
+		 * @return Integer of the user's input
+		 */
+		/*
+		public final static int[] Int(String sPrompt, String sErr){
+			List<Integer>liOut=new ArrayList<Integer>(),
+				liErr= new ArrayList<Integer>();
+			Multiple=true;
+			while(true){
+				String[] aOut=get(sPrompt).replaceAll("[_ ]|(\\d),(\\d)", "$1$2").split("[;|,]");
+				int _o=aOut.length;
+				for(int i=0; i<_o ;i++){
+					if(aOut[i].matches(rInt))liOut.add(Integer.parseInt(aOut[i]));
+					else{
+						liErr.add(i);
+						liOut.add(null);
+					}
+				}
+				if(liErr.isEmpty())break;
+				System.out.println(sErr+Numbers.join(",", liErr));
+			}
+			Multiple=false;
+			return Numbers.toIntArray(liOut);
+		}*/
 	}
 }
