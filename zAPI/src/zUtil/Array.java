@@ -5,18 +5,43 @@ import java.util.regex.Pattern;
 import zUtil.Index;
 
 public final class Array{
+	/**
+	 * Converts ArrayList< Integer> to int[]
+	 * @param list
+	 * @return array
+	 */
 	public static final int[] toInt(ArrayList<Integer> list){
 		return list.stream().mapToInt(i->i).toArray();
 	}
+	/**
+	 * Converts ArrayList< Integer> to int[]
+	 * @param list
+	 * @return array
+	 */
 	public static final int[] toIntager(ArrayList<Integer> list){
 		return list.stream().mapToInt(i->i).toArray();
 	}
+	/**
+	 * Converts ArrayList< Long> to long[]
+	 * @param list
+	 * @return array
+	 */
 	public static final long[] toLong(ArrayList<Long> list){
 		return list.stream().mapToLong(i->i).toArray();
 	}
+	/**
+	 * Converts ArrayList< Double> to double[]
+	 * @param list
+	 * @return array
+	 */
 	public static final double[] toDouble(ArrayList<Double> list){
 		return list.stream().mapToDouble(i->i).toArray();
 	}
+	/**
+	 * Converts ArrayList< String> to String[]
+	 * @param list
+	 * @return array
+	 */
 	public static final String[] toString(ArrayList<String> list){
 		return list.toArray(new String[0]);
 	}
@@ -24,6 +49,14 @@ public final class Array{
 	  String sReplaceWith){
 		return replace(sIn, Pattern.compile(RegExp), sToReplace, sReplaceWith);
 	}
+	/**
+	 * Advanced replacement
+	 * @param sIn
+	 * @param pattern
+	 * @param sToReplace
+	 * @param sReplaceWith
+	 * @return String
+	 */
 	public static final String replace(String sIn, Pattern pattern, String sToReplace,
 	  String sReplaceWith){
 		ArrayList<String> liOut=new ArrayList<>();
