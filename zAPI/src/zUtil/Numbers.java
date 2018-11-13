@@ -1,5 +1,7 @@
 package zUtil;
 
+import java.util.ArrayList;
+
 //import zUtil.*
 /**
 * Numbers utility
@@ -11,6 +13,150 @@ package zUtil;
 */
 
 public class Numbers{//Must explicitly declare it as public to import
+	public class numberFragment{
+		String[] wordArr=new String[4];
+		byte[] numberArr=new byte[4];
+		short number;
+		public numberFragment(short in, int i, int _i){
+			this.number=in;
+			
+			//100s
+			byte u100=(byte)(in/100);
+			this.wordArr[0]=u100!=0?parts.num[u100]+" hundred":"";//Attach the hundreds value if it exists
+			in%=100;
+			
+			//1s
+			if(in!=0&&in<=19){//one to nineteen as they follow different lexical rules
+				this.wordArr[1]="";
+				this.wordArr[2]=parts.num[in];
+			}
+			
+			//10s
+			else if(in!=0){//in/10 returns tens; in%10 returns ones
+				this.wordArr[1]=parts.tens[in/10];
+				this.wordArr[2]=in%10!=0?"-"+parts.num[in%10]:"";
+			}
+			
+			//Scale
+			if(i>=0)this.wordArr[3]=i!=_i-1?extendedNumbers(3*(_i-i-1)):"";
+		}
+		public String toString(){
+			ArrayList<String> build=new ArrayList<String>();
+			//100s
+			if(!"".equals(this.wordArr[0]))build.add(this.wordArr[0]);
+			//10s
+			if(!"".equals(this.wordArr[1])){
+				if(!"".equals(this.wordArr[2]))build.add(this.wordArr[1]+"-"+this.wordArr[2]);
+				else build.add(this.wordArr[1]);
+			}
+			//1s and teens
+			else build.add(this.wordArr[2]);
+			return String.join(" ", build);
+		}
+		public String toTable(){
+			String[][] arr=this.tableFormat();
+			return "<table><tr><th>"+
+			String.join("</th><th>", arr[0])+
+			"</th></tr><tr><th>"+
+			String.join("</th><th>", arr[1])+
+			"</th></tr></table>";
+		}
+		private String[][] tableFormat(){
+			ArrayList<String> wordBuild=new ArrayList<>(),
+				numberBuild=new ArrayList<>();
+			//100s
+			if(!"".equals(this.wordArr[0])){
+				wordBuild.add(this.wordArr[0]);
+				numberBuild.add(""+this.numberArr[0]);
+			}
+			//10s
+			if(!"".equals(this.wordArr[1])){
+				wordBuild.add(this.wordArr[1]);
+				numberBuild.add(""+this.numberArr[1]);
+				if(!"".equals(this.wordArr[2])){
+					wordBuild.add("-");
+					numberBuild.add("");
+				}
+			}
+			//1s and teens
+			if(!"".equals(this.wordArr[2])){
+				wordBuild.add(this.wordArr[2]);
+				numberBuild.add(""+this.numberArr[2]);
+			}
+			return new String[][]{
+				wordBuild.toArray(new String[0]),
+				numberBuild.toArray(new String[0])
+			};
+		}
+	}
+	
+	public class word{
+		Boolean isNegative=false;
+		ArrayList<numberFragment> ipart=new ArrayList<>(),
+			fpart=new ArrayList<>();
+		public word(String in){
+			if(in.matches("^-.*"))this.isNegative=true;
+			in=in.replaceAll("[ _,]|^-","");//Remove junk
+			
+			if(!in.matches("\\d+(.\\d*)?"))throw new ArithmeticException("Not a number");
+			String[] split=in.split("\\.");//Split i-part and f-part
+			if(!"0".equals(split[0])){//if i-part exists
+				String[] ipart=altSplit(split[0]);//Split number by 3 places (standard) 
+				short _i=(short)ipart.length;
+				for(byte i=0;i<_i;i++){//For all values in ipart
+					short number=(short)Integer.parseInt(ipart[i]);//Convert the string in to a number
+					if(number==0)continue;//If 0 do nothing to result
+					this.ipart.add(new numberFragment(number, i, _i));//Get number value and attach magnitude
+				}
+			}
+			if(split.length>1){//if f-part exists
+				String[] fpart=split[1].replaceAll("(\\d{3})","$1 ").split(" ");//Deliminate by 3 units ltr
+												  //Group 1	 //Reference to group 1
+				//More stable method of spiting rather than dealing with look behind or ahead in split(Uses RegExp)
+				short _f=(short)fpart.length;
+				
+				for(byte i=0;i<_f;i++){//For all values in fpart
+					//Fix values as it is not shifted correctly
+					byte mod=(byte)(fpart[i].length()%3);
+					if(mod==2)fpart[i]+="0";
+					else if(mod==1)fpart[i]+="00";
+					//Fix values END
+					short number=(short)Integer.parseInt(fpart[i]);//Convert the string in to a number
+					if(number==0)continue;//Skip if zero
+					this.fpart.add(new numberFragment(number, -i, 0));//Get number value and attach magnitude (with ths)
+				}
+			}
+		}
+		@Override
+		public String toString(){
+			String collector=this.isNegative?"negative ":"";
+			for(numberFragment i:this.ipart)collector+=" "+i.toString();
+			if(this.ipart.size()!=0&&this.fpart.size()!=0)collector+=" and";
+			for(numberFragment i:this.fpart)collector+=" "+i.toString();
+			return collector;
+		}
+		public String toTable(){
+			String collector="<table>";
+			//Negative
+			if(this.isNegative)collector+="<tr><th><table><tr><th>negative<th></tr><tr><th>-<th></tr></table></tr></th>";
+			//Int part
+			if(this.ipart.size()>0){
+				collector+="<tr><th>";
+				for(numberFragment i:this.ipart)collector+="<th>"+i.toString()+"</th>";
+				collector+="</tr></th>";
+			}
+			//And
+			if(this.ipart.size()!=0&&this.fpart.size()!=0)collector+="<tr><th><table><tr><th>and<th></tr><tr><th>.<th></tr></table></tr></th>";
+			//Fraction part
+			if(this.fpart.size()>0){
+				collector+="<tr><th>";
+				for(numberFragment i:this.fpart)collector+="<th>"+i.toString()+"</th>";
+				collector+="</tr></th>";
+			}
+			return collector+"</table>";
+		}
+	}
+	
 	/**
 	 * Converts double type numbers to written out numbers
 	 * @param in The double to convert
