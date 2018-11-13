@@ -17,7 +17,9 @@ public class Numbers{//Must explicitly declare it as public to import
 	 * @return Written out word
 	 */
 	static final public String word(double in){
-		return word(String.format("%.d",in));//Convert double to non-exponentiated string
+		double mod=in%1;
+		if(mod<1E-5&&mod>-1E-5)return word(String.format("%d",(long)in));
+		return word(String.format("%f", in));//Convert double to non-exponentiated string
 	}
 	/**
 	 * Converts integer type numbers to written out numbers
@@ -36,22 +38,22 @@ public class Numbers{//Must explicitly declare it as public to import
 		in=in.replaceAll("[ _,]|^-","");//Remove junk
 		if(!in.matches("\\d+(.\\d*)?"))throw new ArithmeticException("Not a number");
 		String[] split=in.split("\\.");//Split i-part and f-part
-		if(split[0]!=null&&split[0]!=""){//if i-part exists
+		if(!"0".equals(split[0])){//if i-part exists
 			String[] ipart=altSplit(split[0]);//Split number by 3 places (standard) 
 			short _i=(short)ipart.length;
 			for(byte i=0;i<_i;i++){//For all values in ipart
 				short number=(short)Integer.parseInt(ipart[i]);//Convert the string in to a number
 				if(number==0)continue;//If 0 do nothing to result
-				result+=subWord(number)+(i!=_i-1?" "+extendedNumbers(3*(_i-i-1))+" ":"");//Get number value and attach magnitude
+				result+=subWord(number, i, _i);//Get number value and attach magnitude
 				//Equivelent to `result=result+`...
 			}
+			if(split.length>1)result+=" and ";
 		}
 		if(split.length>1){//if f-part exists
 			String[] fpart=split[1].replaceAll("(\\d{3})","$1 ").split(" ");//Deliminate by 3 units ltr
 											  //Group 1	 //Reference to group 1
 			//More stable method of spiting rather than dealing with look behind or ahead in split(Uses RegExp)
 			short _f=(short)fpart.length;
-			result+=" and ";
 			
 			for(byte i=0;i<_f;i++){//For all values in fpart
 				//Fix values as it is not shifted correctly
@@ -61,7 +63,7 @@ public class Numbers{//Must explicitly declare it as public to import
 				//Fix values END
 				short number=(short)Integer.parseInt(fpart[i]);//Convert the string in to a number
 				if(number==0)continue;//Skip if zero
-				result+=subWord(number)+" "+extendedNumbers(-3*(i+1))+" ";//Get number value and attach magnitude (with ths)
+				result+=subWord(number, -i, 0);//Get number value and attach magnitude (with ths)
 			}
 		}
 		return result;
@@ -71,14 +73,42 @@ public class Numbers{//Must explicitly declare it as public to import
 	 * @param in the number to construct (Excluding any magnitudes)
 	 * @return Constructed part
 	 */
-	private final static String subWord(short in){
+	private final static String subWord(short in, int i, int _i){
 		String out=in/100!=0?parts.num[in/100]+" hundred":"";//Attach the hundreds value if it exists
 		in%=100;//Remove the hundreds
 		if(in!=0&&out!="")out+=" ";//Fixes spacing issue
 		if(in!=0&&in<=19)out+=parts.num[in];//one to nineteen as they follow different lexical rules
 		else if(in!=0)out+=parts.tens[in/10]+(in%10!=0?"-"+parts.num[in%10]:"");
 		//in/10 returns tens; in%10 returns ones
-		return out;
+		if(i>=0)return out+(i!=_i-1?" "+extendedNumbers(3*(_i-i-1))+" ":"");
+		return out+" "+extendedNumbers(3*(i-1))+" ";
+	}
+	@SuppressWarnings("unused")
+	private final static String[] subWordArr(short in, int i, int _i){
+		String place;
+		if(i>=0)place=(i!=_i-1?extendedNumbers(3*(_i-i-1)):"");
+		else place=extendedNumbers(3*(i-1));
+		if(in==0)return new String[]{
+			place
+		};
+		String hundred=in/100!=0?parts.num[in/100]+" hundred":"";//Set hundreds value if it exists
+		in%=100;//Remove the hundreds
+		if(in==0)return new String[]{
+			hundred,
+			place
+		};
+		else if(in<=19)return new String[]{
+			hundred,
+			parts.num[in],//one to nineteen as they follow different lexical rules
+			place
+		};
+		return new String[]{
+			hundred,
+			parts.tens[in/10],
+			parts.num[in],//one to nineteen as they follow different lexical rules
+			in%10!=0?"-"+parts.num[in%10]:"",
+			place
+		};
 	}
 	/**
 	 * Fixes the problems occurring with split
@@ -185,13 +215,11 @@ public class Numbers{//Must explicitly declare it as public to import
 	 * @param iESA irrelevenEmptyStringArray
 	 */
 	public static final void main(String[] iESA){
-		System.out.println(Numbers.word(1000000000));
-		System.out.println(Numbers.word("000,009,223,372,036,854,775,807.9,223,372,036,854,775,807"));//Input
-		System.out.println(Numbers.word("-203"));//Input
-		/*long year=(long)(Math.pow(10, 9)+Math.pow(10, 6));//14s - 18s
-		for(long i=(long)(Math.pow(10, 9));i<=year;i++){
-			System.out.println(word(i));
-		}*/
+		@SuppressWarnings("resource")
+		var user=new java.util.Scanner(System.in);
+		while(true){
+			System.out.println(Numbers.word(user.nextFloat()));
+		}
 	}
 	/*static final public double reverseWord(String word){
 		String[] words=word.split("illion|thousand");
