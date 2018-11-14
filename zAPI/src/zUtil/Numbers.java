@@ -325,53 +325,53 @@ public class Numbers{//Must explicitly declare it as public to import
 	 * @param array
 	 * @return Joined String
 	 */
-		public static final String join(String delimiter, double[] array){
-			String out="";
-			for(double i:array)out+=(out==""?"":delimiter)+Double.toString(i);
-			return out;
-		}
-		/**
-		 * Joins numbers together like JavaScript
-		 * @param delimiter
-		 * @param array
-		 * @return Joined String
-		 */
-		public static final String join(String delimiter, float[] array){
-			String out="";
-			for(float i:array)out+=(out==""?"":delimiter)+Float.toString(i);
-			return out;
-		}
-		/**
-		 * Fixes the problems occurring with split
-		 * @param str
-		 * @return String array
-		 */
-		private final static String[] altSplit(String str){
-			int mod=str.length()%3;
-			if(mod==1)str="00"+str;
-			else if(mod==2)str="0"+str;
-			return str.replaceAll("(\\d{3})","$1 ").split(" ");
-		}
-		/**
-		 * Joins numbers together like JavaScript
-		 * @param delimiter
-		 * @param array
-		 * @return Joined String
-		 */
-		public static final String join(String delimiter, long[] array){
-			String out="";
-			for(long i:array)out+=(out==""?"":delimiter)+Long.toString(i);
-			return out;
-		}
-		/**
-		 * Joins numbers together like JavaScript
-		 * @param delimiter
-		 * @param array
-		 * @return Joined String
-		 */
-		public static final String join(String delimiter, int[] array){
-			String out="";
-			for(int i:array)out+=(out==""?"":delimiter)+Integer.toString(i);
-			return out;
-		}
+	public static final String join(String delimiter, double[] array){
+		String out="";
+		for(double i:array)out+=(out==""?"":delimiter)+Double.toString(i);
+		return out;
+	}
+	/**
+	 * Joins numbers together like JavaScript
+	 * @param delimiter
+	 * @param array
+	 * @return Joined String
+	 */
+	public static final String join(String delimiter, float[] array){
+		String out="";
+		for(float i:array)out+=(out==""?"":delimiter)+Float.toString(i);
+		return out;
+	}
+	/**
+	 * Fixes the problems occurring with split
+	 * @param str
+	 * @return String array
+	 */
+	private final static String[] altSplit(String str){
+		int mod=str.length()%3;
+		if(mod==1)str="00"+str;
+		else if(mod==2)str="0"+str;
+		return str.replaceAll("(\\d{3})","$1 ").split(" ");
+	}
+	/**
+	 * Joins numbers together like JavaScript
+	 * @param delimiter
+	 * @param array
+	 * @return Joined String
+	 */
+	public static final String join(String delimiter, long[] array){
+		String out="";
+		for(long i:array)out+=(out==""?"":delimiter)+Long.toString(i);
+		return out;
+	}
+	/**
+	 * Joins numbers together like JavaScript
+	 * @param delimiter
+	 * @param array
+	 * @return Joined String
+	 */
+	public static final String join(String delimiter, int[] array){
+		String out="";
+		for(int i:array)out+=(out==""?"":delimiter)+Integer.toString(i);
+		return out;
+	}
 }
