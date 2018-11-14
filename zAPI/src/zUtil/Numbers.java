@@ -40,9 +40,10 @@ public class Numbers{//Must explicitly declare it as public to import
 				byte u10=(byte)(in/10);
 				this.numberArr[1]=u10;
 				this.wordArr[1]=parts.tens[u10];
+				this.numberArr[1]=u10;
 				byte u1=(byte)(in%10);
-				this.numberArr[1]=u1;
 				this.wordArr[2]=u1!=0?parts.num[u1]:"";
+				this.numberArr[2]=u1;
 			}
 			
 			//Scale
@@ -104,13 +105,20 @@ public class Numbers{//Must explicitly declare it as public to import
 		Boolean isNegative=false;
 		ArrayList<numberFragment> ipart=new ArrayList<>(),
 			fpart=new ArrayList<>();
-		public word(String in){
-			if(in.matches("^-.*"))this.isNegative=true;
-			in=in.replaceAll("[ _,]|^-","");//Remove junk
+		public word(double doubleIn){
+			this.core(String.format(doubleIn%1<=1E-6?"%.0f":"%f", doubleIn));
+		}
+		public word(String stringIn) {
+			this.core(stringIn);
+		}
+		private void core(String stringIn){
+			System.err.println(stringIn);
+			if(stringIn.matches("^-.*"))this.isNegative=true;
+			stringIn=stringIn.replaceAll("[ _,]|^-","");//Remove junk
 			
-			if(!in.matches("\\d+(.\\d*)?"))throw new ArithmeticException("Not a number");
-			String[] split=in.split("\\.");//Split i-part and f-part
-			if(!"0".equals(split[0])){//if i-part exists
+			if(!stringIn.matches("\\d*(.\\d*)?"))throw new ArithmeticException("Not a number");
+			String[] split=stringIn.split("\\.");//Split i-part and f-part
+			if(!split[0].matches("0|^$")){//if i-part exists
 				String[] ipart=altSplit(split[0]);//Split number by 3 places (standard) 
 				short _i=(short)ipart.length;
 				for(byte i=0;i<_i;i++){//For all values in ipart
@@ -148,20 +156,16 @@ public class Numbers{//Must explicitly declare it as public to import
 		public String toTable(){
 			String collector="<table>";
 			//Negative
-			if(this.isNegative)collector+="<tr><th><table><tr><th>negative<th></tr><tr><th>-<th></tr></table></tr></th>";
+			if(this.isNegative)collector+="<th><table><tr><th>negative<th></tr><tr><th>-<th></tr></table></tr>";
 			//Int part
 			if(this.ipart.size()>0){
-				collector+="<tr><th>";
 				for(numberFragment i:this.ipart)collector+="<th>"+i.toTable()+"</th>";
-				collector+="</tr></th>";
 			}
 			//And
-			if(this.ipart.size()!=0&&this.fpart.size()!=0)collector+="<tr><th><table><tr><th>and<th></tr><tr><th>.<th></tr></table></tr></th>";
+			if(this.ipart.size()!=0&&this.fpart.size()!=0)collector+="<th><table><tr><th>and<th></tr><tr><th>.<th></tr></table></th>";
 			//Fraction part
 			if(this.fpart.size()>0){
-				collector+="<tr><th>";
 				for(numberFragment i:this.fpart)collector+="<th>"+i.toTable()+"</th>";
-				collector+="</tr></th>";
 			}
 			return collector+"</table>";
 		}
@@ -250,10 +254,10 @@ public class Numbers{//Must explicitly declare it as public to import
 			power*=-1;
 			reciprocal=true;
 		}
-		if(power/3.f!=power/3)throw new ArithmeticException("number is not divisable by 3");//Throw exception if power is not divisible by 3
+		if(power/3.f!=power/3)throw new ArithmeticException("number is not divisible by 3");//Throw exception if power is not divisible by 3
 		power=power/3-1;
-		if(power>999)throw new ArithmeticException("Number too big, maxumum size 10e+3000");//Throw exception if power is too big
-		if(power<0)throw new ArithmeticException("Number too low, munumum size 10e+3");//Throw exception if power is too low
+		if(power>999)throw new ArithmeticException("Number too big, maximum size 10e+3000");//Throw exception if power is too big
+		if(power<0)throw new ArithmeticException("Number too low, minimum size 10e+3");//Throw exception if power is too low
 		if(power<parts.mag.length)return parts.mag[power+1]+(reciprocal?"th":"");//Return standard dictionary numbers
 		String out="";//init out
 		byte hundred=(byte)(power/100);//Get hundreds
@@ -283,7 +287,7 @@ public class Numbers{//Must explicitly declare it as public to import
 		var user=new java.util.Scanner(System.in);
 		Numbers x=new Numbers();
 		while(true){
-			System.out.println(x.new word(Long.toString(user.nextLong())).toTable());//word(user.nextFloat(),x)
+			System.out.println(x.new word(user.next()).toTable());//word(user.nextFloat(),x)
 		}
 	}
 	/*static final public double reverseWord(String word){
