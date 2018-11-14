@@ -21,7 +21,7 @@ public class Version{
 				)
 		)System.out.println(
 				"Your Java version is out of date, "
-				+ "functionality may be comprimised as this is intended for Java "+zUtil.Numbers.join(".", minVersion)
+				+ "functionality may be compromised as this is intended for Java "+zUtil.Numbers.join(".", minVersion)
 			);
 	}
 }
