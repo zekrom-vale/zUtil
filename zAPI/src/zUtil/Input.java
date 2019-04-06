@@ -36,7 +36,7 @@ public final class Input{
 			while(true){
 				String sOut=get(sPrompt);
 				if(sOut.matches(test.rInt))return Integer.parseInt(sOut);
-				System.out.println(sErr);
+				System.err.println(sErr);
 			}
 		}
 		/**
@@ -53,10 +53,10 @@ public final class Input{
 				if(sOut.matches(test.rInt)){
 					int iOut=Integer.parseInt(sOut);
 					if(iOut>=iMin&&(iOut<=iMax))return iOut;
-					System.out.println(sBound + " ["+iMin+","+iMax+"]");
+					System.err.println(sBound + " ["+iMin+","+iMax+"]");
 						//continue;
 				}
-				else System.out.println(sErr);
+				else System.err.println(sErr);
 			}
 		}
 		/**
@@ -68,7 +68,7 @@ public final class Input{
 			while(true){
 				String sOut=get(sPrompt);
 				if(sOut.matches(test.rDouble))return Double.parseDouble(sOut);
-				System.out.println(sErr);
+				System.err.println(sErr);
 			}
 		}
 		/**
@@ -88,7 +88,7 @@ public final class Input{
 					System.out.println(sBound + " ["+dMin+","+dMax+"]");
 					//continue;
 				}
-				else System.out.println(sErr);
+				else System.err.println(sErr);
 			}
 		}
 		/**
@@ -102,7 +102,7 @@ public final class Input{
 			while(true){
 				sOut=get(sPrompt);
 				if(sOut.matches(reg))return sOut;
-				System.out.println(sErr);
+				System.err.println(sErr);
 			}
 		}
 		/**
@@ -115,7 +115,7 @@ public final class Input{
 			while(true){
 				sOut=get(sPrompt);
 				if(sOut.length()>0)return sOut;
-				System.out.println(sErr);
+				System.err.println(sErr);
 			}
 		}
 		/**
@@ -187,18 +187,18 @@ public final class Input{
 					liItems.add(got);
 				}
 				line.close();
-				String[] aItems=Array.toString(liItems);
+				String[] aItems=Arrays.toString(liItems);
 				int _i=aItems.length;
 				liItems.clear();
 				if(_i<=0){
-					System.out.println(err);
+					System.err.println(err);
 					continue;
 				}
 				double[] dOut=new double[_i];
 				for(int i=0; i<_i; i++){
 					if(aItems[i].matches(Input.test.rDouble))dOut[i]=Double.parseDouble(aItems[i]);
 					else{
-						System.out.print(err+": "+(i+1)+"\nnew value:\t\t");
+						System.err.print(err+": "+(i+1)+"\nnew value:\t\t");
 						dOut[i]=get.Double(null, err);
 					}
 				}//EOF
@@ -208,7 +208,7 @@ public final class Input{
 		
 	}
 	public static void main(String[] iESA){
-		Open();
+		Input.Open();
 		double[] x=array.Double("Test values", "Error not a number");
 		System.out.println(Numbers.join(",", x));
 	}
