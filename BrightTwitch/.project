@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>BrightTwitch</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+	</buildSpec>
+	<natures>
+	</natures>
+	<variableList>
+		<variable>
+			<name>node</name>
+			<value>file:/C:/Program%20Files/nodejs/node.exe</value>
+		</variable>
+	</variableList>
+</projectDescription>
