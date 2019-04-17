@@ -4,9 +4,7 @@ import java.util.function.BinaryOperator;
 import java.util.function.DoubleBinaryOperator;
 import java.util.function.LongBinaryOperator;
 
-import functions.IndexDoubleFunction;
-import functions.IndexEFunction;
-import functions.IndexFunction;
+import functions.Index;
 
 /**
  * @author Zekrom
@@ -252,7 +250,7 @@ public final class ArrayUtil{
 	 *                   The operation to perform as <code>(collector, element)-></code>
 	 * @return       The collected value
 	 */
-	public static long reduce(final byte[] array, final IndexFunction<Byte> op){
+	public static long reduce(final byte[] array, final Index.Long<Byte> op){
 		long collector=array[0];
 		for(int i=1; i<array.length; i++){
 			collector=op.apply(collector, array[i], i);
@@ -305,7 +303,7 @@ public final class ArrayUtil{
 	 * @return       The collected value
 	 */
 	public static double
-		reduce(final double[] array, final IndexDoubleFunction<Double> op){
+		reduce(final double[] array, final Index.Double<Double> op){
 		double collector=array[0];
 		for(int i=1; i<array.length; i++){
 			collector=op.apply(collector, array[i], i);
@@ -339,7 +337,7 @@ public final class ArrayUtil{
 	 *                   The operation to perform as <code>(collector, element)-></code>
 	 * @return       The collected value
 	 */
-	public static <E> E reduce(final E[] array, final IndexEFunction<E> op){
+	public static <E> E reduce(final E[] array, final Index.E<E> op){
 		E collector=array[0];
 		for(int i=1; i<array.length; i++){
 			collector=op.apply(collector, array[i], i);
@@ -356,8 +354,7 @@ public final class ArrayUtil{
 	 *                   The operation to perform as <code>(collector, element)-></code>
 	 * @return       The collected value
 	 */
-	public static long
-		reduce(final int[] array, final IndexFunction<Integer> op){
+	public static long reduce(final int[] array, final Index.Long<Integer> op){
 		long collector=array[0];
 		for(int i=1; i<array.length; i++){
 			collector=op.apply(collector, array[i], i);
@@ -391,7 +388,7 @@ public final class ArrayUtil{
 	 *                   The operation to perform as <code>(collector, element)-></code>
 	 * @return       The collected value
 	 */
-	public static long reduce(final long[] array, final IndexFunction<Long> op){
+	public static long reduce(final long[] array, final Index.Long<Long> op){
 		long collector=array[0];
 		for(int i=1; i<array.length; i++){
 			collector=op.apply(collector, array[i], i);

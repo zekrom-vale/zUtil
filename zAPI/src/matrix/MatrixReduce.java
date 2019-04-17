@@ -6,9 +6,7 @@ import java.util.function.DoubleBinaryOperator;
 import java.util.function.LongBinaryOperator;
 
 import array.ArrayUtil;
-import functions.BiIndexDoubleFunction;
-import functions.BiIndexEFunction;
-import functions.BiIndexFunction;
+import functions.BiIndex;
 
 /**
  * Condenses a matrix into an array
@@ -28,7 +26,7 @@ public class MatrixReduce{
 	 * @return        A new array contain the condensed values
 	 */
 	public static long[]
-		horizontal(final byte[][] matrix, final BiIndexFunction<Byte> op){
+		horizontal(final byte[][] matrix, final BiIndex.Long<Byte> op){
 		final long[] condensed=new long[matrix.length];
 		for(int row=0; row<matrix.length; row++){
 			final int rowNow=row;//Lambdas can't have changing values
@@ -67,9 +65,8 @@ public class MatrixReduce{
 	 *                    <code>(collector, value, rowIndex, colIndex)</code>
 	 * @return        A new array contain the condensed values
 	 */
-	public static double[] horizontal(
-		final double[][] matrix, final BiIndexDoubleFunction<Double> op
-	){
+	public static double[]
+		horizontal(final double[][] matrix, final BiIndex.Double<Double> op){
 		final double[] condensed=new double[matrix.length];
 		for(int row=0; row<matrix.length; row++){
 			final int rowNow=row;//Lambdas can't have changing values
@@ -111,7 +108,7 @@ public class MatrixReduce{
 	 * @return        A new array contain the condensed values
 	 */
 	public static <E> E[] horizontal(
-		final E[][] matrix, final BiIndexEFunction<E> op, final Class<E> class1
+		final E[][] matrix, final BiIndex.E<E> op, final Class<E> class1
 	){
 		@SuppressWarnings("unchecked")
 		final E[] condensed=(E[])Array.newInstance(class1, matrix.length);
@@ -157,7 +154,7 @@ public class MatrixReduce{
 	 * @return        A new array contain the condensed values
 	 */
 	public static long[]
-		horizontal(final int[][] matrix, final BiIndexFunction<Integer> op){
+		horizontal(final int[][] matrix, final BiIndex.Long<Integer> op){
 		final long[] condensed=new long[matrix.length];
 		for(int row=0; row<matrix.length; row++){
 			final int rowNow=row;//Lambdas can't have changing values
@@ -197,7 +194,7 @@ public class MatrixReduce{
 	 * @return        A new array contain the condensed values
 	 */
 	public static long[]
-		horizontal(final long[][] matrix, final BiIndexFunction<Long> op){
+		horizontal(final long[][] matrix, final BiIndex.Long<Long> op){
 		final long[] condensed=new long[matrix.length];
 		for(int row=0; row<matrix.length; row++){
 			final int rowNow=row;//Lambdas can't have changing values
@@ -237,7 +234,7 @@ public class MatrixReduce{
 	 * @return        A new array contain the condensed values
 	 */
 	public static String[]
-		horizontal(final String[][] matrix, final BiIndexEFunction<String> op){
+		horizontal(final String[][] matrix, final BiIndex.E<String> op){
 		return MatrixReduce.horizontal(matrix, op, String.class);
 	}
 
