@@ -529,5 +529,6 @@ public final class ArrayUtil{
 		return ArrayUtil.reduce(array, (a, c)->a+c);
 	}
 
-	private ArrayUtil(){}
+	@SuppressWarnings("javadoc")
+	protected ArrayUtil(){}
 }
