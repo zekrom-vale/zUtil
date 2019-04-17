@@ -11,6 +11,12 @@ import java.util.function.ToIntBiFunction;
 import java.util.function.ToLongBiFunction;
 
 
+/**
+ * matrixInner Methods for {@link MatrixCore}
+ * 
+ * @author Zekrom
+ *
+ */
 class MatrixInner{
 
 	static void matrixInner(
