@@ -413,6 +413,96 @@ public final class ArrayUtil{
 		return collector;
 	}
 
+
+	/**
+	 * Reduces an array into one value
+	 *
+	 * @param  array
+	 *                   The array to reduce
+	 * @param  op
+	 *                   The operation to perform as <code>(collector, element)-></code>
+	 * @return       The collected value
+	 */
+	public static int reduceIdex(final byte[] array, final Index.Int<Byte> op){
+		int collector=0;
+		for(int i=1; i<array.length; i++){
+			collector=op.apply(collector, array[i], i);
+		}
+		return collector;
+	}
+
+	/**
+	 * Reduces an array into one value
+	 *
+	 * @param  array
+	 *                   The array to reduce
+	 * @param  op
+	 *                   The operation to perform as <code>(collector, element)-></code>
+	 * @return       The collected value
+	 */
+	public static int
+		reduceIdex(final double[] array, final Index.Int<Double> op){
+		int collector=0;
+		for(int i=1; i<array.length; i++){
+			collector=op.apply(collector, array[i], i);
+		}
+		return collector;
+	}
+
+	/**
+	 * Reduces an array into one value
+	 *
+	 * @param  array
+	 *                   The array to reduce
+	 * @param  op
+	 *                   The operation to perform as <code>(collector, element)-></code>
+	 * @return       The collected value
+	 */
+	public static <E> int reduceIdex(final E[] array, final Index.Int<E> op){
+		int collector=0;
+		for(int i=1; i<array.length; i++){
+			collector=op.apply(collector, array[i], i);
+		}
+		return collector;
+	}
+
+	/**
+	 * Reduces an array into one value
+	 *
+	 * @param  array
+	 *                   The array to reduce
+	 * @param  op
+	 *                   The operation to perform as <code>(collector, element)-></code>
+	 * @return       The collected value
+	 */
+	public static int
+		reduceIdex(final int[] array, final Index.Int<Integer> op){
+		int collector=0;
+		for(int i=1; i<array.length; i++){
+			collector=op.apply(collector, array[i], i);
+		}
+		return collector;
+	}
+
+
+	/**
+	 * Reduces an array into one value
+	 *
+	 * @param  array
+	 *                   The array to reduce
+	 * @param  op
+	 *                   The operation to perform as <code>(collector, element)-></code>
+	 * @return       The collected value
+	 */
+	public static int reduceIdex(final long[] array, final Index.Int<Long> op){
+		int collector=0;
+		for(int i=1; i<array.length; i++){
+			collector=op.apply(collector, array[i], i);
+		}
+		return collector;
+	}
+
+
 	/**
 	 * Returns the max value of an array
 	 *
