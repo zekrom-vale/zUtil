@@ -551,7 +551,7 @@ public class Matrix extends MatrixCore{
 			}
 		}, "\t", "\n"));
 
-		System.out.println("-".repeat(60));
+		System.out.println("---------------------------------------");
 
 		System.out.println(
 			Matrix.toString(Matrix.rotate(img, byte[].class), (b, c)->{
