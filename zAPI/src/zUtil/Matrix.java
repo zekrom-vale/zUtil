@@ -3,12 +3,17 @@
  */
 package zUtil;
 
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.function.*;
+
+import functions.BiIndexDoubleFunction;
+import functions.BiIndexEFunction;
+import functions.BiIndexFunction;
 
 /**
  * Utility functions regarding matrixes, two dimensional arrays.<br>
@@ -32,14 +37,36 @@ public class Matrix{
 	 * @author Zekrom
 	 *
 	 */
-	public static class condense{
+	public static class reduce{
 		/**
 		 * Condenses each row of a matrix into a single value
 		 *
 		 * @param  matrix
 		 *                    The matrix to condense
 		 * @param  op
-		 *                    The function to reduce each row
+		 *                    The function to reduce each row as
+		 *                    <code>(collector, value, rowIndex, colIndex)</code>
+		 * @return        A new array contain the condensed values
+		 */
+		public static long[]
+			horizontal(final byte[][] matrix, final BiIndexFunction<Byte> op){
+			final long[] condensed=new long[matrix.length];
+			for(int row=0; row<matrix.length; row++){
+				final int rowNow=row;//Lambdas can't have changing values
+				condensed[row]=ArrayUtil.reduce(
+					matrix[row], (a, c, col)->op.apply(a, c, rowNow, col)
+				);
+			}
+			return condensed;
+		}
+
+		/**
+		 * Condenses each row of a matrix into a single value
+		 *
+		 * @param  matrix
+		 *                    The matrix to condense
+		 * @param  op
+		 *                    The function to reduce each row as <code>(collector, value)</code>
 		 * @return        A new array contain the condensed values
 		 */
 		public static long[]
@@ -57,7 +84,30 @@ public class Matrix{
 		 * @param  matrix
 		 *                    The matrix to condense
 		 * @param  op
-		 *                    The function to reduce each row
+		 *                    The function to reduce each row as
+		 *                    <code>(collector, value, rowIndex, colIndex)</code>
+		 * @return        A new array contain the condensed values
+		 */
+		public static double[] horizontal(
+			final double[][] matrix, final BiIndexDoubleFunction<Double> op
+		){
+			final double[] condensed=new double[matrix.length];
+			for(int row=0; row<matrix.length; row++){
+				final int rowNow=row;//Lambdas can't have changing values
+				condensed[row]=ArrayUtil.reduce(
+					matrix[row], (a, c, col)->op.apply(a, c, rowNow, col)
+				);
+			}
+			return condensed;
+		}
+
+		/**
+		 * Condenses each row of a matrix into a single value
+		 *
+		 * @param  matrix
+		 *                    The matrix to condense
+		 * @param  op
+		 *                    The function to reduce each row as <code>(collector, value)</code>
 		 * @return        A new array contain the condensed values
 		 */
 		public static double[]
@@ -69,13 +119,40 @@ public class Matrix{
 			return condensed;
 		}
 
+
 		/**
 		 * Condenses each row of a matrix into a single value
 		 *
 		 * @param  matrix
 		 *                    The matrix to condense
 		 * @param  op
-		 *                    The function to reduce each row
+		 *                    The function to reduce each row as <code>(collector, value, index)</code>
+		 * @param  class1
+		 *                    The class of the object
+		 * @return        A new array contain the condensed values
+		 */
+		public static <E> E[] horizontal(
+			final E[][] matrix, final BiIndexEFunction<E> op,
+			final Class<E> class1
+		){
+			@SuppressWarnings("unchecked")
+			final E[] condensed=(E[])Array.newInstance(class1, matrix.length);
+			for(int row=0; row<matrix.length; row++){
+				final int rowNow=row;//Lambdas can't have changing values
+				condensed[row]=ArrayUtil.reduce(
+					matrix[row], (a, c, col)->op.apply(a, c, rowNow, col)
+				);
+			}
+			return condensed;
+		}
+
+		/**
+		 * Condenses each row of a matrix into a single value
+		 *
+		 * @param  matrix
+		 *                    The matrix to condense
+		 * @param  op
+		 *                    The function to reduce each row as <code>(collector, value)</code>
 		 * @param  class1
 		 *                    The class of the object
 		 * @return        A new array contain the condensed values
@@ -98,7 +175,29 @@ public class Matrix{
 		 * @param  matrix
 		 *                    The matrix to condense
 		 * @param  op
-		 *                    The function to reduce each row
+		 *                    The function to reduce each row as
+		 *                    <code>(collector, value, rowIndex, colIndex)</code>
+		 * @return        A new array contain the condensed values
+		 */
+		public static long[]
+			horizontal(final int[][] matrix, final BiIndexFunction<Integer> op){
+			final long[] condensed=new long[matrix.length];
+			for(int row=0; row<matrix.length; row++){
+				final int rowNow=row;//Lambdas can't have changing values
+				condensed[row]=ArrayUtil.reduce(
+					matrix[row], (a, c, col)->op.apply(a, c, rowNow, col)
+				);
+			}
+			return condensed;
+		}
+
+		/**
+		 * Condenses each row of a matrix into a single value
+		 *
+		 * @param  matrix
+		 *                    The matrix to condense
+		 * @param  op
+		 *                    The function to reduce each row as <code>(collector, value)</code>
 		 * @return        A new array contain the condensed values
 		 */
 		public static long[]
@@ -116,7 +215,29 @@ public class Matrix{
 		 * @param  matrix
 		 *                    The matrix to condense
 		 * @param  op
-		 *                    The function to reduce each row
+		 *                    The function to reduce each row as
+		 *                    <code>(collector, value, rowIndex, colIndex)</code>
+		 * @return        A new array contain the condensed values
+		 */
+		public static long[]
+			horizontal(final long[][] matrix, final BiIndexFunction<Long> op){
+			final long[] condensed=new long[matrix.length];
+			for(int row=0; row<matrix.length; row++){
+				final int rowNow=row;//Lambdas can't have changing values
+				condensed[row]=ArrayUtil.reduce(
+					matrix[row], (a, c, col)->op.apply(a, c, rowNow, col)
+				);
+			}
+			return condensed;
+		}
+
+		/**
+		 * Condenses each row of a matrix into a single value
+		 *
+		 * @param  matrix
+		 *                    The matrix to condense
+		 * @param  op
+		 *                    The function to reduce each row as <code>(collector, value)</code>
 		 * @return        A new array contain the condensed values
 		 */
 		public static long[]
@@ -134,13 +255,29 @@ public class Matrix{
 		 * @param  matrix
 		 *                    The matrix to condense
 		 * @param  op
-		 *                    The function to reduce each row
+		 *                    The function to reduce each row as
+		 *                    <code>(collector, value, rowIndex, colIndex)</code>
+		 * @return        A new array contain the condensed values
+		 */
+		public static String[] horizontal(
+			final String[][] matrix, final BiIndexEFunction<String> op
+		){
+			return Matrix.reduce.horizontal(matrix, op, String.class);
+		}
+
+		/**
+		 * Condenses each row of a matrix into a single value
+		 *
+		 * @param  matrix
+		 *                    The matrix to condense
+		 * @param  op
+		 *                    The function to reduce each row as <code>(collector, value)</code>
 		 * @return        A new array contain the condensed values
 		 */
 		public static String[] horizontal(
 			final String[][] matrix, final BinaryOperator<String> op
 		){
-			return Matrix.condense.horizontal(matrix, op, String.class);
+			return Matrix.reduce.horizontal(matrix, op, String.class);
 		}
 
 
@@ -317,10 +454,10 @@ public class Matrix{
 		 */
 		public static String[]
 			vertical(final String[][] matrix, final BinaryOperator<String> op){
-			return Matrix.condense.vertical(matrix, op, String.class);
+			return Matrix.reduce.vertical(matrix, op, String.class);
 		}
 
-		private condense(){}
+		private reduce(){}
 	}
 
 
@@ -417,6 +554,66 @@ public class Matrix{
 	}
 
 	/**
+	 * Clones the elements of a matrix into a new matrix
+	 * 
+	 * @param  matrix
+	 *                    The matrix to clone
+	 * @return        A cloned matrix (Elements are not cloned)
+	 */
+	public static byte[][] clone(final byte[][] matrix){
+		return Matrix.matrix(matrix, a->a);
+	}
+
+	/**
+	 * Clones the elements of a matrix into a new matrix
+	 * 
+	 * @param  matrix
+	 *                    The matrix to clone
+	 * @return        A cloned matrix (Elements are not cloned)
+	 */
+	public static double[][] clone(final double[][] matrix){
+		return Matrix.matrix(matrix, a->a);
+	}
+
+
+	/**
+	 * Clones the elements of a matrix into a new matrix
+	 * 
+	 * @param  matrix
+	 *                    The matrix to clone
+	 * @param  class1
+	 *                    The type of the matrix
+	 * @return        A cloned matrix (Elements are not cloned)
+	 */
+	public static <E> E[][] clone(final E[][] matrix, final Class<E> class1){
+		return Matrix.matrix(matrix, a->a, class1);
+	}
+
+
+	/**
+	 * Clones the elements of a matrix into a new matrix
+	 * 
+	 * @param  matrix
+	 *                    The matrix to clone
+	 * @return        A cloned matrix (Elements are not cloned)
+	 */
+	public static int[][] clone(final int[][] matrix){
+		return Matrix.matrix(matrix, a->a);
+	}
+
+
+	/**
+	 * Clones the elements of a matrix into a new matrix
+	 * 
+	 * @param  matrix
+	 *                    The matrix to clone
+	 * @return        A cloned matrix (Elements are not cloned)
+	 */
+	public static long[][] clone(final long[][] matrix){
+		return Matrix.matrix(matrix, a->a);
+	}
+
+	/**
 	 * Divides the values of each cell
 	 *
 	 * @param  A
@@ -496,6 +693,7 @@ public class Matrix{
 		return C;
 	}
 
+
 	/**
 	 * Performs the dot operator on two matrixes<br>
 	 * The number of columns of the 1st matrix must equal the number of rows of the 2nd matrix.
@@ -521,7 +719,6 @@ public class Matrix{
 		}
 		return C;
 	}
-
 
 	/**
 	 * Performs the dot operator on two matrixes<br>
@@ -799,8 +996,9 @@ public class Matrix{
 		);
 	}
 
+
 	/**
-	 * Performs an operation on a matrix and returns a byte matrix
+	 * Performs an operation on a matrix and returns a new byte matrix
 	 *
 	 * @param  A
 	 *                    The first matrix to use
@@ -845,9 +1043,8 @@ public class Matrix{
 		return C;
 	}
 
-
 	/**
-	 * Performs an operation on a matrix and returns a byte matrix
+	 * Performs an operation on a matrix and returns a new byte matrix
 	 *
 	 * @param  A
 	 *                The matrix to modify
@@ -867,8 +1064,9 @@ public class Matrix{
 		return B;
 	}
 
+
 	/**
-	 * Performs an operation on a matrix and returns a double matrix
+	 * Performs an operation on a matrix and returns a new double matrix
 	 *
 	 * @param  A
 	 *                    The first matrix to use
@@ -916,9 +1114,8 @@ public class Matrix{
 		return C;
 	}
 
-
 	/**
-	 * Performs an operation on a matrix and returns a double matrix
+	 * Performs an operation on a matrix and returns a new double matrix
 	 *
 	 * @param  A
 	 *                The matrix to modify
@@ -939,7 +1136,7 @@ public class Matrix{
 	}
 
 	/**
-	 * Performs an operation on a matrix and returns a matrix of type class1
+	 * Performs an operation on a matrix and returns a new matrix of type class1
 	 *
 	 * @param  A
 	 *                    The first matrix to use
@@ -988,7 +1185,7 @@ public class Matrix{
 	}
 
 	/**
-	 * Performs an operation on a matrix and returns a matrix of type class1
+	 * Performs an operation on a matrix and returns a new matrix of type class1
 	 *
 	 * @param  A
 	 *                    The first matrix to use
@@ -1037,7 +1234,7 @@ public class Matrix{
 	}
 
 	/**
-	 * Performs an operation on a matrix and returns a matrix of class1
+	 * Performs an operation on a matrix and returns a new matrix of class1
 	 *
 	 * @param  A
 	 *                    The matrix to modify
@@ -1107,7 +1304,7 @@ public class Matrix{
 	}
 
 	/**
-	 * Performs an operation on a matrix and returns an int matrix
+	 * Performs an operation on a matrix and returns a new int matrix
 	 *
 	 * @param  A
 	 *                The matrix to modify
@@ -1127,7 +1324,7 @@ public class Matrix{
 	}
 
 	/**
-	 * Performs an operation on a matrix and returns a long matrix
+	 * Performs an operation on a matrix and returns a new long matrix
 	 *
 	 * @param  A
 	 *                    The first matrix to use
@@ -1173,7 +1370,7 @@ public class Matrix{
 	}
 
 	/**
-	 * Performs an operation on a matrix and returns a long matrix
+	 * Performs an operation on a matrix and returns a new long matrix
 	 *
 	 * @param  A
 	 *                The matrix to modify
@@ -1192,8 +1389,9 @@ public class Matrix{
 		return B;
 	}
 
+
 	/**
-	 * Performs an operation on a matrix and returns a byte matrix
+	 * Performs an operation on a matrix and returns a new byte matrix
 	 *
 	 * @param  A
 	 *                    The first matrix to use
@@ -1241,7 +1439,7 @@ public class Matrix{
 
 
 	/**
-	 * Performs an operation on a matrix and returns a byte matrix
+	 * Performs an operation on a matrix and returns a new byte matrix
 	 *
 	 * @param  A
 	 *                The matrix to modify
@@ -1309,9 +1507,8 @@ public class Matrix{
 		return C;
 	}
 
-
 	/**
-	 * Performs an operation on a matrix and returns a double matrix
+	 * Performs an operation on a matrix and returns a new double matrix
 	 *
 	 * @param  A
 	 *                The matrix to modify
@@ -1331,8 +1528,9 @@ public class Matrix{
 		return B;
 	}
 
+
 	/**
-	 * Performs an operation on a matrix and returns a double matrix
+	 * Performs an operation on a matrix and returns a new double matrix
 	 *
 	 * @param  A
 	 *                    The first matrix to use
@@ -1378,9 +1576,8 @@ public class Matrix{
 		return C;
 	}
 
-
 	/**
-	 * Performs an operation on a matrix and returns a double matrix
+	 * Performs an operation on a matrix and returns a new double matrix
 	 *
 	 * @param  A
 	 *                The matrix to modify
@@ -1401,7 +1598,7 @@ public class Matrix{
 	}
 
 	/**
-	 * Performs an operation on a matrix and returns a double matrix
+	 * Performs an operation on a matrix and returns a new double matrix
 	 *
 	 * @param  A
 	 *                    The first matrix to use
@@ -1448,7 +1645,7 @@ public class Matrix{
 	}
 
 	/**
-	 * Performs an operation on a matrix and returns a double matrix
+	 * Performs an operation on a matrix and returns a new double matrix
 	 *
 	 * @param  A
 	 *                The matrix to modify
@@ -1494,6 +1691,7 @@ public class Matrix{
 		}
 	}
 
+
 	private static void matrixInner(
 		final byte[][] A, final byte[][] B, final double[][] C, final int row,
 		final ToDoubleBiFunction<Byte, Byte> op, final byte onNA_A,
@@ -1520,7 +1718,6 @@ public class Matrix{
 			}
 		}
 	}
-
 
 	private static void matrixInner(
 		final byte[][] A, final byte[][] B, final int[][] C, final int row,
@@ -1873,6 +2070,7 @@ public class Matrix{
 		}
 	}
 
+
 	private static void matrixInner(
 		final long[][] A, final long[][] B, final long[][] C, final int row,
 		final LongBinaryOperator op, final long onNA_A, final long onNA_B
@@ -1898,7 +2096,6 @@ public class Matrix{
 			}
 		}
 	}
-
 
 	/**
 	 * Performs an operation on a matrix and returns an int matrix
@@ -2086,6 +2283,7 @@ public class Matrix{
 		return B;
 	}
 
+
 	/**
 	 * Performs an operation on a matrix and returns a long matrix
 	 *
@@ -2254,7 +2452,6 @@ public class Matrix{
 		return C;
 	}
 
-
 	/**
 	 * Performs an operation on a matrix and returns a long matrix
 	 *
@@ -2289,6 +2486,7 @@ public class Matrix{
 		return Matrix.matrix(matrix, a->(byte)(scalar*a));
 	}
 
+
 	/**
 	 * Multiples a scalar to all cells
 	 *
@@ -2302,7 +2500,6 @@ public class Matrix{
 		multiply(final double scalar, final double[][] matrix){
 		return Matrix.matrix(matrix, a->scalar*a);
 	}
-
 
 	/**
 	 * Multiplies the values of two double matrixes together
@@ -2367,6 +2564,7 @@ public class Matrix{
 		return Matrix.matrix(A, a->-a);
 	}
 
+
 	/**
 	 * Negates the values of an int matrix
 	 *
@@ -2377,7 +2575,6 @@ public class Matrix{
 	public static int[][] negate(final int[][] A){
 		return Matrix.matrix(A, a->-a);
 	}
-
 
 	/**
 	 * Reads a scanner to create a matrix
@@ -2568,6 +2765,7 @@ public class Matrix{
 		return (int[][])rows.toArray();
 	}
 
+
 	/**
 	 * Reads a scanner to create a matrix
 	 *
@@ -2591,7 +2789,6 @@ public class Matrix{
 		inScanner.close();
 		return matrix;
 	}
-
 
 	/**
 	 * Reads a scanner to create a matrix
@@ -2645,6 +2842,7 @@ public class Matrix{
 		return matrix;
 	}
 
+
 	/**
 	 * Reads a scanner to create a matrix
 	 *
@@ -2658,7 +2856,6 @@ public class Matrix{
 		readString(final Scanner in, final String colDelim){
 		return Matrix.read(in, colDelim, a->a);
 	}
-
 
 	/**
 	 * Reads a scanner to create a matrix
@@ -2780,6 +2977,7 @@ public class Matrix{
 		return rotated;
 	}
 
+
 	/**
 	 * @param  matrix
 	 *                    The matrix to rotate
@@ -2803,7 +3001,6 @@ public class Matrix{
 		}
 		return rotated;
 	}
-
 
 	/**
 	 * @param  matrix
@@ -2980,6 +3177,7 @@ public class Matrix{
 		return Matrix.matrix(A, B, (a, b)->a-b, 0, 0);
 	}
 
+
 	/**
 	 * Subtracts double matrixes
 	 *
@@ -3025,7 +3223,6 @@ public class Matrix{
 		}
 		return builder.toString();
 	}
-
 
 	/**
 	 * Converts a matrix of any type to a string, using a custom toString function in <code>op</code>

@@ -5,6 +5,10 @@ import java.util.function.BinaryOperator;
 import java.util.function.DoubleBinaryOperator;
 import java.util.function.LongBinaryOperator;
 
+import functions.IndexDoubleFunction;
+import functions.IndexEFunction;
+import functions.IndexFunction;
+
 /**
  * @author Zekrom
  *
@@ -315,10 +319,27 @@ public final class ArrayUtil{
 	 *                   The operation to perform as <code>(collector, element)-></code>
 	 * @return       The collected value
 	 */
-	public static long reduce(final byte[] array, final LongBinaryOperator op){
-		final long collector=array[0];
+	public static long reduce(final byte[] array, final IndexFunction<Byte> op){
+		long collector=array[0];
 		for(int i=1; i<array.length; i++){
-			op.applyAsLong(collector, array[i]);
+			collector=op.apply(collector, array[i], i);
+		}
+		return collector;
+	}
+
+	/**
+	 * Reduces an array into one value
+	 *
+	 * @param  array
+	 *                   The array to reduce
+	 * @param  op
+	 *                   The operation to perform as <code>(collector, element)-></code>
+	 * @return       The collected value
+	 */
+	public static long reduce(final byte[] array, final LongBinaryOperator op){
+		long collector=array[0];
+		for(int i=1; i<array.length; i++){
+			collector=op.applyAsLong(collector, array[i]);
 		}
 		return collector;
 	}
@@ -334,9 +355,27 @@ public final class ArrayUtil{
 	 */
 	public static double
 		reduce(final double[] array, final DoubleBinaryOperator op){
-		final double collector=array[0];
+		double collector=array[0];
 		for(int i=1; i<array.length; i++){
-			op.applyAsDouble(collector, array[i]);
+			collector=op.applyAsDouble(collector, array[i]);
+		}
+		return collector;
+	}
+
+	/**
+	 * Reduces an array into one value
+	 *
+	 * @param  array
+	 *                   The array to reduce
+	 * @param  op
+	 *                   The operation to perform as <code>(collector, element)-></code>
+	 * @return       The collected value
+	 */
+	public static double
+		reduce(final double[] array, final IndexDoubleFunction<Double> op){
+		double collector=array[0];
+		for(int i=1; i<array.length; i++){
+			collector=op.apply(collector, array[i], i);
 		}
 		return collector;
 	}
@@ -351,9 +390,44 @@ public final class ArrayUtil{
 	 * @return       The collected value
 	 */
 	public static <E> E reduce(final E[] array, final BinaryOperator<E> op){
-		final E collector=array[0];
+		E collector=array[0];
 		for(int i=1; i<array.length; i++){
-			op.apply(collector, array[i]);
+			collector=op.apply(collector, array[i]);
+		}
+		return collector;
+	}
+
+	/**
+	 * Reduces an array into one value
+	 *
+	 * @param  array
+	 *                   The array to reduce
+	 * @param  op
+	 *                   The operation to perform as <code>(collector, element)-></code>
+	 * @return       The collected value
+	 */
+	public static <E> E reduce(final E[] array, final IndexEFunction<E> op){
+		E collector=array[0];
+		for(int i=1; i<array.length; i++){
+			collector=op.apply(collector, array[i], i);
+		}
+		return collector;
+	}
+
+	/**
+	 * Reduces an array into one value
+	 *
+	 * @param  array
+	 *                   The array to reduce
+	 * @param  op
+	 *                   The operation to perform as <code>(collector, element)-></code>
+	 * @return       The collected value
+	 */
+	public static long
+		reduce(final int[] array, final IndexFunction<Integer> op){
+		long collector=array[0];
+		for(int i=1; i<array.length; i++){
+			collector=op.apply(collector, array[i], i);
 		}
 		return collector;
 	}
@@ -368,9 +442,26 @@ public final class ArrayUtil{
 	 * @return       The collected value
 	 */
 	public static long reduce(final int[] array, final LongBinaryOperator op){
-		final long collector=array[0];
+		long collector=array[0];
 		for(int i=1; i<array.length; i++){
-			op.applyAsLong(collector, array[i]);
+			collector=op.applyAsLong(collector, array[i]);
+		}
+		return collector;
+	}
+
+	/**
+	 * Reduces an array into one value
+	 *
+	 * @param  array
+	 *                   The array to reduce
+	 * @param  op
+	 *                   The operation to perform as <code>(collector, element)-></code>
+	 * @return       The collected value
+	 */
+	public static long reduce(final long[] array, final IndexFunction<Long> op){
+		long collector=array[0];
+		for(int i=1; i<array.length; i++){
+			collector=op.apply(collector, array[i], i);
 		}
 		return collector;
 	}
@@ -385,9 +476,9 @@ public final class ArrayUtil{
 	 * @return       The collected value
 	 */
 	public static long reduce(final long[] array, final LongBinaryOperator op){
-		final long collector=array[0];
+		long collector=array[0];
 		for(int i=1; i<array.length; i++){
-			op.applyAsLong(collector, array[i]);
+			collector=op.applyAsLong(collector, array[i]);
 		}
 		return collector;
 	}
