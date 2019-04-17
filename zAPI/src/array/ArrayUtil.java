@@ -7,6 +7,8 @@ import java.util.function.LongBinaryOperator;
 import functions.Index;
 
 /**
+ * A utility containing various array methods.
+ * 
  * @author Zekrom
  *
  */

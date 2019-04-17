@@ -12,12 +12,12 @@ import java.util.function.ToLongBiFunction;
 
 
 /**
- * matrixInner Methods for {@link MatrixCore}
+ * matrixInner Methods for {@link Core}
  * 
  * @author Zekrom
  *
  */
-class MatrixInner{
+class Inner{
 
 	static void matrixInner(
 		final byte[][] A, final byte[][] B, final byte[][] C, final int row,
@@ -449,5 +449,5 @@ class MatrixInner{
 		}
 	}
 
-	protected MatrixInner(){}
+	protected Inner(){}
 }
