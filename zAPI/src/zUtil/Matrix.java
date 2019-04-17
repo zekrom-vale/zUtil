@@ -532,39 +532,6 @@ public class Matrix extends MatrixCore{
 		return Matrix.flipHorizontal(matrix, String.class);
 	}
 
-	@SuppressWarnings("javadoc")
-	public static void main(final String[] args){
-		final byte[][][] img=new byte[4][4][4];
-		for(int row=0; row<img.length; row++){
-			for(int col=0; col<img[row].length; col++){
-				for(int i=0; i<img[row][col].length; i++){
-					img[row][col][i]=(byte)(Math.random()*255-128);
-				}
-			}
-		}
-
-		System.out.println(Matrix.toString(img, (b, c)->{
-			for(int i=0; i<c.length; i++){
-				b.append(
-					String.format("%2s", Integer.toHexString(c[i]+128)).replace(" ", "0")
-				);
-			}
-		}, "\t", "\n"));
-
-		System.out.println("---------------------------------------");
-
-		System.out.println(
-			Matrix.toString(Matrix.rotate(img, byte[].class), (b, c)->{
-				for(int i=0; i<c.length; i++){
-					b.append(
-						String.format("%2s", Integer.toHexString(c[i]+128)).replace(" ", "0")
-					);
-				}
-			}, "\t", "\n")
-		);
-	}
-
-
 	/**
 	 * Multiples a scalar to all cells
 	 *
@@ -677,11 +644,14 @@ public class Matrix extends MatrixCore{
 	 *                      The delimiter of the column
 	 * @param  op
 	 *                      The function to convert a sting into the object
+	 * @param  class1
+	 *                      The class of the object
 	 * @return          A String matrix
 	 */
 	@SuppressWarnings("unchecked")
 	public static <E> E[][] read(
-		final Scanner in, final String colDelim, final Function<String, E> op
+		final Scanner in, final String colDelim, final Function<String, E> op,
+		final Class<E> class1
 	){
 		final ArrayList<E[]> rows=new ArrayList<>();
 		while(in.hasNext()){
@@ -691,10 +661,14 @@ public class Matrix extends MatrixCore{
 			while(rowScan.hasNext()){
 				cells.add(op.apply(rowScan.next()));
 			}
-			rows.add((E[])rows.toArray());
+			rows.add(
+				rows.toArray((E[])Array.newInstance(class1, cells.size()))
+			);
 			rowScan.close();
 		}
-		return (E[][])rows.toArray();
+		return rows.toArray(
+			(E[][])Array.newInstance(rows.get(0).getClass(), rows.size())
+		);
 	}
 
 	/**
@@ -708,6 +682,8 @@ public class Matrix extends MatrixCore{
 	 *                                   The delimiter of the column
 	 * @param  op
 	 *                                   The function to convert a sting into the object
+	 * @param  class1
+	 *                                   The class of the object
 	 * @return                       A Object matrix matrix
 	 * @throws FileNotFoundException
 	 *                                   The file might not exist
@@ -715,11 +691,11 @@ public class Matrix extends MatrixCore{
 	@SuppressWarnings("resource")
 	public static <E> E[][] read(
 		final String in, final String rowDelim, final String colDelim,
-		final Function<String, E> op
+		final Function<String, E> op, final Class<E> class1
 	) throws FileNotFoundException{
 		final Scanner inScanner=new Scanner(new FileReader(in));
 		inScanner.useDelimiter(rowDelim);
-		final E[][] matrix=Matrix.read(inScanner, colDelim, op);
+		final E[][] matrix=Matrix.read(inScanner, colDelim, op, class1);
 		inScanner.close();
 		return matrix;
 	}
@@ -749,7 +725,7 @@ public class Matrix extends MatrixCore{
 			rows.add(items);
 			rowScan.close();
 		}
-		return (byte[][])rows.toArray();
+		return rows.toArray(new byte[rows.size()][]);
 	}
 
 	/**
@@ -802,7 +778,7 @@ public class Matrix extends MatrixCore{
 			rows.add(items);
 			rowScan.close();
 		}
-		return (double[][])rows.toArray();
+		return rows.toArray(new double[rows.size()][]);
 	}
 
 	/**
@@ -854,7 +830,7 @@ public class Matrix extends MatrixCore{
 			rows.add(items);
 			rowScan.close();
 		}
-		return (int[][])rows.toArray();
+		return rows.toArray(new int[rows.size()][]);
 	}
 
 
@@ -907,7 +883,7 @@ public class Matrix extends MatrixCore{
 			rows.add(items);
 			rowScan.close();
 		}
-		return (long[][])rows.toArray();
+		return rows.toArray(new long[rows.size()][]);
 	}
 
 	/**
@@ -946,7 +922,7 @@ public class Matrix extends MatrixCore{
 	 */
 	public static String[][]
 		readString(final Scanner in, final String colDelim){
-		return Matrix.read(in, colDelim, a->a);
+		return Matrix.read(in, colDelim, a->a, String.class);
 	}
 
 	/**
@@ -965,7 +941,7 @@ public class Matrix extends MatrixCore{
 	public static String[][] readString(
 		final String in, final String rowDelim, final String colDelim
 	) throws FileNotFoundException{
-		return Matrix.read(in, rowDelim, colDelim, a->a);
+		return Matrix.read(in, rowDelim, colDelim, a->a, String.class);
 	}
 
 	/**
