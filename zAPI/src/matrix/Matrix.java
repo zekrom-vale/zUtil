@@ -1,7 +1,7 @@
 /**
  *
  */
-package zUtil;
+package matrix;
 
 
 import java.io.FileNotFoundException;

@@ -1,10 +1,11 @@
-package zUtil;
+package matrix;
 
 import java.lang.reflect.Array;
 import java.util.function.BinaryOperator;
 import java.util.function.DoubleBinaryOperator;
 import java.util.function.LongBinaryOperator;
 
+import array.ArrayUtil;
 import functions.BiIndexDoubleFunction;
 import functions.BiIndexEFunction;
 import functions.BiIndexFunction;

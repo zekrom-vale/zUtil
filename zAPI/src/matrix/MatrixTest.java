@@ -1,7 +1,7 @@
 /**
  *
  */
-package zUtil;
+package matrix;
 
 import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
@@ -66,7 +66,7 @@ class MatrixTest{
 
 
 	/**
-	 * Test method for {@link zUtil.Matrix#add(byte, byte[][])}.
+	 * Test method for {@link matrix.Matrix#add(byte, byte[][])}.
 	 */
 	@Test
 	final void testAddByteByteArrayArray(){
@@ -74,7 +74,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#add(double[][], double[][])}.
+	 * Test method for {@link matrix.Matrix#add(double[][], double[][])}.
 	 */
 	@Test
 	final void testAddDoubleArrayArrayDoubleArrayArray(){
@@ -82,7 +82,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#add(double, double[][])}.
+	 * Test method for {@link matrix.Matrix#add(double, double[][])}.
 	 */
 	@Test
 	final void testAddDoubleDoubleArrayArray(){
@@ -90,7 +90,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#add(int[][], int[][])}.
+	 * Test method for {@link matrix.Matrix#add(int[][], int[][])}.
 	 */
 	@Test
 	final void testAddIntArrayArrayIntArrayArray(){
@@ -98,7 +98,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#add(int, int[][])}.
+	 * Test method for {@link matrix.Matrix#add(int, int[][])}.
 	 */
 	@Test
 	final void testAddIntIntArrayArray(){
@@ -106,7 +106,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#add(long, long[][])}.
+	 * Test method for {@link matrix.Matrix#add(long, long[][])}.
 	 */
 	@Test
 	final void testAddLongLongArrayArray(){
@@ -114,7 +114,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#add(java.lang.String[][], java.lang.String[][])}.
+	 * Test method for {@link matrix.Matrix#add(java.lang.String[][], java.lang.String[][])}.
 	 */
 	@Test
 	final void testAddStringArrayArrayStringArrayArray(){
@@ -122,7 +122,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#divide(byte[][], byte[][])}.
+	 * Test method for {@link matrix.Matrix#divide(byte[][], byte[][])}.
 	 */
 	@Test
 	final void testDivideByteArrayArrayByteArrayArray(){
@@ -130,7 +130,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#divide(double[][], double[][])}.
+	 * Test method for {@link matrix.Matrix#divide(double[][], double[][])}.
 	 */
 	@Test
 	final void testDivideDoubleArrayArrayDoubleArrayArray(){
@@ -138,7 +138,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#divide(int[][], int[][])}.
+	 * Test method for {@link matrix.Matrix#divide(int[][], int[][])}.
 	 */
 	@Test
 	final void testDivideIntArrayArrayIntArrayArray(){
@@ -146,7 +146,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#divide(long[][], long[][])}.
+	 * Test method for {@link matrix.Matrix#divide(long[][], long[][])}.
 	 */
 	@Test
 	final void testDivideLongArrayArrayLongArrayArray(){
@@ -154,7 +154,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#dotProduct(double[][], double[][])}.
+	 * Test method for {@link matrix.Matrix#dotProduct(double[][], double[][])}.
 	 */
 	@Test
 	final void testDotProductDoubleArrayArrayDoubleArrayArray(){
@@ -162,7 +162,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#dotProduct(int[][], int[][])}.
+	 * Test method for {@link matrix.Matrix#dotProduct(int[][], int[][])}.
 	 */
 	@Test
 	final void testDotProductIntArrayArrayIntArrayArray(){
@@ -175,7 +175,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#dotProduct(long[][], long[][])}.
+	 * Test method for {@link matrix.Matrix#dotProduct(long[][], long[][])}.
 	 */
 	@Test
 	final void testDotProductLongArrayArrayLongArrayArray(){
@@ -183,7 +183,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#flipHorizontal(byte[][])}.
+	 * Test method for {@link matrix.Matrix#flipHorizontal(byte[][])}.
 	 */
 	@Test
 	final void testFlipHorizontalByteArrayArray(){
@@ -191,7 +191,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#flipHorizontal(double[][])}.
+	 * Test method for {@link matrix.Matrix#flipHorizontal(double[][])}.
 	 */
 	@Test
 	final void testFlipHorizontalDoubleArrayArray(){
@@ -199,7 +199,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#flipHorizontal(E[][], java.lang.Class)}.
+	 * Test method for {@link matrix.Matrix#flipHorizontal(E[][], java.lang.Class)}.
 	 */
 	@Test
 	final void testFlipHorizontalEArrayArrayClassOfE(){
@@ -207,7 +207,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#flipHorizontal(int[][])}.
+	 * Test method for {@link matrix.Matrix#flipHorizontal(int[][])}.
 	 */
 	@Test
 	final void testFlipHorizontalIntArrayArray(){
@@ -215,7 +215,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#flipHorizontal(long[][])}.
+	 * Test method for {@link matrix.Matrix#flipHorizontal(long[][])}.
 	 */
 	@Test
 	final void testFlipHorizontalLongArrayArray(){
@@ -223,7 +223,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#flipHorizontal(java.lang.String[][])}.
+	 * Test method for {@link matrix.Matrix#flipHorizontal(java.lang.String[][])}.
 	 */
 	@Test
 	final void testFlipHorizontalStringArrayArray(){
@@ -231,7 +231,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#flipVertical(byte[][])}.
+	 * Test method for {@link matrix.Matrix#flipVertical(byte[][])}.
 	 */
 	@Test
 	final void testFlipVerticalByteArrayArray(){
@@ -239,7 +239,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#flipVertical(double[][])}.
+	 * Test method for {@link matrix.Matrix#flipVertical(double[][])}.
 	 */
 	@Test
 	final void testFlipVerticalDoubleArrayArray(){
@@ -247,7 +247,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#flipVertical(E[][], java.lang.Class)}.
+	 * Test method for {@link matrix.Matrix#flipVertical(E[][], java.lang.Class)}.
 	 */
 	@Test
 	final void testFlipVerticalEArrayArrayClassOfE(){
@@ -255,7 +255,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#flipVertical(int[][])}.
+	 * Test method for {@link matrix.Matrix#flipVertical(int[][])}.
 	 */
 	@Test
 	final void testFlipVerticalIntArrayArray(){
@@ -263,7 +263,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#flipVertical(long[][])}.
+	 * Test method for {@link matrix.Matrix#flipVertical(long[][])}.
 	 */
 	@Test
 	final void testFlipVerticalLongArrayArray(){
@@ -271,7 +271,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#flipVertical(java.lang.String[][])}.
+	 * Test method for {@link matrix.Matrix#flipVertical(java.lang.String[][])}.
 	 */
 	@Test
 	final void testFlipVerticalStringArrayArray(){
@@ -279,7 +279,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#main(java.lang.String[])}.
+	 * Test method for {@link matrix.Matrix#main(java.lang.String[])}.
 	 */
 	@Test
 	final void testMain(){
@@ -288,7 +288,7 @@ class MatrixTest{
 
 	/**
 	 * Test method for
-	 * {@link zUtil.Matrix#matrix(byte[][], byte[][], java.util.function.BinaryOperator, byte, byte)}.
+	 * {@link matrix.Matrix#matrix(byte[][], byte[][], java.util.function.BinaryOperator, byte, byte)}.
 	 */
 	@Test
 	final void
@@ -297,7 +297,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#matrix(byte[][], java.util.function.UnaryOperator)}.
+	 * Test method for {@link matrix.Matrix#matrix(byte[][], java.util.function.UnaryOperator)}.
 	 */
 	@Test
 	final void testMatrixByteArrayArrayUnaryOperatorOfByte(){
@@ -306,7 +306,7 @@ class MatrixTest{
 
 	/**
 	 * Test method for
-	 * {@link zUtil.Matrix#matrixByte(int[][], int[][], java.util.function.BiFunction, int, int)}.
+	 * {@link matrix.Matrix#matrixByte(int[][], int[][], java.util.function.BiFunction, int, int)}.
 	 */
 	@Test
 	final void
@@ -315,7 +315,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#matrixByte(int[][], java.util.function.IntFunction)}.
+	 * Test method for {@link matrix.Matrix#matrixByte(int[][], java.util.function.IntFunction)}.
 	 */
 	@Test
 	final void testMatrixByteIntArrayArrayIntFunctionOfByte(){
@@ -324,7 +324,7 @@ class MatrixTest{
 
 	/**
 	 * Test method for
-	 * {@link zUtil.Matrix#matrix(double[][], double[][], java.util.function.DoubleBinaryOperator, double, double)}.
+	 * {@link matrix.Matrix#matrix(double[][], double[][], java.util.function.DoubleBinaryOperator, double, double)}.
 	 */
 	@Test
 	final void
@@ -333,7 +333,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#matrix(double[][], java.util.function.DoubleUnaryOperator)}.
+	 * Test method for {@link matrix.Matrix#matrix(double[][], java.util.function.DoubleUnaryOperator)}.
 	 */
 	@Test
 	final void testMatrixDoubleArrayArrayDoubleUnaryOperator(){
@@ -342,7 +342,7 @@ class MatrixTest{
 
 	/**
 	 * Test method for
-	 * {@link zUtil.Matrix#matrixDouble(byte[][], byte[][], java.util.function.ToDoubleBiFunction, byte, byte)}.
+	 * {@link matrix.Matrix#matrixDouble(byte[][], byte[][], java.util.function.ToDoubleBiFunction, byte, byte)}.
 	 */
 	@Test
 	final void
@@ -351,7 +351,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#matrixDouble(byte[][], java.util.function.ToDoubleFunction)}.
+	 * Test method for {@link matrix.Matrix#matrixDouble(byte[][], java.util.function.ToDoubleFunction)}.
 	 */
 	@Test
 	final void testMatrixDoubleByteArrayArrayToDoubleFunctionOfByte(){
@@ -360,7 +360,7 @@ class MatrixTest{
 
 	/**
 	 * Test method for
-	 * {@link zUtil.Matrix#matrixDouble(int[][], int[][], java.util.function.ToDoubleBiFunction, int, int)}.
+	 * {@link matrix.Matrix#matrixDouble(int[][], int[][], java.util.function.ToDoubleBiFunction, int, int)}.
 	 */
 	@Test
 	final void
@@ -370,7 +370,7 @@ class MatrixTest{
 
 	/**
 	 * Test method for
-	 * {@link zUtil.Matrix#matrixDouble(int[][], java.util.function.IntToDoubleFunction)}.
+	 * {@link matrix.Matrix#matrixDouble(int[][], java.util.function.IntToDoubleFunction)}.
 	 */
 	@Test
 	final void testMatrixDoubleIntArrayArrayIntToDoubleFunction(){
@@ -379,7 +379,7 @@ class MatrixTest{
 
 	/**
 	 * Test method for
-	 * {@link zUtil.Matrix#matrixDouble(long[][], long[][], java.util.function.ToDoubleBiFunction, long, long)}.
+	 * {@link matrix.Matrix#matrixDouble(long[][], long[][], java.util.function.ToDoubleBiFunction, long, long)}.
 	 */
 	@Test
 	final void
@@ -389,7 +389,7 @@ class MatrixTest{
 
 	/**
 	 * Test method for
-	 * {@link zUtil.Matrix#matrixDouble(long[][], java.util.function.LongToDoubleFunction)}.
+	 * {@link matrix.Matrix#matrixDouble(long[][], java.util.function.LongToDoubleFunction)}.
 	 */
 	@Test
 	final void testMatrixDoubleLongArrayArrayLongToDoubleFunction(){
@@ -398,7 +398,7 @@ class MatrixTest{
 
 	/**
 	 * Test method for
-	 * {@link zUtil.Matrix#matrix(E[][], E[][], java.util.function.BiFunction, java.lang.Object, java.lang.Object, java.lang.Class)}.
+	 * {@link matrix.Matrix#matrix(E[][], E[][], java.util.function.BiFunction, java.lang.Object, java.lang.Object, java.lang.Class)}.
 	 */
 	@Test
 	final void testMatrixEArrayArrayEArrayArrayBiFunctionOfEETEEClassOfT(){
@@ -407,7 +407,7 @@ class MatrixTest{
 
 	/**
 	 * Test method for
-	 * {@link zUtil.Matrix#matrix(E[][], E[][], java.util.function.BinaryOperator, java.lang.Object, java.lang.Object, java.lang.Class)}.
+	 * {@link matrix.Matrix#matrix(E[][], E[][], java.util.function.BinaryOperator, java.lang.Object, java.lang.Object, java.lang.Class)}.
 	 */
 	@Test
 	final void testMatrixEArrayArrayEArrayArrayBinaryOperatorOfEEEClassOfE(){
@@ -416,7 +416,7 @@ class MatrixTest{
 
 	/**
 	 * Test method for
-	 * {@link zUtil.Matrix#matrix(E[][], java.util.function.UnaryOperator, java.lang.Class)}.
+	 * {@link matrix.Matrix#matrix(E[][], java.util.function.UnaryOperator, java.lang.Class)}.
 	 */
 	@Test
 	final void testMatrixEArrayArrayUnaryOperatorOfEClassOfE(){
@@ -425,7 +425,7 @@ class MatrixTest{
 
 	/**
 	 * Test method for
-	 * {@link zUtil.Matrix#matrix(int[][], int[][], java.util.function.IntBinaryOperator, int, int)}.
+	 * {@link matrix.Matrix#matrix(int[][], int[][], java.util.function.IntBinaryOperator, int, int)}.
 	 */
 	@Test
 	final void testMatrixIntArrayArrayIntArrayArrayIntBinaryOperatorIntInt(){
@@ -433,7 +433,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#matrix(int[][], java.util.function.IntUnaryOperator)}.
+	 * Test method for {@link matrix.Matrix#matrix(int[][], java.util.function.IntUnaryOperator)}.
 	 */
 	@Test
 	final void testMatrixIntArrayArrayIntUnaryOperator(){
@@ -442,7 +442,7 @@ class MatrixTest{
 
 	/**
 	 * Test method for
-	 * {@link zUtil.Matrix#matrixInt(byte[][], byte[][], java.util.function.ToIntBiFunction, byte, byte)}.
+	 * {@link matrix.Matrix#matrixInt(byte[][], byte[][], java.util.function.ToIntBiFunction, byte, byte)}.
 	 */
 	@Test
 	final void
@@ -452,7 +452,7 @@ class MatrixTest{
 
 	/**
 	 * Test method for
-	 * {@link zUtil.Matrix#matrixInt(double[][], double[][], java.util.function.ToIntBiFunction, double, double)}.
+	 * {@link matrix.Matrix#matrixInt(double[][], double[][], java.util.function.ToIntBiFunction, double, double)}.
 	 */
 	@Test
 	final void
@@ -462,7 +462,7 @@ class MatrixTest{
 
 	/**
 	 * Test method for
-	 * {@link zUtil.Matrix#matrixInt(double[][], java.util.function.DoubleToIntFunction)}.
+	 * {@link matrix.Matrix#matrixInt(double[][], java.util.function.DoubleToIntFunction)}.
 	 */
 	@Test
 	final void testMatrixIntDoubleArrayArrayDoubleToIntFunction(){
@@ -471,7 +471,7 @@ class MatrixTest{
 
 	/**
 	 * Test method for
-	 * {@link zUtil.Matrix#matrixInt(long[][], long[][], java.util.function.ToIntBiFunction, long, long)}.
+	 * {@link matrix.Matrix#matrixInt(long[][], long[][], java.util.function.ToIntBiFunction, long, long)}.
 	 */
 	@Test
 	final void
@@ -480,7 +480,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#matrixInt(long[][], java.util.function.LongToIntFunction)}.
+	 * Test method for {@link matrix.Matrix#matrixInt(long[][], java.util.function.LongToIntFunction)}.
 	 */
 	@Test
 	final void testMatrixIntLongArrayArrayLongToIntFunction(){
@@ -489,7 +489,7 @@ class MatrixTest{
 
 	/**
 	 * Test method for
-	 * {@link zUtil.Matrix#matrix(long[][], long[][], java.util.function.LongBinaryOperator, long, long)}.
+	 * {@link matrix.Matrix#matrix(long[][], long[][], java.util.function.LongBinaryOperator, long, long)}.
 	 */
 	@Test
 	final void
@@ -498,7 +498,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#matrix(long[][], java.util.function.LongUnaryOperator)}.
+	 * Test method for {@link matrix.Matrix#matrix(long[][], java.util.function.LongUnaryOperator)}.
 	 */
 	@Test
 	final void testMatrixLongArrayArrayLongUnaryOperator(){
@@ -507,7 +507,7 @@ class MatrixTest{
 
 	/**
 	 * Test method for
-	 * {@link zUtil.Matrix#matrixLong(byte[][], byte[][], java.util.function.ToLongBiFunction, byte, byte)}.
+	 * {@link matrix.Matrix#matrixLong(byte[][], byte[][], java.util.function.ToLongBiFunction, byte, byte)}.
 	 */
 	@Test
 	final void
@@ -517,7 +517,7 @@ class MatrixTest{
 
 	/**
 	 * Test method for
-	 * {@link zUtil.Matrix#matrixLong(double[][], double[][], java.util.function.ToLongBiFunction, double, double)}.
+	 * {@link matrix.Matrix#matrixLong(double[][], double[][], java.util.function.ToLongBiFunction, double, double)}.
 	 */
 	@Test
 	final void
@@ -527,7 +527,7 @@ class MatrixTest{
 
 	/**
 	 * Test method for
-	 * {@link zUtil.Matrix#matrixLong(double[][], java.util.function.DoubleToLongFunction)}.
+	 * {@link matrix.Matrix#matrixLong(double[][], java.util.function.DoubleToLongFunction)}.
 	 */
 	@Test
 	final void testMatrixLongDoubleArrayArrayDoubleToLongFunction(){
@@ -536,7 +536,7 @@ class MatrixTest{
 
 	/**
 	 * Test method for
-	 * {@link zUtil.Matrix#matrixLong(int[][], int[][], java.util.function.ToLongBiFunction, int, int)}.
+	 * {@link matrix.Matrix#matrixLong(int[][], int[][], java.util.function.ToLongBiFunction, int, int)}.
 	 */
 	@Test
 	final void
@@ -545,7 +545,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#matrixLong(int[][], java.util.function.IntToLongFunction)}.
+	 * Test method for {@link matrix.Matrix#matrixLong(int[][], java.util.function.IntToLongFunction)}.
 	 */
 	@Test
 	final void testMatrixLongIntArrayArrayIntToLongFunction(){
@@ -553,7 +553,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#multiply(byte, byte[][])}.
+	 * Test method for {@link matrix.Matrix#multiply(byte, byte[][])}.
 	 */
 	@Test
 	final void testMultiplyByteByteArrayArray(){
@@ -561,7 +561,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#multiply(double[][], double[][])}.
+	 * Test method for {@link matrix.Matrix#multiply(double[][], double[][])}.
 	 */
 	@Test
 	final void testMultiplyDoubleArrayArrayDoubleArrayArray(){
@@ -569,7 +569,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#multiply(double, double[][])}.
+	 * Test method for {@link matrix.Matrix#multiply(double, double[][])}.
 	 */
 	@Test
 	final void testMultiplyDoubleDoubleArrayArray(){
@@ -577,7 +577,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#multiply(int[][], int[][])}.
+	 * Test method for {@link matrix.Matrix#multiply(int[][], int[][])}.
 	 */
 	@Test
 	final void testMultiplyIntArrayArrayIntArrayArray(){
@@ -585,7 +585,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#multiply(long, long[][])}.
+	 * Test method for {@link matrix.Matrix#multiply(long, long[][])}.
 	 */
 	@Test
 	final void testMultiplyLongLongArrayArray(){
@@ -593,7 +593,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#multipply(int, int[][])}.
+	 * Test method for {@link matrix.Matrix#multipply(int, int[][])}.
 	 */
 	@Test
 	final void testMultipply(){
@@ -601,7 +601,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#negate(double[][])}.
+	 * Test method for {@link matrix.Matrix#negate(double[][])}.
 	 */
 	@Test
 	final void testNegateDoubleArrayArray(){
@@ -609,7 +609,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#negate(int[][])}.
+	 * Test method for {@link matrix.Matrix#negate(int[][])}.
 	 */
 	@Test
 	final void testNegateIntArrayArray(){
@@ -617,7 +617,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#rotate(byte[][])}.
+	 * Test method for {@link matrix.Matrix#rotate(byte[][])}.
 	 */
 	@Test
 	final void testRotateByteArrayArray(){
@@ -633,7 +633,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#rotate(double[][])}.
+	 * Test method for {@link matrix.Matrix#rotate(double[][])}.
 	 */
 	@Test
 	final void testRotateDoubleArrayArray(){
@@ -647,7 +647,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#rotate(E[][], java.lang.Class)}.
+	 * Test method for {@link matrix.Matrix#rotate(E[][], java.lang.Class)}.
 	 */
 	@Test
 	final void testRotateEArrayArrayClassOfE(){
@@ -655,7 +655,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#rotate(int[][])}.
+	 * Test method for {@link matrix.Matrix#rotate(int[][])}.
 	 */
 	@Test
 	final void testRotateIntArrayArray(){
@@ -666,7 +666,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#rotateLeft(byte[][])}.
+	 * Test method for {@link matrix.Matrix#rotateLeft(byte[][])}.
 	 */
 	@Test
 	final void testRotateLeftByteArrayArray(){
@@ -674,7 +674,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#rotateLeft(double[][])}.
+	 * Test method for {@link matrix.Matrix#rotateLeft(double[][])}.
 	 */
 	@Test
 	final void testRotateLeftDoubleArrayArray(){
@@ -682,7 +682,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#rotateLeft(E[][], java.lang.Class)}.
+	 * Test method for {@link matrix.Matrix#rotateLeft(E[][], java.lang.Class)}.
 	 */
 	@Test
 	final void testRotateLeftEArrayArrayClassOfE(){
@@ -690,7 +690,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#rotateLeft(int[][])}.
+	 * Test method for {@link matrix.Matrix#rotateLeft(int[][])}.
 	 */
 	@Test
 	final void testRotateLeftIntArrayArray(){
@@ -698,7 +698,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#rotateLeft(long[][])}.
+	 * Test method for {@link matrix.Matrix#rotateLeft(long[][])}.
 	 */
 	@Test
 	final void testRotateLeftLongArrayArray(){
@@ -706,7 +706,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#rotateLeft(java.lang.String[][])}.
+	 * Test method for {@link matrix.Matrix#rotateLeft(java.lang.String[][])}.
 	 */
 	@Test
 	final void testRotateLeftStringArrayArray(){
@@ -714,7 +714,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#rotate(long[][])}.
+	 * Test method for {@link matrix.Matrix#rotate(long[][])}.
 	 */
 	@Test
 	final void testRotateLongArrayArray(){
@@ -722,7 +722,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#rotate(java.lang.String[][])}.
+	 * Test method for {@link matrix.Matrix#rotate(java.lang.String[][])}.
 	 */
 	@Test
 	final void testRotateStringArrayArray(){
@@ -730,7 +730,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#subtract(double[][], double[][])}.
+	 * Test method for {@link matrix.Matrix#subtract(double[][], double[][])}.
 	 */
 	@Test
 	final void testSubtractDoubleArrayArrayDoubleArrayArray(){
@@ -738,7 +738,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#subtract(int[][], int[][])}.
+	 * Test method for {@link matrix.Matrix#subtract(int[][], int[][])}.
 	 */
 	@Test
 	final void testSubtractIntArrayArrayIntArrayArray(){
@@ -746,7 +746,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#toString(double[][], java.lang.String, java.lang.String)}.
+	 * Test method for {@link matrix.Matrix#toString(double[][], java.lang.String, java.lang.String)}.
 	 */
 	@Test
 	final void testToStringDoubleArrayArrayStringString(){
@@ -754,7 +754,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#toString(E[][], java.lang.String, java.lang.String)}.
+	 * Test method for {@link matrix.Matrix#toString(E[][], java.lang.String, java.lang.String)}.
 	 */
 	@Test
 	final void testToStringEArrayArrayStringString(){
@@ -763,7 +763,7 @@ class MatrixTest{
 
 	/**
 	 * Test method for
-	 * {@link zUtil.Matrix#toString(E[][], java.lang.String, java.lang.String, java.lang.String)}.
+	 * {@link matrix.Matrix#toString(E[][], java.lang.String, java.lang.String, java.lang.String)}.
 	 */
 	@Test
 	final void testToStringEArrayArrayStringStringString(){
@@ -771,7 +771,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#toString(int[][], java.lang.String, java.lang.String)}.
+	 * Test method for {@link matrix.Matrix#toString(int[][], java.lang.String, java.lang.String)}.
 	 */
 	@Test
 	final void testToStringIntArrayArrayStringString(){
@@ -779,7 +779,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#toString(long[][], java.lang.String, java.lang.String)}.
+	 * Test method for {@link matrix.Matrix#toString(long[][], java.lang.String, java.lang.String)}.
 	 */
 	@Test
 	final void testToStringLongArrayArrayStringString(){
@@ -787,7 +787,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#transpose(byte[][])}.
+	 * Test method for {@link matrix.Matrix#transpose(byte[][])}.
 	 */
 	@Test
 	final void testTransposeByteArrayArray(){
@@ -795,7 +795,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#transpose(double[][])}.
+	 * Test method for {@link matrix.Matrix#transpose(double[][])}.
 	 */
 	@Test
 	final void testTransposeDoubleArrayArray(){
@@ -803,7 +803,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#transpose(E[][], java.lang.Class)}.
+	 * Test method for {@link matrix.Matrix#transpose(E[][], java.lang.Class)}.
 	 */
 	@Test
 	final void testTransposeEArrayArrayClassOfE(){
@@ -811,7 +811,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#transpose(int[][])}.
+	 * Test method for {@link matrix.Matrix#transpose(int[][])}.
 	 */
 	@Test
 	final void testTransposeIntArrayArray(){
@@ -819,7 +819,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#transpose(long[][])}.
+	 * Test method for {@link matrix.Matrix#transpose(long[][])}.
 	 */
 	@Test
 	final void testTransposeLongArrayArray(){
@@ -827,7 +827,7 @@ class MatrixTest{
 	}
 
 	/**
-	 * Test method for {@link zUtil.Matrix#transpose(java.lang.String[][])}.
+	 * Test method for {@link matrix.Matrix#transpose(java.lang.String[][])}.
 	 */
 	@Test
 	final void testTransposeStringArrayArray(){

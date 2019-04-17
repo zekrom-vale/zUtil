@@ -1,4 +1,4 @@
-package zUtil;
+package array;
 
 import java.util.function.BinaryOperator;
 import java.util.function.DoubleBinaryOperator;
