@@ -13,6 +13,8 @@ import java.util.function.ToIntFunction;
 import java.util.function.ToLongFunction;
 
 /**
+ * Converts matrixes into different data-types
+ *
  * @author Zekrom
  *
  */
@@ -29,11 +31,11 @@ public class Mutate{
 	 */
 	public static byte[][]
 		toByte(final double[][] matrix, final DoubleFunction<Byte> op){
-		final byte[][] mutated=new byte[matrix.length][];
-		for(int row=0; row<matrix.length; row++){
-			mutated[row]=new byte[matrix[row].length];
-			for(int col=0; col<matrix[row].length; col++){
-				mutated[row][col]=op.apply(matrix[row][col]);
+		final byte[][] mutated=new byte[matrix.length][];//Create a new matrix
+		for(int row=0; row<matrix.length; row++){//Loop for each row
+			mutated[row]=new byte[matrix[row].length];//Create the row of the matrix
+			for(int col=0; col<matrix[row].length; col++){//Loop for each col
+				mutated[row][col]=op.apply(matrix[row][col]);//Apply the given lambda
 			}
 		}
 		return mutated;
@@ -50,11 +52,11 @@ public class Mutate{
 	 */
 	public static <E> byte[][]
 		toByte(final E[][] matrix, final Function<E, Byte> op){
-		final byte[][] mutated=new byte[matrix.length][];
-		for(int row=0; row<matrix.length; row++){
-			mutated[row]=new byte[matrix[row].length];
-			for(int col=0; col<matrix[row].length; col++){
-				mutated[row][col]=op.apply(matrix[row][col]);
+		final byte[][] mutated=new byte[matrix.length][];//Create a new matrix
+		for(int row=0; row<matrix.length; row++){//Loop for each row
+			mutated[row]=new byte[matrix[row].length];//Create the row of the matrix
+			for(int col=0; col<matrix[row].length; col++){//Loop for each col
+				mutated[row][col]=op.apply(matrix[row][col]);//Apply the given lambda
 			}
 		}
 		return mutated;
@@ -71,11 +73,11 @@ public class Mutate{
 	 */
 	public static byte[][]
 		toByte(final float[][] matrix, final Function<Float, Byte> op){
-		final byte[][] mutated=new byte[matrix.length][];
-		for(int row=0; row<matrix.length; row++){
-			mutated[row]=new byte[matrix[row].length];
-			for(int col=0; col<matrix[row].length; col++){
-				mutated[row][col]=op.apply(matrix[row][col]);
+		final byte[][] mutated=new byte[matrix.length][];//Create a new matrix
+		for(int row=0; row<matrix.length; row++){//Loop for each row
+			mutated[row]=new byte[matrix[row].length];//Create the row of the matrix
+			for(int col=0; col<matrix[row].length; col++){//Loop for each col
+				mutated[row][col]=op.apply(matrix[row][col]);//Apply the given lambda
 			}
 		}
 		return mutated;
@@ -92,11 +94,11 @@ public class Mutate{
 	 */
 	public static byte[][]
 		toByte(final int[][] matrix, final IntFunction<Byte> op){
-		final byte[][] mutated=new byte[matrix.length][];
-		for(int row=0; row<matrix.length; row++){
-			mutated[row]=new byte[matrix[row].length];
-			for(int col=0; col<matrix[row].length; col++){
-				mutated[row][col]=op.apply(matrix[row][col]);
+		final byte[][] mutated=new byte[matrix.length][];//Create a new matrix
+		for(int row=0; row<matrix.length; row++){//Loop for each row
+			mutated[row]=new byte[matrix[row].length];//Create the row of the matrix
+			for(int col=0; col<matrix[row].length; col++){//Loop for each col
+				mutated[row][col]=op.apply(matrix[row][col]);//Apply the given lambda
 			}
 		}
 		return mutated;
@@ -113,11 +115,11 @@ public class Mutate{
 	 */
 	public static byte[][]
 		toByte(final long[][] matrix, final LongFunction<Byte> op){
-		final byte[][] mutated=new byte[matrix.length][];
-		for(int row=0; row<matrix.length; row++){
-			mutated[row]=new byte[matrix[row].length];
-			for(int col=0; col<matrix[row].length; col++){
-				mutated[row][col]=op.apply(matrix[row][col]);
+		final byte[][] mutated=new byte[matrix.length][];//Create a new matrix
+		for(int row=0; row<matrix.length; row++){//Loop for each row
+			mutated[row]=new byte[matrix[row].length];//Create the row of the matrix
+			for(int col=0; col<matrix[row].length; col++){//Loop for each col
+				mutated[row][col]=op.apply(matrix[row][col]);//Apply the given lambda
 			}
 		}
 		return mutated;
@@ -135,11 +137,11 @@ public class Mutate{
 	 */
 	public static byte[][]
 		toByte(final short[][] matrix, final Function<Short, Byte> op){
-		final byte[][] mutated=new byte[matrix.length][];
-		for(int row=0; row<matrix.length; row++){
-			mutated[row]=new byte[matrix[row].length];
-			for(int col=0; col<matrix[row].length; col++){
-				mutated[row][col]=op.apply(matrix[row][col]);
+		final byte[][] mutated=new byte[matrix.length][];//Create a new matrix
+		for(int row=0; row<matrix.length; row++){//Loop for each row
+			mutated[row]=new byte[matrix[row].length];//Create the row of the matrix
+			for(int col=0; col<matrix[row].length; col++){//Loop for each col
+				mutated[row][col]=op.apply(matrix[row][col]);//Apply the given lambda
 			}
 		}
 		return mutated;
@@ -162,12 +164,12 @@ public class Mutate{
 		final Class<E[]> class1
 	){
 		final E[][] mutated=(E[][])Array.newInstance(class1, matrix.length);
-		for(int row=0; row<matrix.length; row++){
+		for(int row=0; row<matrix.length; row++){//Loop for each row
 			mutated[row]=(E[])Array.newInstance(
 				class1.getComponentType(), matrix[row].length
 			);
-			for(int col=0; col<matrix[row].length; col++){
-				mutated[row][col]=op.apply(matrix[row][col]);
+			for(int col=0; col<matrix[row].length; col++){//Loop for each col
+				mutated[row][col]=op.apply(matrix[row][col]);//Apply the given lambda
 			}
 		}
 		return mutated;
@@ -190,12 +192,12 @@ public class Mutate{
 		final Class<E[]> class1
 	){
 		final E[][] mutated=(E[][])Array.newInstance(class1, matrix.length);
-		for(int row=0; row<matrix.length; row++){
+		for(int row=0; row<matrix.length; row++){//Loop for each row
 			mutated[row]=(E[])Array.newInstance(
 				class1.getComponentType(), matrix[row].length
 			);
-			for(int col=0; col<matrix[row].length; col++){
-				mutated[row][col]=op.apply(matrix[row][col]);
+			for(int col=0; col<matrix[row].length; col++){//Loop for each col
+				mutated[row][col]=op.apply(matrix[row][col]);//Apply the given lambda
 			}
 		}
 		return mutated;
@@ -218,12 +220,12 @@ public class Mutate{
 		final Class<E[]> class1
 	){
 		final E[][] mutated=(E[][])Array.newInstance(class1, matrix.length);
-		for(int row=0; row<matrix.length; row++){
+		for(int row=0; row<matrix.length; row++){//Loop for each row
 			mutated[row]=(E[])Array.newInstance(
 				class1.getComponentType(), matrix[row].length
 			);
-			for(int col=0; col<matrix[row].length; col++){
-				mutated[row][col]=op.apply(matrix[row][col]);
+			for(int col=0; col<matrix[row].length; col++){//Loop for each col
+				mutated[row][col]=op.apply(matrix[row][col]);//Apply the given lambda
 			}
 		}
 		return mutated;
@@ -245,12 +247,12 @@ public class Mutate{
 		final int[][] matrix, final IntFunction<E> op, final Class<E[]> class1
 	){
 		final E[][] mutated=(E[][])Array.newInstance(class1, matrix.length);
-		for(int row=0; row<matrix.length; row++){
+		for(int row=0; row<matrix.length; row++){//Loop for each row
 			mutated[row]=(E[])Array.newInstance(
 				class1.getComponentType(), matrix[row].length
 			);
-			for(int col=0; col<matrix[row].length; col++){
-				mutated[row][col]=op.apply(matrix[row][col]);
+			for(int col=0; col<matrix[row].length; col++){//Loop for each col
+				mutated[row][col]=op.apply(matrix[row][col]);//Apply the given lambda
 			}
 		}
 		return mutated;
@@ -272,12 +274,12 @@ public class Mutate{
 		final long[][] matrix, final LongFunction<E> op, final Class<E[]> class1
 	){
 		final E[][] mutated=(E[][])Array.newInstance(class1, matrix.length);
-		for(int row=0; row<matrix.length; row++){
+		for(int row=0; row<matrix.length; row++){//Loop for each row
 			mutated[row]=(E[])Array.newInstance(
 				class1.getComponentType(), matrix[row].length
 			);
-			for(int col=0; col<matrix[row].length; col++){
-				mutated[row][col]=op.apply(matrix[row][col]);
+			for(int col=0; col<matrix[row].length; col++){//Loop for each col
+				mutated[row][col]=op.apply(matrix[row][col]);//Apply the given lambda
 			}
 		}
 		return mutated;
@@ -300,12 +302,12 @@ public class Mutate{
 		final Class<E[]> class1
 	){
 		final E[][] mutated=(E[][])Array.newInstance(class1, matrix.length);
-		for(int row=0; row<matrix.length; row++){
+		for(int row=0; row<matrix.length; row++){//Loop for each row
 			mutated[row]=(E[])Array.newInstance(
 				class1.getComponentType(), matrix[row].length
 			);
-			for(int col=0; col<matrix[row].length; col++){
-				mutated[row][col]=op.apply(matrix[row][col]);
+			for(int col=0; col<matrix[row].length; col++){//Loop for each col
+				mutated[row][col]=op.apply(matrix[row][col]);//Apply the given lambda
 			}
 		}
 		return mutated;
@@ -328,12 +330,12 @@ public class Mutate{
 		final T[][] matrix, final Function<T, E> op, final Class<E[]> class1
 	){
 		final E[][] mutated=(E[][])Array.newInstance(class1, matrix.length);
-		for(int row=0; row<matrix.length; row++){
+		for(int row=0; row<matrix.length; row++){//Loop for each row
 			mutated[row]=(E[])Array.newInstance(
 				class1.getComponentType(), matrix[row].length
 			);
-			for(int col=0; col<matrix[row].length; col++){
-				mutated[row][col]=op.apply(matrix[row][col]);
+			for(int col=0; col<matrix[row].length; col++){//Loop for each col
+				mutated[row][col]=op.apply(matrix[row][col]);//Apply the given lambda
 			}
 		}
 		return mutated;
@@ -350,11 +352,11 @@ public class Mutate{
 	 */
 	public static float[][]
 		toFloat(final byte[][] matrix, final Function<Byte, Float> op){
-		final float[][] mutated=new float[matrix.length][];
-		for(int row=0; row<matrix.length; row++){
-			mutated[row]=new float[matrix[row].length];
-			for(int col=0; col<matrix[row].length; col++){
-				mutated[row][col]=op.apply(matrix[row][col]);
+		final float[][] mutated=new float[matrix.length][];//Create a new matrix
+		for(int row=0; row<matrix.length; row++){//Loop for each row
+			mutated[row]=new float[matrix[row].length];//Create the row of the matrix
+			for(int col=0; col<matrix[row].length; col++){//Loop for each col
+				mutated[row][col]=op.apply(matrix[row][col]);//Apply the given lambda
 			}
 		}
 		return mutated;
@@ -371,11 +373,11 @@ public class Mutate{
 	 */
 	public static float[][]
 		toFloat(final double[][] matrix, final DoubleFunction<Float> op){
-		final float[][] mutated=new float[matrix.length][];
-		for(int row=0; row<matrix.length; row++){
-			mutated[row]=new float[matrix[row].length];
-			for(int col=0; col<matrix[row].length; col++){
-				mutated[row][col]=op.apply(matrix[row][col]);
+		final float[][] mutated=new float[matrix.length][];//Create a new matrix
+		for(int row=0; row<matrix.length; row++){//Loop for each row
+			mutated[row]=new float[matrix[row].length];//Create the row of the matrix
+			for(int col=0; col<matrix[row].length; col++){//Loop for each col
+				mutated[row][col]=op.apply(matrix[row][col]);//Apply the given lambda
 			}
 		}
 		return mutated;
@@ -392,11 +394,11 @@ public class Mutate{
 	 */
 	public static <E> float[][]
 		toFloat(final E[][] matrix, final Function<E, Float> op){
-		final float[][] mutated=new float[matrix.length][];
-		for(int row=0; row<matrix.length; row++){
-			mutated[row]=new float[matrix[row].length];
-			for(int col=0; col<matrix[row].length; col++){
-				mutated[row][col]=op.apply(matrix[row][col]);
+		final float[][] mutated=new float[matrix.length][];//Create a new matrix
+		for(int row=0; row<matrix.length; row++){//Loop for each row
+			mutated[row]=new float[matrix[row].length];//Create the row of the matrix
+			for(int col=0; col<matrix[row].length; col++){//Loop for each col
+				mutated[row][col]=op.apply(matrix[row][col]);//Apply the given lambda
 			}
 		}
 		return mutated;
@@ -413,11 +415,11 @@ public class Mutate{
 	 */
 	public static float[][]
 		toFloat(final int[][] matrix, final IntFunction<Float> op){
-		final float[][] mutated=new float[matrix.length][];
-		for(int row=0; row<matrix.length; row++){
-			mutated[row]=new float[matrix[row].length];
-			for(int col=0; col<matrix[row].length; col++){
-				mutated[row][col]=op.apply(matrix[row][col]);
+		final float[][] mutated=new float[matrix.length][];//Create a new matrix
+		for(int row=0; row<matrix.length; row++){//Loop for each row
+			mutated[row]=new float[matrix[row].length];//Create the row of the matrix
+			for(int col=0; col<matrix[row].length; col++){//Loop for each col
+				mutated[row][col]=op.apply(matrix[row][col]);//Apply the given lambda
 			}
 		}
 		return mutated;
@@ -434,11 +436,11 @@ public class Mutate{
 	 */
 	public static float[][]
 		toFloat(final long[][] matrix, final LongFunction<Float> op){
-		final float[][] mutated=new float[matrix.length][];
-		for(int row=0; row<matrix.length; row++){
-			mutated[row]=new float[matrix[row].length];
-			for(int col=0; col<matrix[row].length; col++){
-				mutated[row][col]=op.apply(matrix[row][col]);
+		final float[][] mutated=new float[matrix.length][];//Create a new matrix
+		for(int row=0; row<matrix.length; row++){//Loop for each row
+			mutated[row]=new float[matrix[row].length];//Create the row of the matrix
+			for(int col=0; col<matrix[row].length; col++){//Loop for each col
+				mutated[row][col]=op.apply(matrix[row][col]);//Apply the given lambda
 			}
 		}
 		return mutated;
@@ -456,11 +458,11 @@ public class Mutate{
 	 */
 	public static float[][]
 		toFloat(final short[][] matrix, final Function<Short, Float> op){
-		final float[][] mutated=new float[matrix.length][];
-		for(int row=0; row<matrix.length; row++){
-			mutated[row]=new float[matrix[row].length];
-			for(int col=0; col<matrix[row].length; col++){
-				mutated[row][col]=op.apply(matrix[row][col]);
+		final float[][] mutated=new float[matrix.length][];//Create a new matrix
+		for(int row=0; row<matrix.length; row++){//Loop for each row
+			mutated[row]=new float[matrix[row].length];//Create the row of the matrix
+			for(int col=0; col<matrix[row].length; col++){//Loop for each col
+				mutated[row][col]=op.apply(matrix[row][col]);//Apply the given lambda
 			}
 		}
 		return mutated;
@@ -477,11 +479,11 @@ public class Mutate{
 	 */
 	public static int[][]
 		toInt(final byte[][] matrix, final ToIntFunction<Byte> op){
-		final int[][] mutated=new int[matrix.length][];
-		for(int row=0; row<matrix.length; row++){
-			mutated[row]=new int[matrix[row].length];
-			for(int col=0; col<matrix[row].length; col++){
-				mutated[row][col]=op.applyAsInt(matrix[row][col]);
+		final int[][] mutated=new int[matrix.length][];//Create a new matrix
+		for(int row=0; row<matrix.length; row++){//Loop for each row
+			mutated[row]=new int[matrix[row].length];//Create the row of the matrix
+			for(int col=0; col<matrix[row].length; col++){//Loop for each col
+				mutated[row][col]=op.applyAsInt(matrix[row][col]);//Apply the given lambda
 			}
 		}
 		return mutated;
@@ -498,11 +500,11 @@ public class Mutate{
 	 */
 	public static int[][]
 		toInt(final double[][] matrix, final DoubleToIntFunction op){
-		final int[][] mutated=new int[matrix.length][];
-		for(int row=0; row<matrix.length; row++){
-			mutated[row]=new int[matrix[row].length];
-			for(int col=0; col<matrix[row].length; col++){
-				mutated[row][col]=op.applyAsInt(matrix[row][col]);
+		final int[][] mutated=new int[matrix.length][];//Create a new matrix
+		for(int row=0; row<matrix.length; row++){//Loop for each row
+			mutated[row]=new int[matrix[row].length];//Create the row of the matrix
+			for(int col=0; col<matrix[row].length; col++){//Loop for each col
+				mutated[row][col]=op.applyAsInt(matrix[row][col]);//Apply the given lambda
 			}
 		}
 		return mutated;
@@ -519,11 +521,11 @@ public class Mutate{
 	 */
 	public static <E> int[][]
 		toInt(final E[][] matrix, final ToIntFunction<E> op){
-		final int[][] mutated=new int[matrix.length][];
-		for(int row=0; row<matrix.length; row++){
-			mutated[row]=new int[matrix[row].length];
-			for(int col=0; col<matrix[row].length; col++){
-				mutated[row][col]=op.applyAsInt(matrix[row][col]);
+		final int[][] mutated=new int[matrix.length][];//Create a new matrix
+		for(int row=0; row<matrix.length; row++){//Loop for each row
+			mutated[row]=new int[matrix[row].length];//Create the row of the matrix
+			for(int col=0; col<matrix[row].length; col++){//Loop for each col
+				mutated[row][col]=op.applyAsInt(matrix[row][col]);//Apply the given lambda
 			}
 		}
 		return mutated;
@@ -540,11 +542,11 @@ public class Mutate{
 	 */
 	public static int[][]
 		toInt(final float[][] matrix, final ToIntFunction<Float> op){
-		final int[][] mutated=new int[matrix.length][];
-		for(int row=0; row<matrix.length; row++){
-			mutated[row]=new int[matrix[row].length];
-			for(int col=0; col<matrix[row].length; col++){
-				mutated[row][col]=op.applyAsInt(matrix[row][col]);
+		final int[][] mutated=new int[matrix.length][];//Create a new matrix
+		for(int row=0; row<matrix.length; row++){//Loop for each row
+			mutated[row]=new int[matrix[row].length];//Create the row of the matrix
+			for(int col=0; col<matrix[row].length; col++){//Loop for each col
+				mutated[row][col]=op.applyAsInt(matrix[row][col]);//Apply the given lambda
 			}
 		}
 		return mutated;
@@ -561,11 +563,11 @@ public class Mutate{
 	 */
 	public static int[][]
 		toInt(final long[][] matrix, final LongToIntFunction op){
-		final int[][] mutated=new int[matrix.length][];
-		for(int row=0; row<matrix.length; row++){
-			mutated[row]=new int[matrix[row].length];
-			for(int col=0; col<matrix[row].length; col++){
-				mutated[row][col]=op.applyAsInt(matrix[row][col]);
+		final int[][] mutated=new int[matrix.length][];//Create a new matrix
+		for(int row=0; row<matrix.length; row++){//Loop for each row
+			mutated[row]=new int[matrix[row].length];//Create the row of the matrix
+			for(int col=0; col<matrix[row].length; col++){//Loop for each col
+				mutated[row][col]=op.applyAsInt(matrix[row][col]);//Apply the given lambda
 			}
 		}
 		return mutated;
@@ -583,11 +585,11 @@ public class Mutate{
 	 */
 	public static int[][]
 		toInt(final short[][] matrix, final ToIntFunction<Short> op){
-		final int[][] mutated=new int[matrix.length][];
-		for(int row=0; row<matrix.length; row++){
-			mutated[row]=new int[matrix[row].length];
-			for(int col=0; col<matrix[row].length; col++){
-				mutated[row][col]=op.applyAsInt(matrix[row][col]);
+		final int[][] mutated=new int[matrix.length][];//Create a new matrix
+		for(int row=0; row<matrix.length; row++){//Loop for each row
+			mutated[row]=new int[matrix[row].length];//Create the row of the matrix
+			for(int col=0; col<matrix[row].length; col++){//Loop for each col
+				mutated[row][col]=op.applyAsInt(matrix[row][col]);//Apply the given lambda
 			}
 		}
 		return mutated;
@@ -604,11 +606,11 @@ public class Mutate{
 	 */
 	public static long[][]
 		toLong(final byte[][] matrix, final ToLongFunction<Byte> op){
-		final long[][] mutated=new long[matrix.length][];
-		for(int row=0; row<matrix.length; row++){
-			mutated[row]=new long[matrix[row].length];
-			for(int col=0; col<matrix[row].length; col++){
-				mutated[row][col]=op.applyAsLong(matrix[row][col]);
+		final long[][] mutated=new long[matrix.length][];//Create a new matrix
+		for(int row=0; row<matrix.length; row++){//Loop for each row
+			mutated[row]=new long[matrix[row].length];//Create the row of the matrix
+			for(int col=0; col<matrix[row].length; col++){//Loop for each col
+				mutated[row][col]=op.applyAsLong(matrix[row][col]);//Apply the given lambda
 			}
 		}
 		return mutated;
@@ -625,11 +627,11 @@ public class Mutate{
 	 */
 	public static long[][]
 		toLong(final double[][] matrix, final DoubleToLongFunction op){
-		final long[][] mutated=new long[matrix.length][];
-		for(int row=0; row<matrix.length; row++){
-			mutated[row]=new long[matrix[row].length];
-			for(int col=0; col<matrix[row].length; col++){
-				mutated[row][col]=op.applyAsLong(matrix[row][col]);
+		final long[][] mutated=new long[matrix.length][];//Create a new matrix
+		for(int row=0; row<matrix.length; row++){//Loop for each row
+			mutated[row]=new long[matrix[row].length];//Create the row of the matrix
+			for(int col=0; col<matrix[row].length; col++){//Loop for each col
+				mutated[row][col]=op.applyAsLong(matrix[row][col]);//Apply the given lambda
 			}
 		}
 		return mutated;
@@ -646,11 +648,11 @@ public class Mutate{
 	 */
 	public static <E> long[][]
 		toLong(final E[][] matrix, final ToLongFunction<E> op){
-		final long[][] mutated=new long[matrix.length][];
-		for(int row=0; row<matrix.length; row++){
-			mutated[row]=new long[matrix[row].length];
-			for(int col=0; col<matrix[row].length; col++){
-				mutated[row][col]=op.applyAsLong(matrix[row][col]);
+		final long[][] mutated=new long[matrix.length][];//Create a new matrix
+		for(int row=0; row<matrix.length; row++){//Loop for each row
+			mutated[row]=new long[matrix[row].length];//Create the row of the matrix
+			for(int col=0; col<matrix[row].length; col++){//Loop for each col
+				mutated[row][col]=op.applyAsLong(matrix[row][col]);//Apply the given lambda
 			}
 		}
 		return mutated;
@@ -667,11 +669,11 @@ public class Mutate{
 	 */
 	public static long[][]
 		toLong(final float[][] matrix, final ToLongFunction<Float> op){
-		final long[][] mutated=new long[matrix.length][];
-		for(int row=0; row<matrix.length; row++){
-			mutated[row]=new long[matrix[row].length];
-			for(int col=0; col<matrix[row].length; col++){
-				mutated[row][col]=op.applyAsLong(matrix[row][col]);
+		final long[][] mutated=new long[matrix.length][];//Create a new matrix
+		for(int row=0; row<matrix.length; row++){//Loop for each row
+			mutated[row]=new long[matrix[row].length];//Create the row of the matrix
+			for(int col=0; col<matrix[row].length; col++){//Loop for each col
+				mutated[row][col]=op.applyAsLong(matrix[row][col]);//Apply the given lambda
 			}
 		}
 		return mutated;
@@ -688,11 +690,11 @@ public class Mutate{
 	 */
 	public static long[][]
 		toLong(final int[][] matrix, final IntToLongFunction op){
-		final long[][] mutated=new long[matrix.length][];
-		for(int row=0; row<matrix.length; row++){
-			mutated[row]=new long[matrix[row].length];
-			for(int col=0; col<matrix[row].length; col++){
-				mutated[row][col]=op.applyAsLong(matrix[row][col]);
+		final long[][] mutated=new long[matrix.length][];//Create a new matrix
+		for(int row=0; row<matrix.length; row++){//Loop for each row
+			mutated[row]=new long[matrix[row].length];//Create the row of the matrix
+			for(int col=0; col<matrix[row].length; col++){//Loop for each col
+				mutated[row][col]=op.applyAsLong(matrix[row][col]);//Apply the given lambda
 			}
 		}
 		return mutated;
@@ -710,11 +712,11 @@ public class Mutate{
 	 */
 	public static long[][]
 		toLong(final short[][] matrix, final ToLongFunction<Short> op){
-		final long[][] mutated=new long[matrix.length][];
-		for(int row=0; row<matrix.length; row++){
-			mutated[row]=new long[matrix[row].length];
-			for(int col=0; col<matrix[row].length; col++){
-				mutated[row][col]=op.applyAsLong(matrix[row][col]);
+		final long[][] mutated=new long[matrix.length][];//Create a new matrix
+		for(int row=0; row<matrix.length; row++){//Loop for each row
+			mutated[row]=new long[matrix[row].length];//Create the row of the matrix
+			for(int col=0; col<matrix[row].length; col++){//Loop for each col
+				mutated[row][col]=op.applyAsLong(matrix[row][col]);//Apply the given lambda
 			}
 		}
 		return mutated;
@@ -731,11 +733,11 @@ public class Mutate{
 	 */
 	public static short[][]
 		toShort(final byte[][] matrix, final Function<Byte, Short> op){
-		final short[][] mutated=new short[matrix.length][];
-		for(int row=0; row<matrix.length; row++){
-			mutated[row]=new short[matrix[row].length];
-			for(int col=0; col<matrix[row].length; col++){
-				mutated[row][col]=op.apply(matrix[row][col]);
+		final short[][] mutated=new short[matrix.length][];//Create a new matrix
+		for(int row=0; row<matrix.length; row++){//Loop for each row
+			mutated[row]=new short[matrix[row].length];//Create the row of the matrix
+			for(int col=0; col<matrix[row].length; col++){//Loop for each col
+				mutated[row][col]=op.apply(matrix[row][col]);//Apply the given lambda
 			}
 		}
 		return mutated;
@@ -752,11 +754,11 @@ public class Mutate{
 	 */
 	public static short[][]
 		toShort(final double[][] matrix, final DoubleFunction<Short> op){
-		final short[][] mutated=new short[matrix.length][];
-		for(int row=0; row<matrix.length; row++){
-			mutated[row]=new short[matrix[row].length];
-			for(int col=0; col<matrix[row].length; col++){
-				mutated[row][col]=op.apply(matrix[row][col]);
+		final short[][] mutated=new short[matrix.length][];//Create a new matrix
+		for(int row=0; row<matrix.length; row++){//Loop for each row
+			mutated[row]=new short[matrix[row].length];//Create the row of the matrix
+			for(int col=0; col<matrix[row].length; col++){//Loop for each col
+				mutated[row][col]=op.apply(matrix[row][col]);//Apply the given lambda
 			}
 		}
 		return mutated;
@@ -773,11 +775,11 @@ public class Mutate{
 	 */
 	public static <E> short[][]
 		toShort(final E[][] matrix, final Function<E, Short> op){
-		final short[][] mutated=new short[matrix.length][];
-		for(int row=0; row<matrix.length; row++){
-			mutated[row]=new short[matrix[row].length];
-			for(int col=0; col<matrix[row].length; col++){
-				mutated[row][col]=op.apply(matrix[row][col]);
+		final short[][] mutated=new short[matrix.length][];//Create a new matrix
+		for(int row=0; row<matrix.length; row++){//Loop for each row
+			mutated[row]=new short[matrix[row].length];//Create the row of the matrix
+			for(int col=0; col<matrix[row].length; col++){//Loop for each col
+				mutated[row][col]=op.apply(matrix[row][col]);//Apply the given lambda
 			}
 		}
 		return mutated;
@@ -794,11 +796,11 @@ public class Mutate{
 	 */
 	public static short[][]
 		toShort(final float[][] matrix, final Function<Float, Short> op){
-		final short[][] mutated=new short[matrix.length][];
-		for(int row=0; row<matrix.length; row++){
-			mutated[row]=new short[matrix[row].length];
-			for(int col=0; col<matrix[row].length; col++){
-				mutated[row][col]=op.apply(matrix[row][col]);
+		final short[][] mutated=new short[matrix.length][];//Create a new matrix
+		for(int row=0; row<matrix.length; row++){//Loop for each row
+			mutated[row]=new short[matrix[row].length];//Create the row of the matrix
+			for(int col=0; col<matrix[row].length; col++){//Loop for each col
+				mutated[row][col]=op.apply(matrix[row][col]);//Apply the given lambda
 			}
 		}
 		return mutated;
@@ -815,11 +817,11 @@ public class Mutate{
 	 */
 	public static short[][]
 		toShort(final int[][] matrix, final IntFunction<Short> op){
-		final short[][] mutated=new short[matrix.length][];
-		for(int row=0; row<matrix.length; row++){
-			mutated[row]=new short[matrix[row].length];
-			for(int col=0; col<matrix[row].length; col++){
-				mutated[row][col]=op.apply(matrix[row][col]);
+		final short[][] mutated=new short[matrix.length][];//Create a new matrix
+		for(int row=0; row<matrix.length; row++){//Loop for each row
+			mutated[row]=new short[matrix[row].length];//Create the row of the matrix
+			for(int col=0; col<matrix[row].length; col++){//Loop for each col
+				mutated[row][col]=op.apply(matrix[row][col]);//Apply the given lambda
 			}
 		}
 		return mutated;
@@ -836,11 +838,11 @@ public class Mutate{
 	 */
 	public static short[][]
 		toShort(final long[][] matrix, final LongFunction<Short> op){
-		final short[][] mutated=new short[matrix.length][];
-		for(int row=0; row<matrix.length; row++){
-			mutated[row]=new short[matrix[row].length];
-			for(int col=0; col<matrix[row].length; col++){
-				mutated[row][col]=op.apply(matrix[row][col]);
+		final short[][] mutated=new short[matrix.length][];//Create a new matrix
+		for(int row=0; row<matrix.length; row++){//Loop for each row
+			mutated[row]=new short[matrix[row].length];//Create the row of the matrix
+			for(int col=0; col<matrix[row].length; col++){//Loop for each col
+				mutated[row][col]=op.apply(matrix[row][col]);//Apply the given lambda
 			}
 		}
 		return mutated;

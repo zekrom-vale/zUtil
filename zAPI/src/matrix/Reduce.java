@@ -27,11 +27,11 @@ public class Reduce{
 	 */
 	public static long[]
 		horizontal(final byte[][] matrix, final BiIndex.Long<Byte> op){
-		final long[] condensed=new long[matrix.length];
-		for(int row=0; row<matrix.length; row++){
+		final long[] condensed=new long[matrix.length];//Create a new array
+		for(int row=0; row<matrix.length; row++){//For each row
 			final int rowNow=row;//Lambdas can't have changing values
 			condensed[row]=ArrayUtil.reduce(
-				matrix[row], (a, c, col)->op.apply(a, c, rowNow, col)
+				matrix[row], (a, c, col)->op.apply(a, c, rowNow, col)//Apply the given lambda
 			);
 		}
 		return condensed;
@@ -48,8 +48,8 @@ public class Reduce{
 	 */
 	public static long[]
 		horizontal(final byte[][] matrix, final LongBinaryOperator op){
-		final long[] condensed=new long[matrix.length];
-		for(int row=0; row<matrix.length; row++){
+		final long[] condensed=new long[matrix.length];//Create a new array
+		for(int row=0; row<matrix.length; row++){//For each row
 			condensed[row]=ArrayUtil.reduce(matrix[row], op);
 		}
 		return condensed;
@@ -67,11 +67,11 @@ public class Reduce{
 	 */
 	public static double[]
 		horizontal(final double[][] matrix, final BiIndex.Double<Double> op){
-		final double[] condensed=new double[matrix.length];
-		for(int row=0; row<matrix.length; row++){
+		final double[] condensed=new double[matrix.length];//Create a new array
+		for(int row=0; row<matrix.length; row++){//For each row
 			final int rowNow=row;//Lambdas can't have changing values
 			condensed[row]=ArrayUtil.reduce(
-				matrix[row], (a, c, col)->op.apply(a, c, rowNow, col)
+				matrix[row], (a, c, col)->op.apply(a, c, rowNow, col)//Apply the given lambda
 			);
 		}
 		return condensed;
@@ -88,8 +88,8 @@ public class Reduce{
 	 */
 	public static double[]
 		horizontal(final double[][] matrix, final DoubleBinaryOperator op){
-		final double[] condensed=new double[matrix.length];
-		for(int row=0; row<matrix.length; row++){
+		final double[] condensed=new double[matrix.length];//Create a new array
+		for(int row=0; row<matrix.length; row++){//For each row
 			condensed[row]=ArrayUtil.reduce(matrix[row], op);
 		}
 		return condensed;
@@ -111,11 +111,11 @@ public class Reduce{
 		final E[][] matrix, final BiIndex.E<E> op, final Class<E> class1
 	){
 		@SuppressWarnings("unchecked")
-		final E[] condensed=(E[])Array.newInstance(class1, matrix.length);
-		for(int row=0; row<matrix.length; row++){
+		final E[] condensed=(E[])Array.newInstance(class1, matrix.length);//Create a generic array
+		for(int row=0; row<matrix.length; row++){//For each row
 			final int rowNow=row;//Lambdas can't have changing values
 			condensed[row]=ArrayUtil.reduce(
-				matrix[row], (a, c, col)->op.apply(a, c, rowNow, col)
+				matrix[row], (a, c, col)->op.apply(a, c, rowNow, col)//Apply the given lambda
 			);
 		}
 		return condensed;
@@ -136,8 +136,8 @@ public class Reduce{
 		final E[][] matrix, final BinaryOperator<E> op, final Class<E> class1
 	){
 		@SuppressWarnings("unchecked")
-		final E[] condensed=(E[])Array.newInstance(class1, matrix.length);
-		for(int row=0; row<matrix.length; row++){
+		final E[] condensed=(E[])Array.newInstance(class1, matrix.length);//Create a generic array
+		for(int row=0; row<matrix.length; row++){//For each row
 			condensed[row]=ArrayUtil.reduce(matrix[row], op);
 		}
 		return condensed;
@@ -155,11 +155,11 @@ public class Reduce{
 	 */
 	public static long[]
 		horizontal(final int[][] matrix, final BiIndex.Long<Integer> op){
-		final long[] condensed=new long[matrix.length];
-		for(int row=0; row<matrix.length; row++){
+		final long[] condensed=new long[matrix.length];//Create a new array
+		for(int row=0; row<matrix.length; row++){//For each row
 			final int rowNow=row;//Lambdas can't have changing values
 			condensed[row]=ArrayUtil.reduce(
-				matrix[row], (a, c, col)->op.apply(a, c, rowNow, col)
+				matrix[row], (a, c, col)->op.apply(a, c, rowNow, col)//Apply the given lambda
 			);
 		}
 		return condensed;
@@ -176,8 +176,8 @@ public class Reduce{
 	 */
 	public static long[]
 		horizontal(final int[][] matrix, final LongBinaryOperator op){
-		final long[] condensed=new long[matrix.length];
-		for(int row=0; row<matrix.length; row++){
+		final long[] condensed=new long[matrix.length];//Create a new array
+		for(int row=0; row<matrix.length; row++){//For each row
 			condensed[row]=ArrayUtil.reduce(matrix[row], op);
 		}
 		return condensed;
@@ -195,11 +195,11 @@ public class Reduce{
 	 */
 	public static long[]
 		horizontal(final long[][] matrix, final BiIndex.Long<Long> op){
-		final long[] condensed=new long[matrix.length];
-		for(int row=0; row<matrix.length; row++){
+		final long[] condensed=new long[matrix.length];//Create a new array
+		for(int row=0; row<matrix.length; row++){//For each row
 			final int rowNow=row;//Lambdas can't have changing values
 			condensed[row]=ArrayUtil.reduce(
-				matrix[row], (a, c, col)->op.apply(a, c, rowNow, col)
+				matrix[row], (a, c, col)->op.apply(a, c, rowNow, col)//Apply the given lambda
 			);
 		}
 		return condensed;
@@ -216,8 +216,8 @@ public class Reduce{
 	 */
 	public static long[]
 		horizontal(final long[][] matrix, final LongBinaryOperator op){
-		final long[] condensed=new long[matrix.length];
-		for(int row=0; row<matrix.length; row++){
+		final long[] condensed=new long[matrix.length];//Create a new array
+		for(int row=0; row<matrix.length; row++){//For each row
 			condensed[row]=ArrayUtil.reduce(matrix[row], op);
 		}
 		return condensed;
@@ -265,19 +265,19 @@ public class Reduce{
 	public static long[]
 		vertical(final byte[][] matrix, final LongBinaryOperator op){
 		int _length=0;
-		for(int row=0; row<matrix.length; row++){
-			_length=Math.max(_length, matrix[row].length);
+		for(int row=0; row<matrix.length; row++){//For each row
+			_length=Math.max(_length, matrix[row].length);//Get the longest row length
 		}
 		final long[] condensed=new long[_length];
-		final boolean[] flags=new boolean[_length];
-		for(int col=0; col<_length; col++){
-			for(int row=0; row<matrix.length; row++){
-				if(col<matrix[row].length){
-					if(!flags[col]) condensed[col]=matrix[row][col];
+		final boolean[] flags=new boolean[_length];//Flag for existing value in condensed collector
+		for(int col=0; col<_length; col++){//Loop for each col
+			for(int row=0; row<matrix.length; row++){//For each row
+				if(col<matrix[row].length){//Ensure not out of bounds
+					if(!flags[col]) condensed[col]=matrix[row][col];//If the value does not exist init it
 					else condensed[col]=op.applyAsLong(
 						condensed[col], matrix[row][col]
 					);
-					flags[col]=true;
+					flags[col]=true;//Set the value flag to true
 				}
 			}
 		}
@@ -296,19 +296,19 @@ public class Reduce{
 	public static double[]
 		vertical(final double[][] matrix, final DoubleBinaryOperator op){
 		int _length=0;
-		for(int row=0; row<matrix.length; row++){
-			_length=Math.max(_length, matrix[row].length);
+		for(int row=0; row<matrix.length; row++){//For each row
+			_length=Math.max(_length, matrix[row].length);//Get the longest row length
 		}
 		final double[] condensed=new double[_length];
-		final boolean[] flags=new boolean[_length];
-		for(int col=0; col<_length; col++){
-			for(int row=0; row<matrix.length; row++){
-				if(col<matrix[row].length){
-					if(!flags[col]) condensed[col]=matrix[row][col];
+		final boolean[] flags=new boolean[_length];//Flag for existing value in condensed collector
+		for(int col=0; col<_length; col++){//Loop for each col
+			for(int row=0; row<matrix.length; row++){//For each row
+				if(col<matrix[row].length){//Ensure not out of bounds
+					if(!flags[col]) condensed[col]=matrix[row][col];//If the value does not exist init it
 					else condensed[col]=op.applyAsDouble(
 						condensed[col], matrix[row][col]
 					);
-					flags[col]=true;
+					flags[col]=true;//Set the value flag to true
 				}
 			}
 		}
@@ -330,20 +330,20 @@ public class Reduce{
 		final E[][] matrix, final BinaryOperator<E> op, final Class<E> class1
 	){
 		int _length=0;
-		for(int row=0; row<matrix.length; row++){
-			_length=Math.max(_length, matrix[row].length);
+		for(int row=0; row<matrix.length; row++){//For each row
+			_length=Math.max(_length, matrix[row].length);//Get the longest row length
 		}
 		@SuppressWarnings("unchecked")
 		final E[] condensed=(E[])Array.newInstance(class1, _length);
-		final boolean[] flags=new boolean[_length];
-		for(int col=0; col<_length; col++){
-			for(int row=0; row<matrix.length; row++){
-				if(col<matrix[row].length){
-					if(!flags[col]) condensed[col]=matrix[row][col];
+		final boolean[] flags=new boolean[_length];//Flag for existing value in condensed collector
+		for(int col=0; col<_length; col++){//Loop for each col
+			for(int row=0; row<matrix.length; row++){//For each row
+				if(col<matrix[row].length){//Ensure not out of bounds
+					if(!flags[col]) condensed[col]=matrix[row][col];//If the value does not exist init it
 					else condensed[col]=op.apply(
 						condensed[col], matrix[row][col]
 					);
-					flags[col]=true;
+					flags[col]=true;//Set the value flag to true
 				}
 			}
 		}
@@ -363,19 +363,19 @@ public class Reduce{
 	public static long[]
 		vertical(final int[][] matrix, final LongBinaryOperator op){
 		int _length=0;
-		for(int row=0; row<matrix.length; row++){
-			_length=Math.max(_length, matrix[row].length);
+		for(int row=0; row<matrix.length; row++){//For each row
+			_length=Math.max(_length, matrix[row].length);//Get the longest row length
 		}
 		final long[] condensed=new long[_length];
-		final boolean[] flags=new boolean[_length];
-		for(int col=0; col<_length; col++){
-			for(int row=0; row<matrix.length; row++){
-				if(col<matrix[row].length){
-					if(!flags[col]) condensed[col]=matrix[row][col];
+		final boolean[] flags=new boolean[_length];//Flag for existing value in condensed collector
+		for(int col=0; col<_length; col++){//Loop for each col
+			for(int row=0; row<matrix.length; row++){//For each row
+				if(col<matrix[row].length){//Ensure not out of bounds
+					if(!flags[col]) condensed[col]=matrix[row][col];//If the value does not exist init it
 					else condensed[col]=op.applyAsLong(
 						condensed[col], matrix[row][col]
 					);
-					flags[col]=true;
+					flags[col]=true;//Set the value flag to true
 				}
 			}
 		}
@@ -395,19 +395,19 @@ public class Reduce{
 	public static long[]
 		vertical(final long[][] matrix, final LongBinaryOperator op){
 		int _length=0;
-		for(int row=0; row<matrix.length; row++){
-			_length=Math.max(_length, matrix[row].length);
+		for(int row=0; row<matrix.length; row++){//For each row
+			_length=Math.max(_length, matrix[row].length);//Get the longest row length
 		}
 		final long[] condensed=new long[_length];
-		final boolean[] flags=new boolean[_length];
-		for(int col=0; col<_length; col++){
-			for(int row=0; row<matrix.length; row++){
-				if(col<matrix[row].length){
-					if(!flags[col]) condensed[col]=matrix[row][col];
+		final boolean[] flags=new boolean[_length];//Flag for existing value in condensed collector
+		for(int col=0; col<_length; col++){//Loop for each col
+			for(int row=0; row<matrix.length; row++){//For each row
+				if(col<matrix[row].length){//Ensure not out of bounds
+					if(!flags[col]) condensed[col]=matrix[row][col];//If the value does not exist init it
 					else condensed[col]=op.applyAsLong(
 						condensed[col], matrix[row][col]
 					);
-					flags[col]=true;
+					flags[col]=true;//Set the value flag to true
 				}
 			}
 		}

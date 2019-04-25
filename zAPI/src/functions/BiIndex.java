@@ -1,5 +1,13 @@
 package functions;
 
+import matrix.Matrix;
+
+/**
+ * Contains functional interfaces for {@link Matrix}
+ *
+ * @author Zekrom
+ *
+ */
 @SuppressWarnings("javadoc")
 public class BiIndex{
 	public interface Double <O>{

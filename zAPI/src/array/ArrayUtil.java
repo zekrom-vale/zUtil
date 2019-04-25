@@ -8,11 +8,11 @@ import functions.Index;
 
 /**
  * A utility containing various array methods.
- * 
+ *
  * @author Zekrom
  *
  */
-public final class ArrayUtil{
+public final class ArrayUtil{//Don't name a class Array, it masks java.lang.reflect.Array
 	/**
 	 * Returns the max value of an array
 	 *
@@ -21,7 +21,7 @@ public final class ArrayUtil{
 	 * @return       Max value
 	 */
 	public static byte average(final byte[] array){
-		return (byte)(ArrayUtil.reduce(array, (a, c)->a+c)/(byte)array.length);
+		return (byte)(ArrayUtil.reduce(array, (a, c)->a+c)/array.length);
 	}
 
 	/**
@@ -69,12 +69,12 @@ public final class ArrayUtil{
 	 * @example           Array.join(new Integer[]{1, 2, 3, 4, 5}, ",");
 	 */
 	public static String join(final byte[] arr, final String delimiter){
-		final StringBuilder builder=new StringBuilder();
-		for(int i=0; i<arr.length-1; i++){
-			builder.append(arr[i]);
-			builder.append(delimiter);
+		final StringBuilder builder=new StringBuilder();//Create a new StringBuilder to collect strings
+		for(int i=0; i<arr.length-1; i++){//Loop for each element in the array
+			builder.append(arr[i]);//Append the element
+			builder.append(delimiter);//Append the delimiter
 		}
-		return builder.append(arr[arr.length-1]).toString();
+		return builder.append(arr[arr.length-1]).toString();//Append the last element then return the builder string
 	}
 
 	/**
@@ -88,12 +88,12 @@ public final class ArrayUtil{
 	 * @example           Array.join(new Integer[]{1, 2, 3, 4, 5}, ",");
 	 */
 	public static String join(final double[] arr, final String delimiter){
-		final StringBuilder builder=new StringBuilder();
-		for(int i=0; i<arr.length-1; i++){
-			builder.append(arr[i]);
-			builder.append(delimiter);
+		final StringBuilder builder=new StringBuilder();//Create a new StringBuilder to collect strings
+		for(int i=0; i<arr.length-1; i++){//Loop for each element in the array
+			builder.append(arr[i]);//Append the element
+			builder.append(delimiter);//Append the delimiter
 		}
-		return builder.append(arr[arr.length-1]).toString();
+		return builder.append(arr[arr.length-1]).toString();//Append the last element then return the builder string
 	}
 
 	/**
@@ -107,12 +107,12 @@ public final class ArrayUtil{
 	 * @example           Array.join(new Integer[]{1, 2, 3, 4, 5}, ",");
 	 */
 	public static String join(final int[] arr, final String delimiter){
-		final StringBuilder builder=new StringBuilder();
-		for(int i=0; i<arr.length-1; i++){
-			builder.append(arr[i]);
-			builder.append(delimiter);
+		final StringBuilder builder=new StringBuilder();//Create a new StringBuilder to collect strings
+		for(int i=0; i<arr.length-1; i++){//Loop for each element in the array
+			builder.append(arr[i]);//Append the element
+			builder.append(delimiter);//Append the delimiter
 		}
-		return builder.append(arr[arr.length-1]).toString();
+		return builder.append(arr[arr.length-1]).toString();//Append the last element then return the builder string
 	}
 
 	/**
@@ -126,12 +126,12 @@ public final class ArrayUtil{
 	 * @example           Array.join(new Integer[]{1, 2, 3, 4, 5}, ",");
 	 */
 	public static String join(final long[] arr, final String delimiter){
-		final StringBuilder builder=new StringBuilder();
-		for(int i=0; i<arr.length-1; i++){
-			builder.append(arr[i]);
-			builder.append(delimiter);
+		final StringBuilder builder=new StringBuilder();//Create a new StringBuilder to collect strings
+		for(int i=0; i<arr.length-1; i++){//Loop for each element in the array
+			builder.append(arr[i]);//Append the element
+			builder.append(delimiter);//Append the delimiter
 		}
-		return builder.append(arr[arr.length-1]).toString();
+		return builder.append(arr[arr.length-1]).toString();//Append the last element then return the builder string
 	}
 
 	/**
@@ -145,12 +145,12 @@ public final class ArrayUtil{
 	 * @example           Array.join(new Integer[]{1, 2, 3, 4, 5}, ",");
 	 */
 	public static <T> String join(final T[] arr, final String delimiter){
-		final StringBuilder builder=new StringBuilder();
-		for(int i=0; i<arr.length-1; i++){
-			builder.append(arr[i].toString());
-			builder.append(delimiter);
+		final StringBuilder builder=new StringBuilder();//Create a new StringBuilder to collect strings
+		for(int i=0; i<arr.length-1; i++){//Loop for each element in the array
+			builder.append(arr[i].toString());//Append the element as a string
+			builder.append(delimiter);//Append the delimiter
 		}
-		return builder.append(arr[arr.length-1]).toString();
+		return builder.append(arr[arr.length-1]).toString();//Append the last element then return the builder string
 	}
 
 	/**
@@ -254,8 +254,8 @@ public final class ArrayUtil{
 	 */
 	public static long reduce(final byte[] array, final Index.Long<Byte> op){
 		long collector=array[0];
-		for(int i=1; i<array.length; i++){
-			collector=op.apply(collector, array[i], i);
+		for(int i=1; i<array.length; i++){//Loop for each element in the array
+			collector=op.apply(collector, array[i], i);//Apply the given lambda
 		}
 		return collector;
 	}
@@ -271,7 +271,7 @@ public final class ArrayUtil{
 	 */
 	public static long reduce(final byte[] array, final LongBinaryOperator op){
 		long collector=array[0];
-		for(int i=1; i<array.length; i++){
+		for(int i=1; i<array.length; i++){//Loop for each element in the array
 			collector=op.applyAsLong(collector, array[i]);
 		}
 		return collector;
@@ -289,7 +289,7 @@ public final class ArrayUtil{
 	public static double
 		reduce(final double[] array, final DoubleBinaryOperator op){
 		double collector=array[0];
-		for(int i=1; i<array.length; i++){
+		for(int i=1; i<array.length; i++){//Loop for each element in the array
 			collector=op.applyAsDouble(collector, array[i]);
 		}
 		return collector;
@@ -307,8 +307,8 @@ public final class ArrayUtil{
 	public static double
 		reduce(final double[] array, final Index.Double<Double> op){
 		double collector=array[0];
-		for(int i=1; i<array.length; i++){
-			collector=op.apply(collector, array[i], i);
+		for(int i=1; i<array.length; i++){//Loop for each element in the array
+			collector=op.apply(collector, array[i], i);//Apply the given lambda
 		}
 		return collector;
 	}
@@ -324,7 +324,7 @@ public final class ArrayUtil{
 	 */
 	public static <E> E reduce(final E[] array, final BinaryOperator<E> op){
 		E collector=array[0];
-		for(int i=1; i<array.length; i++){
+		for(int i=1; i<array.length; i++){//Loop for each element in the array
 			collector=op.apply(collector, array[i]);
 		}
 		return collector;
@@ -341,8 +341,8 @@ public final class ArrayUtil{
 	 */
 	public static <E> E reduce(final E[] array, final Index.E<E> op){
 		E collector=array[0];
-		for(int i=1; i<array.length; i++){
-			collector=op.apply(collector, array[i], i);
+		for(int i=1; i<array.length; i++){//Loop for each element in the array
+			collector=op.apply(collector, array[i], i);//Apply the given lambda
 		}
 		return collector;
 	}
@@ -358,8 +358,8 @@ public final class ArrayUtil{
 	 */
 	public static long reduce(final int[] array, final Index.Long<Integer> op){
 		long collector=array[0];
-		for(int i=1; i<array.length; i++){
-			collector=op.apply(collector, array[i], i);
+		for(int i=1; i<array.length; i++){//Loop for each element in the array
+			collector=op.apply(collector, array[i], i);//Apply the given lambda
 		}
 		return collector;
 	}
@@ -375,7 +375,7 @@ public final class ArrayUtil{
 	 */
 	public static long reduce(final int[] array, final LongBinaryOperator op){
 		long collector=array[0];
-		for(int i=1; i<array.length; i++){
+		for(int i=1; i<array.length; i++){//Loop for each element in the array
 			collector=op.applyAsLong(collector, array[i]);
 		}
 		return collector;
@@ -392,8 +392,8 @@ public final class ArrayUtil{
 	 */
 	public static long reduce(final long[] array, final Index.Long<Long> op){
 		long collector=array[0];
-		for(int i=1; i<array.length; i++){
-			collector=op.apply(collector, array[i], i);
+		for(int i=1; i<array.length; i++){//Loop for each element in the array
+			collector=op.apply(collector, array[i], i);//Apply the given lambda
 		}
 		return collector;
 	}
@@ -409,7 +409,7 @@ public final class ArrayUtil{
 	 */
 	public static long reduce(final long[] array, final LongBinaryOperator op){
 		long collector=array[0];
-		for(int i=1; i<array.length; i++){
+		for(int i=1; i<array.length; i++){//Loop for each element in the array
 			collector=op.applyAsLong(collector, array[i]);
 		}
 		return collector;
@@ -427,8 +427,8 @@ public final class ArrayUtil{
 	 */
 	public static int reduceIdex(final byte[] array, final Index.Int<Byte> op){
 		int collector=0;
-		for(int i=1; i<array.length; i++){
-			collector=op.apply(collector, array[i], i);
+		for(int i=1; i<array.length; i++){//Loop for each element in the array
+			collector=op.apply(collector, array[i], i);//Apply the given lambda
 		}
 		return collector;
 	}
@@ -445,8 +445,8 @@ public final class ArrayUtil{
 	public static int
 		reduceIdex(final double[] array, final Index.Int<Double> op){
 		int collector=0;
-		for(int i=1; i<array.length; i++){
-			collector=op.apply(collector, array[i], i);
+		for(int i=1; i<array.length; i++){//Loop for each element in the array
+			collector=op.apply(collector, array[i], i);//Apply the given lambda
 		}
 		return collector;
 	}
@@ -462,8 +462,8 @@ public final class ArrayUtil{
 	 */
 	public static <E> int reduceIdex(final E[] array, final Index.Int<E> op){
 		int collector=0;
-		for(int i=1; i<array.length; i++){
-			collector=op.apply(collector, array[i], i);
+		for(int i=1; i<array.length; i++){//Loop for each element in the array
+			collector=op.apply(collector, array[i], i);//Apply the given lambda
 		}
 		return collector;
 	}
@@ -480,8 +480,8 @@ public final class ArrayUtil{
 	public static int
 		reduceIdex(final int[] array, final Index.Int<Integer> op){
 		int collector=0;
-		for(int i=1; i<array.length; i++){
-			collector=op.apply(collector, array[i], i);
+		for(int i=1; i<array.length; i++){//Loop for each element in the array
+			collector=op.apply(collector, array[i], i);//Apply the given lambda
 		}
 		return collector;
 	}
@@ -498,8 +498,8 @@ public final class ArrayUtil{
 	 */
 	public static int reduceIdex(final long[] array, final Index.Int<Long> op){
 		int collector=0;
-		for(int i=1; i<array.length; i++){
-			collector=op.apply(collector, array[i], i);
+		for(int i=1; i<array.length; i++){//Loop for each element in the array
+			collector=op.apply(collector, array[i], i);//Apply the given lambda
 		}
 		return collector;
 	}

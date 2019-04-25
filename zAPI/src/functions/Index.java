@@ -1,5 +1,13 @@
 package functions;
 
+import array.ArrayUtil;
+
+/**
+ * Contains functional interfaces for {@link ArrayUtil}
+ *
+ * @author Zekrom
+ *
+ */
 @SuppressWarnings("javadoc")
 public class Index{
 	public interface Double <O>{
