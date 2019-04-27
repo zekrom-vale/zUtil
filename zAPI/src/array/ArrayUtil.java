@@ -1,5 +1,6 @@
 package array;
 
+import java.util.Formatter;
 import java.util.function.BinaryOperator;
 import java.util.function.DoubleBinaryOperator;
 import java.util.function.DoubleFunction;
@@ -70,11 +71,11 @@ public final class ArrayUtil{//Don't name a class Array, it masks java.lang.refl
 	 * @param  delimiter
 	 *                       The spacer to place between the values
 	 * @return           A String of the entries
-	 * 
+	 *
 	 */
 	public static String join(final byte[] arr, final String delimiter){
 		final StringBuilder builder=new StringBuilder();//Create a new StringBuilder to collect strings
-		for(int i=0; i<arr.length-1; i++){//Loop for each element in the array
+		for(int i=0; i<arr.length-1; i++){//Loop for each element in the array except the last one
 			builder.append(arr[i]);//Append the element
 			builder.append(delimiter);//Append the delimiter
 		}
@@ -91,14 +92,14 @@ public final class ArrayUtil{//Don't name a class Array, it masks java.lang.refl
 	 * @param  op
 	 *                       The function to convert the element to a String
 	 * @return           A String of the entries
-	 * 
+	 *
 	 */
 	public static String join(
 		final byte[] arr, final String delimiter,
 		final Function<Byte, String> op
 	){
 		final StringBuilder builder=new StringBuilder();//Create a new StringBuilder to collect strings
-		for(int i=0; i<arr.length-1; i++){//Loop for each element in the array
+		for(int i=0; i<arr.length-1; i++){//Loop for each element in the array except the last one
 			builder.append(op.apply(arr[i]));//Append the element
 			builder.append(delimiter);//Append the delimiter
 		}
@@ -113,11 +114,11 @@ public final class ArrayUtil{//Don't name a class Array, it masks java.lang.refl
 	 * @param  delimiter
 	 *                       The spacer to place between the values
 	 * @return           A String of the entries
-	 * 
+	 *
 	 */
 	public static String join(final double[] arr, final String delimiter){
 		final StringBuilder builder=new StringBuilder();//Create a new StringBuilder to collect strings
-		for(int i=0; i<arr.length-1; i++){//Loop for each element in the array
+		for(int i=0; i<arr.length-1; i++){//Loop for each element in the array except the last one
 			builder.append(arr[i]);//Append the element
 			builder.append(delimiter);//Append the delimiter
 		}
@@ -134,14 +135,14 @@ public final class ArrayUtil{//Don't name a class Array, it masks java.lang.refl
 	 * @return           A String of the entries
 	 * @param  op
 	 *                       The function to convert the element to a String
-	 * 
+	 *
 	 */
 	public static String join(
 		final double[] arr, final String delimiter,
 		final DoubleFunction<String> op
 	){
 		final StringBuilder builder=new StringBuilder();//Create a new StringBuilder to collect strings
-		for(int i=0; i<arr.length-1; i++){//Loop for each element in the array
+		for(int i=0; i<arr.length-1; i++){//Loop for each element in the array except the last one
 			builder.append(op.apply(arr[i]));//Append the element
 			builder.append(delimiter);//Append the delimiter
 		}
@@ -162,12 +163,17 @@ public final class ArrayUtil{//Don't name a class Array, it masks java.lang.refl
 	 */
 	public static String
 		join(final double[] arr, final String delimiter, final int length){
-		final StringBuilder builder=new StringBuilder();//Create a new StringBuilder to collect strings
-		for(int i=0; i<arr.length-1; i++){//Loop for each element in the array
-			builder.append(String.format("%."+length+"f", arr[i]));//Append the element
-			builder.append(delimiter);//Append the delimiter
+		final Formatter formatter=new Formatter();//Create a new Formatter to collect formated strings
+		final String format="%."+length+"f";
+		for(int i=0; i<arr.length-1; i++){//Loop for each element in the array except the last one
+			formatter.format(format, arr[i]);//Append the element
+			formatter.format(delimiter);//Append the delimiter
 		}
-		return builder.append(arr[arr.length-1]).toString();//Append the last element then return the builder string
+		final String string=formatter.format(
+			format, arr[arr.length-1]
+		).toString();
+		formatter.close();
+		return string;//Append the last element then return the builder string
 	}
 
 	/**
@@ -178,11 +184,11 @@ public final class ArrayUtil{//Don't name a class Array, it masks java.lang.refl
 	 * @param  delimiter
 	 *                       The spacer to place between the values
 	 * @return           A String of the entries
-	 * 
+	 *
 	 */
 	public static String join(final int[] arr, final String delimiter){
 		final StringBuilder builder=new StringBuilder();//Create a new StringBuilder to collect strings
-		for(int i=0; i<arr.length-1; i++){//Loop for each element in the array
+		for(int i=0; i<arr.length-1; i++){//Loop for each element in the array except the last one
 			builder.append(arr[i]);//Append the element
 			builder.append(delimiter);//Append the delimiter
 		}
@@ -199,13 +205,13 @@ public final class ArrayUtil{//Don't name a class Array, it masks java.lang.refl
 	 * @param  op
 	 *                       The function to convert the element to a String
 	 * @return           A String of the entries
-	 * 
+	 *
 	 */
 	public static String join(
 		final int[] arr, final String delimiter, final IntFunction<String> op
 	){
 		final StringBuilder builder=new StringBuilder();//Create a new StringBuilder to collect strings
-		for(int i=0; i<arr.length-1; i++){//Loop for each element in the array
+		for(int i=0; i<arr.length-1; i++){//Loop for each element in the array except the last one
 			builder.append(op.apply(arr[i]));//Append the element
 			builder.append(delimiter);//Append the delimiter
 		}
@@ -221,11 +227,11 @@ public final class ArrayUtil{//Don't name a class Array, it masks java.lang.refl
 	 * @param  delimiter
 	 *                       The spacer to place between the values
 	 * @return           A String of the entries
-	 * 
+	 *
 	 */
 	public static String join(final long[] arr, final String delimiter){
 		final StringBuilder builder=new StringBuilder();//Create a new StringBuilder to collect strings
-		for(int i=0; i<arr.length-1; i++){//Loop for each element in the array
+		for(int i=0; i<arr.length-1; i++){//Loop for each element in the array except the last one
 			builder.append(arr[i]);//Append the element
 			builder.append(delimiter);//Append the delimiter
 		}
@@ -242,13 +248,13 @@ public final class ArrayUtil{//Don't name a class Array, it masks java.lang.refl
 	 * @param  op
 	 *                       The function to convert the element to a String
 	 * @return           A String of the entries
-	 * 
+	 *
 	 */
 	public static String join(
 		final long[] arr, final String delimiter, final LongFunction<String> op
 	){
 		final StringBuilder builder=new StringBuilder();//Create a new StringBuilder to collect strings
-		for(int i=0; i<arr.length-1; i++){//Loop for each element in the array
+		for(int i=0; i<arr.length-1; i++){//Loop for each element in the array except the last one
 			builder.append(op.apply(arr[i]));//Append the element
 			builder.append(delimiter);//Append the delimiter
 		}
@@ -263,11 +269,11 @@ public final class ArrayUtil{//Don't name a class Array, it masks java.lang.refl
 	 * @param  delimiter
 	 *                       The spacer to place between the values
 	 * @return           A String of the entries
-	 * 
+	 *
 	 */
 	public static <T> String join(final T[] arr, final String delimiter){
 		final StringBuilder builder=new StringBuilder();//Create a new StringBuilder to collect strings
-		for(int i=0; i<arr.length-1; i++){//Loop for each element in the array
+		for(int i=0; i<arr.length-1; i++){//Loop for each element in the array except the last one
 			builder.append(arr[i].toString());//Append the element as a string
 			builder.append(delimiter);//Append the delimiter
 		}
@@ -284,13 +290,13 @@ public final class ArrayUtil{//Don't name a class Array, it masks java.lang.refl
 	 * @param  op
 	 *                       Operation to perform when converting to a String
 	 * @return           A String of the entries
-	 * 
+	 *
 	 */
 	public static <T> String join(
 		final T[] arr, final String delimiter, final Function<T, String> op
 	){
 		final StringBuilder builder=new StringBuilder();//Create a new StringBuilder to collect strings
-		for(int i=0; i<arr.length-1; i++){//Loop for each element in the array
+		for(int i=0; i<arr.length-1; i++){//Loop for each element in the array except the last one
 			builder.append(op.apply(arr[i]));//Append the element as a string
 			builder.append(delimiter);//Append the delimiter
 		}
