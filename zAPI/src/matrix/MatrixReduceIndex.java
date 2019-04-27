@@ -4,12 +4,12 @@ import array.ArrayUtil;
 import functions.BiIndex;
 
 /**
- * Condenses a matrix into an array of indexes, see {@link Reduce} for normal reduction
+ * Condenses a matrix into an array of indexes, see {@link MatrixReduce} for normal reduction
  *
  * @author Zekrom
  *
  */
-public class ReduceIndex{
+public class MatrixReduceIndex{
 	/**
 	 * Condenses each row of a matrix into a single value
 	 *
@@ -136,8 +136,8 @@ public class ReduceIndex{
 	 */
 	public static int[]
 		horizontal(final String[][] matrix, final BiIndex.Int<String> op){
-		return ReduceIndex.horizontal(matrix, op, String.class);
+		return MatrixReduceIndex.horizontal(matrix, op, String.class);
 	}
 
-	private ReduceIndex(){}
+	private MatrixReduceIndex(){}
 }

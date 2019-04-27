@@ -27,7 +27,7 @@ import java.util.function.Function;
  *
  * @author Zekrom
  */
-public class Matrix extends Core{
+public class Matrix extends MatrixCore{
 	/**
 	 * Adds a scalar to all cells
 	 *
@@ -38,7 +38,7 @@ public class Matrix extends Core{
 	 * @return        A new scaled matrix
 	 */
 	public static byte[][] add(final byte scalar, final byte[][] matrix){
-		return Core.matrix(matrix, a->(byte)(scalar+a));
+		return MatrixCore.matrix(matrix, a->(byte)(scalar+a));
 	}
 
 	/**
@@ -51,7 +51,7 @@ public class Matrix extends Core{
 	 * @return        A new scaled matrix
 	 */
 	public static double[][] add(final double scalar, final double[][] matrix){
-		return Core.matrix(matrix, a->scalar+a);
+		return MatrixCore.matrix(matrix, a->scalar+a);
 	}
 
 
@@ -65,7 +65,7 @@ public class Matrix extends Core{
 	 * @return   A new double matrix of sums
 	 */
 	public static double[][] add(final double[][] A, final double[][] B){
-		return Core.matrix(A, B, (a, b)->a+b, 0, 0);
+		return MatrixCore.matrix(A, B, (a, b)->a+b, 0, 0);
 	}
 
 	/**
@@ -78,7 +78,7 @@ public class Matrix extends Core{
 	 * @return        A new scaled matrix
 	 */
 	public static int[][] add(final int scalar, final int[][] matrix){
-		return Core.matrix(matrix, a->scalar+a);
+		return MatrixCore.matrix(matrix, a->scalar+a);
 	}
 
 	/**
@@ -91,7 +91,7 @@ public class Matrix extends Core{
 	 * @return   A new double matrix of sums
 	 */
 	public static int[][] add(final int[][] A, final int[][] B){
-		return Core.matrix(A, B, (a, b)->a+b, 0, 0);
+		return MatrixCore.matrix(A, B, (a, b)->a+b, 0, 0);
 	}
 
 	/**
@@ -104,7 +104,7 @@ public class Matrix extends Core{
 	 * @return        A new scaled matrix
 	 */
 	public static long[][] add(final long scalar, final long[][] matrix){
-		return Core.matrix(matrix, a->scalar+a);
+		return MatrixCore.matrix(matrix, a->scalar+a);
 	}
 
 	/**
@@ -117,7 +117,7 @@ public class Matrix extends Core{
 	 * @return   A new double matrix of sums
 	 */
 	public static String[][] add(final String[][] A, final String[][] B){
-		return Core.matrix(A, B, (a, b)->a+b, "", "", String.class);
+		return MatrixCore.matrix(A, B, (a, b)->a+b, "", "", String.class);
 	}
 
 	/**
@@ -128,7 +128,7 @@ public class Matrix extends Core{
 	 * @return        A cloned matrix (Elements are not cloned)
 	 */
 	public static byte[][] clone(final byte[][] matrix){
-		return Core.matrix(matrix, a->a);
+		return MatrixCore.matrix(matrix, a->a);
 	}
 
 	/**
@@ -139,7 +139,7 @@ public class Matrix extends Core{
 	 * @return        A cloned matrix (Elements are not cloned)
 	 */
 	public static double[][] clone(final double[][] matrix){
-		return Core.matrix(matrix, a->a);
+		return MatrixCore.matrix(matrix, a->a);
 	}
 
 
@@ -153,7 +153,7 @@ public class Matrix extends Core{
 	 * @return        A cloned matrix (Elements are not cloned)
 	 */
 	public static <E> E[][] clone(final E[][] matrix, final Class<E> class1){
-		return Core.matrix(matrix, a->a, class1);
+		return MatrixCore.matrix(matrix, a->a, class1);
 	}
 
 
@@ -165,7 +165,7 @@ public class Matrix extends Core{
 	 * @return        A cloned matrix (Elements are not cloned)
 	 */
 	public static int[][] clone(final int[][] matrix){
-		return Core.matrix(matrix, a->a);
+		return MatrixCore.matrix(matrix, a->a);
 	}
 
 
@@ -177,7 +177,7 @@ public class Matrix extends Core{
 	 * @return        A cloned matrix (Elements are not cloned)
 	 */
 	public static long[][] clone(final long[][] matrix){
-		return Core.matrix(matrix, a->a);
+		return MatrixCore.matrix(matrix, a->a);
 	}
 
 	/**
@@ -190,7 +190,7 @@ public class Matrix extends Core{
 	 * @return   A new divided matrix
 	 */
 	public static double[][] divide(final byte[][] A, final byte[][] B){
-		return Core.matrixDouble(
+		return MatrixCore.matrixDouble(
 			A, B, (a, b)->a/((double)b), (byte)1, (byte)1
 		);
 	}
@@ -205,7 +205,7 @@ public class Matrix extends Core{
 	 * @return   A new divided matrix
 	 */
 	public static double[][] divide(final double[][] A, final double[][] B){
-		return Core.matrix(A, B, (a, b)->a/b, 1D, 1D);
+		return MatrixCore.matrix(A, B, (a, b)->a/b, 1D, 1D);
 	}
 
 	/**
@@ -218,7 +218,7 @@ public class Matrix extends Core{
 	 * @return   A new divided matrix
 	 */
 	public static double[][] divide(final int[][] A, final int[][] B){
-		return Core.matrixDouble(A, B, (a, b)->a/((double)b), 1, 1);
+		return MatrixCore.matrixDouble(A, B, (a, b)->a/((double)b), 1, 1);
 	}
 
 	/**
@@ -231,7 +231,7 @@ public class Matrix extends Core{
 	 * @return   A new divided matrix
 	 */
 	public static double[][] divide(final long[][] A, final long[][] B){
-		return Core.matrixDouble(A, B, (a, b)->a/((double)b), 1L, 1L);
+		return MatrixCore.matrixDouble(A, B, (a, b)->a/((double)b), 1L, 1L);
 	}
 
 	/**
@@ -542,7 +542,7 @@ public class Matrix extends Core{
 	 * @return        A new scaled matrix
 	 */
 	public static byte[][] multiply(final byte scalar, final byte[][] matrix){
-		return Core.matrix(matrix, a->(byte)(scalar*a));
+		return MatrixCore.matrix(matrix, a->(byte)(scalar*a));
 	}
 
 
@@ -557,7 +557,7 @@ public class Matrix extends Core{
 	 */
 	public static double[][]
 		multiply(final double scalar, final double[][] matrix){
-		return Core.matrix(matrix, a->scalar*a);
+		return MatrixCore.matrix(matrix, a->scalar*a);
 	}
 
 	/**
@@ -570,7 +570,7 @@ public class Matrix extends Core{
 	 * @return   A new double matrix of products
 	 */
 	public static double[][] multiply(final double[][] A, final double[][] B){
-		return Core.matrix(A, B, (a, b)->a*b, 1, 1);
+		return MatrixCore.matrix(A, B, (a, b)->a*b, 1, 1);
 	}
 
 	/**
@@ -583,7 +583,7 @@ public class Matrix extends Core{
 	 * @return   A new double matrix of products
 	 */
 	public static int[][] multiply(final int[][] A, final int[][] B){
-		return Core.matrix(A, B, (a, b)->a*b, 1, 1);
+		return MatrixCore.matrix(A, B, (a, b)->a*b, 1, 1);
 	}
 
 	/**
@@ -596,7 +596,7 @@ public class Matrix extends Core{
 	 * @return        A new scaled matrix
 	 */
 	public static long[][] multiply(final long scalar, final long[][] matrix){
-		return Core.matrix(matrix, a->scalar*a);
+		return MatrixCore.matrix(matrix, a->scalar*a);
 	}
 
 	/**
@@ -609,7 +609,7 @@ public class Matrix extends Core{
 	 * @return        A new scaled matrix
 	 */
 	public static int[][] multipply(final int scalar, final int[][] matrix){
-		return Core.matrix(matrix, a->scalar*a);
+		return MatrixCore.matrix(matrix, a->scalar*a);
 	}
 
 	/**
@@ -620,7 +620,7 @@ public class Matrix extends Core{
 	 * @return   A new negated matrix
 	 */
 	public static double[][] negate(final double[][] A){
-		return Core.matrix(A, a->-a);
+		return MatrixCore.matrix(A, a->-a);
 	}
 
 
@@ -632,7 +632,7 @@ public class Matrix extends Core{
 	 * @return   A new negated matrix
 	 */
 	public static int[][] negate(final int[][] A){
-		return Core.matrix(A, a->-a);
+		return MatrixCore.matrix(A, a->-a);
 	}
 
 	/**
@@ -1242,7 +1242,7 @@ public class Matrix extends Core{
 	 * @return   A new double matrix of differences
 	 */
 	public static double[][] subtract(final double[][] A, final double[][] B){
-		return Core.matrix(A, B, (a, b)->a-b, 0, 0);
+		return MatrixCore.matrix(A, B, (a, b)->a-b, 0, 0);
 	}
 
 
@@ -1256,7 +1256,7 @@ public class Matrix extends Core{
 	 * @return   A new double matrix of differences
 	 */
 	public static int[][] subtract(final int[][] A, final int[][] B){
-		return Core.matrix(A, B, (a, b)->a-b, 0, 0);
+		return MatrixCore.matrix(A, B, (a, b)->a-b, 0, 0);
 	}
 
 

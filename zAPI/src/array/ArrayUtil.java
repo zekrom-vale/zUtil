@@ -2,7 +2,11 @@ package array;
 
 import java.util.function.BinaryOperator;
 import java.util.function.DoubleBinaryOperator;
+import java.util.function.DoubleFunction;
+import java.util.function.Function;
+import java.util.function.IntFunction;
 import java.util.function.LongBinaryOperator;
+import java.util.function.LongFunction;
 
 import functions.Index;
 
@@ -61,12 +65,12 @@ public final class ArrayUtil{//Don't name a class Array, it masks java.lang.refl
 	/**
 	 * Joins an array together with the defined delimiter
 	 *
-	 * @param   arr
-	 *                        The array to join
-	 * @param   delimiter
-	 *                        The spacer to place between the values
-	 * @return            A String of the entries
-	 * @example           Array.join(new Integer[]{1, 2, 3, 4, 5}, ",");
+	 * @param  arr
+	 *                       The array to join
+	 * @param  delimiter
+	 *                       The spacer to place between the values
+	 * @return           A String of the entries
+	 * 
 	 */
 	public static String join(final byte[] arr, final String delimiter){
 		final StringBuilder builder=new StringBuilder();//Create a new StringBuilder to collect strings
@@ -80,12 +84,36 @@ public final class ArrayUtil{//Don't name a class Array, it masks java.lang.refl
 	/**
 	 * Joins an array together with the defined delimiter
 	 *
-	 * @param   arr
-	 *                        The array to join
-	 * @param   delimiter
-	 *                        The spacer to place between the values
-	 * @return            A String of the entries
-	 * @example           Array.join(new Integer[]{1, 2, 3, 4, 5}, ",");
+	 * @param  arr
+	 *                       The array to join
+	 * @param  delimiter
+	 *                       The spacer to place between the values
+	 * @param  op
+	 *                       The function to convert the element to a String
+	 * @return           A String of the entries
+	 * 
+	 */
+	public static String join(
+		final byte[] arr, final String delimiter,
+		final Function<Byte, String> op
+	){
+		final StringBuilder builder=new StringBuilder();//Create a new StringBuilder to collect strings
+		for(int i=0; i<arr.length-1; i++){//Loop for each element in the array
+			builder.append(op.apply(arr[i]));//Append the element
+			builder.append(delimiter);//Append the delimiter
+		}
+		return builder.append(op.apply(arr[arr.length-1])).toString();//Append the last element then return the builder string
+	}
+
+	/**
+	 * Joins an array together with the defined delimiter
+	 *
+	 * @param  arr
+	 *                       The array to join
+	 * @param  delimiter
+	 *                       The spacer to place between the values
+	 * @return           A String of the entries
+	 * 
 	 */
 	public static String join(final double[] arr, final String delimiter){
 		final StringBuilder builder=new StringBuilder();//Create a new StringBuilder to collect strings
@@ -99,12 +127,58 @@ public final class ArrayUtil{//Don't name a class Array, it masks java.lang.refl
 	/**
 	 * Joins an array together with the defined delimiter
 	 *
+	 * @param  arr
+	 *                       The array to join
+	 * @param  delimiter
+	 *                       The spacer to place between the values
+	 * @return           A String of the entries
+	 * @param  op
+	 *                       The function to convert the element to a String
+	 * 
+	 */
+	public static String join(
+		final double[] arr, final String delimiter,
+		final DoubleFunction<String> op
+	){
+		final StringBuilder builder=new StringBuilder();//Create a new StringBuilder to collect strings
+		for(int i=0; i<arr.length-1; i++){//Loop for each element in the array
+			builder.append(op.apply(arr[i]));//Append the element
+			builder.append(delimiter);//Append the delimiter
+		}
+		return builder.append(op.apply(arr[arr.length-1])).toString();//Append the last element then return the builder string
+	}
+
+	/**
+	 * Joins an array together with the defined delimiter
+	 *
 	 * @param   arr
 	 *                        The array to join
 	 * @param   delimiter
 	 *                        The spacer to place between the values
+	 * @param   length
+	 *                        How many decimals to keep
 	 * @return            A String of the entries
-	 * @example           Array.join(new Integer[]{1, 2, 3, 4, 5}, ",");
+	 * @example           Array.join(new Integer[]{1, 2, 3, 4, 5}, ",", 2);
+	 */
+	public static String
+		join(final double[] arr, final String delimiter, final int length){
+		final StringBuilder builder=new StringBuilder();//Create a new StringBuilder to collect strings
+		for(int i=0; i<arr.length-1; i++){//Loop for each element in the array
+			builder.append(String.format("%."+length+"f", arr[i]));//Append the element
+			builder.append(delimiter);//Append the delimiter
+		}
+		return builder.append(arr[arr.length-1]).toString();//Append the last element then return the builder string
+	}
+
+	/**
+	 * Joins an array together with the defined delimiter
+	 *
+	 * @param  arr
+	 *                       The array to join
+	 * @param  delimiter
+	 *                       The spacer to place between the values
+	 * @return           A String of the entries
+	 * 
 	 */
 	public static String join(final int[] arr, final String delimiter){
 		final StringBuilder builder=new StringBuilder();//Create a new StringBuilder to collect strings
@@ -118,12 +192,36 @@ public final class ArrayUtil{//Don't name a class Array, it masks java.lang.refl
 	/**
 	 * Joins an array together with the defined delimiter
 	 *
-	 * @param   arr
-	 *                        The array to join
-	 * @param   delimiter
-	 *                        The spacer to place between the values
-	 * @return            A String of the entries
-	 * @example           Array.join(new Integer[]{1, 2, 3, 4, 5}, ",");
+	 * @param  arr
+	 *                       The array to join
+	 * @param  delimiter
+	 *                       The spacer to place between the values
+	 * @param  op
+	 *                       The function to convert the element to a String
+	 * @return           A String of the entries
+	 * 
+	 */
+	public static String join(
+		final int[] arr, final String delimiter, final IntFunction<String> op
+	){
+		final StringBuilder builder=new StringBuilder();//Create a new StringBuilder to collect strings
+		for(int i=0; i<arr.length-1; i++){//Loop for each element in the array
+			builder.append(op.apply(arr[i]));//Append the element
+			builder.append(delimiter);//Append the delimiter
+		}
+		return builder.append(op.apply(arr[arr.length-1])).toString();//Append the last element then return the builder string
+	}
+
+
+	/**
+	 * Joins an array together with the defined delimiter
+	 *
+	 * @param  arr
+	 *                       The array to join
+	 * @param  delimiter
+	 *                       The spacer to place between the values
+	 * @return           A String of the entries
+	 * 
 	 */
 	public static String join(final long[] arr, final String delimiter){
 		final StringBuilder builder=new StringBuilder();//Create a new StringBuilder to collect strings
@@ -137,12 +235,35 @@ public final class ArrayUtil{//Don't name a class Array, it masks java.lang.refl
 	/**
 	 * Joins an array together with the defined delimiter
 	 *
-	 * @param   arr
-	 *                        The array to join
-	 * @param   delimiter
-	 *                        The spacer to place between the values
-	 * @return            A String of the entries
-	 * @example           Array.join(new Integer[]{1, 2, 3, 4, 5}, ",");
+	 * @param  arr
+	 *                       The array to join
+	 * @param  delimiter
+	 *                       The spacer to place between the values
+	 * @param  op
+	 *                       The function to convert the element to a String
+	 * @return           A String of the entries
+	 * 
+	 */
+	public static String join(
+		final long[] arr, final String delimiter, final LongFunction<String> op
+	){
+		final StringBuilder builder=new StringBuilder();//Create a new StringBuilder to collect strings
+		for(int i=0; i<arr.length-1; i++){//Loop for each element in the array
+			builder.append(op.apply(arr[i]));//Append the element
+			builder.append(delimiter);//Append the delimiter
+		}
+		return builder.append(op.apply(arr[arr.length-1])).toString();//Append the last element then return the builder string
+	}
+
+	/**
+	 * Joins an array together with the defined delimiter
+	 *
+	 * @param  arr
+	 *                       The array to join
+	 * @param  delimiter
+	 *                       The spacer to place between the values
+	 * @return           A String of the entries
+	 * 
 	 */
 	public static <T> String join(final T[] arr, final String delimiter){
 		final StringBuilder builder=new StringBuilder();//Create a new StringBuilder to collect strings
@@ -150,8 +271,32 @@ public final class ArrayUtil{//Don't name a class Array, it masks java.lang.refl
 			builder.append(arr[i].toString());//Append the element as a string
 			builder.append(delimiter);//Append the delimiter
 		}
-		return builder.append(arr[arr.length-1]).toString();//Append the last element then return the builder string
+		return builder.append(arr[arr.length-1].toString()).toString();//Append the last element then return the builder string
 	}
+
+	/**
+	 * Joins an array together with the defined delimiter
+	 *
+	 * @param  arr
+	 *                       The array to join
+	 * @param  delimiter
+	 *                       The spacer to place between the values
+	 * @param  op
+	 *                       Operation to perform when converting to a String
+	 * @return           A String of the entries
+	 * 
+	 */
+	public static <T> String join(
+		final T[] arr, final String delimiter, final Function<T, String> op
+	){
+		final StringBuilder builder=new StringBuilder();//Create a new StringBuilder to collect strings
+		for(int i=0; i<arr.length-1; i++){//Loop for each element in the array
+			builder.append(op.apply(arr[i]));//Append the element as a string
+			builder.append(delimiter);//Append the delimiter
+		}
+		return builder.append(op.apply(arr[arr.length-1])).toString();//Append the last element then return the builder string
+	}
+
 
 	/**
 	 * Returns the max value of an array

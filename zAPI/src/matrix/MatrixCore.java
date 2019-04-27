@@ -10,7 +10,7 @@ import java.util.function.*;
  * @author Zekrom
  *
  */
-public class Core extends Inner{
+public class MatrixCore extends MatrixInner{
 	/**
 	 * Performs an operation on a matrix and returns a new byte matrix
 	 *
@@ -34,7 +34,7 @@ public class Core extends Inner{
 		if(A.length>=B.length){//If A is the long matrix
 			C=new byte[A.length][];
 			for(int row=0; row<B.length; row++){
-				Inner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
+				MatrixInner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
 			}
 			for(int row=B.length; row<A.length; row++){
 				C[row]=new byte[A[row].length];
@@ -46,7 +46,7 @@ public class Core extends Inner{
 		}
 		C=new byte[B.length][];
 		for(int row=0; row<A.length; row++){
-			Inner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
+			MatrixInner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
 		}
 		for(int row=A.length; row<B.length; row++){
 			C[row]=new byte[B[row].length];
@@ -101,7 +101,7 @@ public class Core extends Inner{
 		if(A.length>=B.length){//If A is the long matrix
 			C=new double[A.length][];
 			for(int row=0; row<B.length; row++){
-				Inner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
+				MatrixInner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
 			}
 			//Get values not in B
 			for(int row=B.length; row<A.length; row++){
@@ -115,7 +115,7 @@ public class Core extends Inner{
 		//If B is the long matrix
 		C=new double[B.length][];
 		for(int row=0; row<A.length; row++){
-			Inner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
+			MatrixInner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
 		}
 		//Get values not in A
 		for(int row=A.length; row<B.length; row++){
@@ -174,7 +174,7 @@ public class Core extends Inner{
 		if(A.length>=B.length){//If A is the long matrix
 			C=(T[][])Array.newInstance(class1, A.length);
 			for(int row=0; row<B.length; row++){
-				Inner.matrixInner(
+				MatrixInner.matrixInner(
 					A, B, C, row, op, onNA_A, onNA_B, class1
 				);
 			}
@@ -188,7 +188,7 @@ public class Core extends Inner{
 		}
 		C=(T[][])Array.newInstance(class1, B.length);
 		for(int row=0; row<A.length; row++){
-			Inner.matrixInner(A, B, C, row, op, onNA_A, onNA_B, class1);
+			MatrixInner.matrixInner(A, B, C, row, op, onNA_A, onNA_B, class1);
 		}
 		for(int row=A.length; row<B.length; row++){
 			C[row]=(T[])Array.newInstance(class1, B[row].length);
@@ -225,7 +225,7 @@ public class Core extends Inner{
 		if(A.length>=B.length){//If A is the long matrix
 			C=(E[][])Array.newInstance(class1, A.length);
 			for(int row=0; row<B.length; row++){
-				Inner.matrixInner(
+				MatrixInner.matrixInner(
 					A, B, C, row, op, onNA_A, onNA_B, class1
 				);
 			}
@@ -239,7 +239,7 @@ public class Core extends Inner{
 		}
 		C=(E[][])Array.newInstance(class1, B.length);
 		for(int row=0; row<A.length; row++){
-			Inner.matrixInner(A, B, C, row, op, onNA_A, onNA_B, class1);
+			MatrixInner.matrixInner(A, B, C, row, op, onNA_A, onNA_B, class1);
 		}
 		for(int row=A.length; row<B.length; row++){
 			C[row]=(E[])Array.newInstance(class1, B[row].length);
@@ -297,7 +297,7 @@ public class Core extends Inner{
 		if(A.length>=B.length){//If A is the long matrix
 			C=new int[A.length][];
 			for(int row=0; row<B.length; row++){
-				Inner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
+				MatrixInner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
 			}
 			for(int row=B.length; row<A.length; row++){
 				C[row]=new int[A[row].length];
@@ -309,7 +309,7 @@ public class Core extends Inner{
 		}
 		C=new int[B.length][];
 		for(int row=0; row<A.length; row++){
-			Inner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
+			MatrixInner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
 		}
 		for(int row=A.length; row<B.length; row++){
 			C[row]=new int[B[row].length];
@@ -363,7 +363,7 @@ public class Core extends Inner{
 		if(A.length>=B.length){//If A is the long matrix
 			C=new long[A.length][];
 			for(int row=0; row<B.length; row++){
-				Inner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
+				MatrixInner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
 			}
 			for(int row=B.length; row<A.length; row++){
 				C[row]=new long[A[row].length];
@@ -375,7 +375,7 @@ public class Core extends Inner{
 		}
 		C=new long[B.length][];
 		for(int row=0; row<A.length; row++){
-			Inner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
+			MatrixInner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
 		}
 		for(int row=A.length; row<B.length; row++){
 			C[row]=new long[B[row].length];
@@ -430,7 +430,7 @@ public class Core extends Inner{
 		if(A.length>=B.length){//If A is the long matrix
 			C=new byte[A.length][];
 			for(int row=0; row<B.length; row++){
-				Inner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
+				MatrixInner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
 			}
 			for(int row=B.length; row<A.length; row++){
 				C[row]=new byte[A[row].length];
@@ -442,7 +442,7 @@ public class Core extends Inner{
 		}
 		C=new byte[B.length][];
 		for(int row=0; row<A.length; row++){
-			Inner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
+			MatrixInner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
 		}
 		for(int row=A.length; row<B.length; row++){
 			C[row]=new byte[B[row].length];
@@ -498,7 +498,7 @@ public class Core extends Inner{
 		if(A.length>=B.length){//If A is the long matrix
 			C=new double[A.length][];
 			for(int row=0; row<B.length; row++){
-				Inner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
+				MatrixInner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
 			}
 			for(int row=B.length; row<A.length; row++){
 				C[row]=new double[A[row].length];
@@ -510,7 +510,7 @@ public class Core extends Inner{
 		}
 		C=new double[B.length][];
 		for(int row=0; row<A.length; row++){
-			Inner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
+			MatrixInner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
 		}
 		for(int row=A.length; row<B.length; row++){
 			C[row]=new double[B[row].length];
@@ -566,7 +566,7 @@ public class Core extends Inner{
 		if(A.length>=B.length){//If A is the long matrix
 			C=new double[A.length][];
 			for(int row=0; row<B.length; row++){
-				Inner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
+				MatrixInner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
 			}
 			for(int row=B.length; row<A.length; row++){
 				C[row]=new double[A[row].length];
@@ -578,7 +578,7 @@ public class Core extends Inner{
 		}
 		C=new double[B.length][];
 		for(int row=0; row<A.length; row++){
-			Inner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
+			MatrixInner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
 		}
 		for(int row=A.length; row<B.length; row++){
 			C[row]=new double[B[row].length];
@@ -634,7 +634,7 @@ public class Core extends Inner{
 		if(A.length>=B.length){//If A is the long matrix
 			C=new double[A.length][];
 			for(int row=0; row<B.length; row++){
-				Inner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
+				MatrixInner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
 			}
 			for(int row=B.length; row<A.length; row++){
 				C[row]=new double[A[row].length];
@@ -646,7 +646,7 @@ public class Core extends Inner{
 		}
 		C=new double[B.length][];
 		for(int row=0; row<A.length; row++){
-			Inner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
+			MatrixInner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
 		}
 		for(int row=A.length; row<B.length; row++){
 			C[row]=new double[B[row].length];
@@ -702,7 +702,7 @@ public class Core extends Inner{
 		if(A.length>=B.length){//If A is the long matrix
 			C=new int[A.length][];
 			for(int row=0; row<B.length; row++){
-				Inner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
+				MatrixInner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
 			}
 			for(int row=B.length; row<A.length; row++){
 				C[row]=new int[A[row].length];
@@ -714,7 +714,7 @@ public class Core extends Inner{
 		}
 		C=new int[B.length][];
 		for(int row=0; row<A.length; row++){
-			Inner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
+			MatrixInner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
 		}
 		for(int row=A.length; row<B.length; row++){
 			C[row]=new int[B[row].length];
@@ -749,7 +749,7 @@ public class Core extends Inner{
 		if(A.length>=B.length){//If A is the long matrix
 			C=new int[A.length][];
 			for(int row=0; row<B.length; row++){
-				Inner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
+				MatrixInner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
 			}
 			//Get values not in B
 			for(int row=B.length; row<A.length; row++){
@@ -763,7 +763,7 @@ public class Core extends Inner{
 		//If B is the long matrix
 		C=new int[B.length][];
 		for(int row=0; row<A.length; row++){
-			Inner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
+			MatrixInner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
 		}
 		//Get values not in A
 		for(int row=A.length; row<B.length; row++){
@@ -820,7 +820,7 @@ public class Core extends Inner{
 		if(A.length>=B.length){//If A is the long matrix
 			C=new int[A.length][];
 			for(int row=0; row<B.length; row++){
-				Inner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
+				MatrixInner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
 			}
 			for(int row=B.length; row<A.length; row++){
 				C[row]=new int[A[row].length];
@@ -832,7 +832,7 @@ public class Core extends Inner{
 		}
 		C=new int[B.length][];
 		for(int row=0; row<A.length; row++){
-			Inner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
+			MatrixInner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
 		}
 		for(int row=A.length; row<B.length; row++){
 			C[row]=new int[B[row].length];
@@ -888,7 +888,7 @@ public class Core extends Inner{
 		if(A.length>=B.length){//If A is the long matrix
 			C=new long[A.length][];
 			for(int row=0; row<B.length; row++){
-				Inner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
+				MatrixInner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
 			}
 			for(int row=B.length; row<A.length; row++){
 				C[row]=new long[A[row].length];
@@ -900,7 +900,7 @@ public class Core extends Inner{
 		}
 		C=new long[B.length][];
 		for(int row=0; row<A.length; row++){
-			Inner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
+			MatrixInner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
 		}
 		for(int row=A.length; row<B.length; row++){
 			C[row]=new long[B[row].length];
@@ -935,7 +935,7 @@ public class Core extends Inner{
 		if(A.length>=B.length){//If A is the long matrix
 			C=new long[A.length][];
 			for(int row=0; row<B.length; row++){
-				Inner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
+				MatrixInner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
 			}
 			//Get values not in B
 			for(int row=B.length; row<A.length; row++){
@@ -949,7 +949,7 @@ public class Core extends Inner{
 		//If B is the long matrix
 		C=new long[B.length][];
 		for(int row=0; row<A.length; row++){
-			Inner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
+			MatrixInner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
 		}
 		//Get values not in A
 		for(int row=A.length; row<B.length; row++){
@@ -1006,7 +1006,7 @@ public class Core extends Inner{
 		if(A.length>=B.length){//If A is the long matrix
 			C=new long[A.length][];
 			for(int row=0; row<B.length; row++){
-				Inner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
+				MatrixInner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
 			}
 			for(int row=B.length; row<A.length; row++){
 				C[row]=new long[A[row].length];
@@ -1018,7 +1018,7 @@ public class Core extends Inner{
 		}
 		C=new long[B.length][];
 		for(int row=0; row<A.length; row++){
-			Inner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
+			MatrixInner.matrixInner(A, B, C, row, op, onNA_A, onNA_B);
 		}
 		for(int row=A.length; row<B.length; row++){
 			C[row]=new long[B[row].length];
@@ -1051,6 +1051,6 @@ public class Core extends Inner{
 	}
 
 	@SuppressWarnings("javadoc")
-	protected Core(){}
+	protected MatrixCore(){}
 
 }

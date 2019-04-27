@@ -9,12 +9,12 @@ import array.ArrayUtil;
 import functions.BiIndex;
 
 /**
- * Condenses a matrix into an array of values, use {@link ReduceIndex} for collecting indexes
+ * Condenses a matrix into an array of values, use {@link MatrixReduceIndex} for collecting indexes
  *
  * @author Zekrom
  *
  */
-public class Reduce{
+public class MatrixReduce{
 	/**
 	 * Condenses each row of a matrix into a single value
 	 *
@@ -235,7 +235,7 @@ public class Reduce{
 	 */
 	public static String[]
 		horizontal(final String[][] matrix, final BiIndex.E<String> op){
-		return Reduce.horizontal(matrix, op, String.class);
+		return MatrixReduce.horizontal(matrix, op, String.class);
 	}
 
 	/**
@@ -249,7 +249,7 @@ public class Reduce{
 	 */
 	public static String[]
 		horizontal(final String[][] matrix, final BinaryOperator<String> op){
-		return Reduce.horizontal(matrix, op, String.class);
+		return MatrixReduce.horizontal(matrix, op, String.class);
 	}
 
 
@@ -425,8 +425,8 @@ public class Reduce{
 	 */
 	public static String[]
 		vertical(final String[][] matrix, final BinaryOperator<String> op){
-		return Reduce.vertical(matrix, op, String.class);
+		return MatrixReduce.vertical(matrix, op, String.class);
 	}
 
-	private Reduce(){}
+	private MatrixReduce(){}
 }

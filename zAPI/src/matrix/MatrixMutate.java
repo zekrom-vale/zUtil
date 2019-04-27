@@ -18,7 +18,7 @@ import java.util.function.ToLongFunction;
  * @author Zekrom
  *
  */
-public class Mutate{
+public class MatrixMutate{
 
 	/**
 	 * Mutates a matrix to a new byte matrix
