@@ -92,8 +92,70 @@ public class Detect{
 		return true;
 	}
 
-	public static void find(){
+	/**
+	 * Finds the first occurrence of a query in a map<br>
+	 * null if no match is found
+	 *
+	 * @param  map
+	 *                   The image map to detect the query in
+	 * @param  query
+	 *                   The map to find, use 0 to ignore
+	 * @return       The top left position of the find
+	 */
+	public static long[] find(final Map map, final Map query){
 
+	}
+
+	/**
+	 * Finds the all occurrences of a query in a map, ignoring color range<br>
+	 * an empty ArrayList if none was found
+	 *
+	 * @param  map
+	 *                   The image map to detect the query in
+	 * @param  query
+	 *                   The map to find, use 0 to ignore
+	 * @return       The top left positions of the finds
+	 */
+	public static ArrayList<int[]>
+		findAllIgnoreColor(final Map map, final Map query){
+		final int _mapRow=map.map.length-query.map.length,
+			_mapCol=map.map[0].length-query.map[0].length;
+		final ArrayList<int[]> all=new ArrayList<>();
+		for(int mapRow=0; mapRow<_mapRow; mapRow++){
+			for(int mapCol=0; mapCol<_mapCol; mapCol++){
+				//Try to find the query
+				final int[] find
+					=Detect.innerFindIgnoreColor(map, query, mapRow, mapCol);
+				if(find!=null){
+					all.add(find);
+				}
+			}
+		}
+		return all;
+	}
+
+	/**
+	 * Finds the first occurrence of a query in a map, ignoring color range<br>
+	 * null if no match is found
+	 *
+	 * @param  map
+	 *                   The image map to detect the query in
+	 * @param  query
+	 *                   The map to find, use 0 to ignore
+	 * @return       The top left position of the find
+	 */
+	public static int[] findIgnoreColor(final Map map, final Map query){
+		final int _mapRow=map.map.length-query.map.length,
+			_mapCol=map.map[0].length-query.map[0].length;
+		for(int mapRow=0; mapRow<_mapRow; mapRow++){
+			for(int mapCol=0; mapCol<_mapCol; mapCol++){
+				//Try to find the query
+				final int[] find
+					=Detect.innerFindIgnoreColor(map, query, mapRow, mapCol);
+				if(find!=null) return find;
+			}
+		}
+		return null;
 	}
 
 	private static void fixSynonyms(
@@ -107,6 +169,28 @@ public class Detect{
 				Detect.fixSynonyms(sym, value, sym.get(value), set);
 			}
 		}
+	}
+
+	private static int[] innerFindIgnoreColor(
+		final Map map, final Map query, final int mapRow, final int mapCol
+	){
+		final HashMap<Long, Long> transfer=new HashMap<>();
+		for(int queryRow=0; queryRow<query.map.length; queryRow++){
+			for(
+				int queryCol=0; queryCol<query.map[queryRow].length; queryCol++
+			){
+				if(query.map[queryRow][queryCol]==0) continue;
+				final Long key=transfer.get(query.map[queryRow][queryCol]);
+				if(key==null){
+					transfer
+						.put(key, map.map[mapRow+queryRow][mapCol+queryCol]);
+				}
+				else if(map.map[mapRow+queryRow][mapCol+queryCol]!=key){
+					return new int[]{mapCol, mapRow};
+				}
+			}
+		}
+		return null;
 	}
 
 	/**
