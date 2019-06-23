@@ -112,7 +112,7 @@ public class Detect{
 		/**
 		 * What each value represents as a range
 		 */
-		public HashMap<Long, byte[][]> key;
+		public HashMap<Long, byte[][]> keys;
 		/**
 		 * The map of the image
 		 */
@@ -120,20 +120,165 @@ public class Detect{
 
 
 		/**
-		 * @param map
-		 *                The map of the image
-		 * @param key
-		 *                The key of the map
+		 * <code><pre>
+		 * 100
+		 * 000
+		 * 000
+		 * </pre></code>
+		 *
+		 * <code><pre>
+		 * 110
+		 * 010
+		 * 000
+		 * </pre></code>
+		 *
+		 * <code><pre>
+		 * 112
+		 * 012
+		 * 000
+		 * </pre></code>
+		 *
+		 * <code><pre>
+		 * 112
+		 * 312
+		 * 030
+		 * </pre></code>
+		 *
+		 * <code><pre>
+		 * 112
+		 * 312
+		 * 430
+		 * </pre></code>
+		 *
+		 * <code><pre>
+		 * 112
+		 * 312
+		 * 435
+		 * </pre></code>
+		 *
 		 * @param img
-		 *                The unaltered image
+		 *                      The image to analyze
+		 * @param range
+		 *                      The amount of pixels to look around
+		 * @param tolerance
+		 *                      How much of a difference to match pixels
 		 */
-		public Map(
-			final long[][] map, final HashMap<Long, byte[][]> key,
-			final byte[][][] img
-		){
-			this.map=map;
-			this.key=key;
+		public Map(final byte[][][] img, final int range, final int tolerance){
+			if(range<=0){
+				throw new Error("Range must be positive.");
+			}
 			this.img=img;
+			this.map=new long[this.img.length][this.img[0].length];
+			final HashMap<Long, ArrayList<Long>> sym=new HashMap<>();
+			long gen=0;
+			sym.put(gen, new ArrayList<>());
+			for(int row=0; row<this.img.length; row++){
+				for(int col=0; col<this.img[row].length; col++){
+					if(this.map[row][col]==0){
+						this.map[row][col]=gen++;
+						sym.put(gen, new ArrayList<>());
+					}
+					final int _sCol=Math.min(col+range-1, this.img[row].length);
+					for(int sCol=col+1; sCol<_sCol; sCol++){
+						if(
+							Detect.equal(
+								this.img[row][col], this.img[row][sCol],
+								tolerance
+							)
+						){
+							if(this.map[row][sCol]!=0){
+								//Add synonym
+								sym.get(this.map[row][col])
+									.add(this.map[row][sCol]);
+								sym.get(this.map[row][sCol])
+									.add(this.map[row][col]);
+							}
+							else this.map[row][sCol]=this.map[row][col];
+						}
+					}
+					final int _sRow=Math.min(row+range-1, this.img.length);
+					for(int sRow=row+1; sRow<_sRow; sRow++){
+						for(int sCol=col-range; sCol<_sCol; sCol++){
+							if(
+								Detect.equal(
+									this.img[row][col], this.img[row][sCol],
+									tolerance
+								)
+							){
+								if(this.map[row][sCol]!=0){
+									//Add synonym
+									sym.get(this.map[row][col])
+										.add(this.map[row][sCol]);
+									sym.get(this.map[row][sCol])
+										.add(this.map[row][col]);
+								}
+								else this.map[row][sCol]=this.map[row][col];
+							}
+						}
+					}
+				}
+			}
+			//Fix synonyms
+			final ArrayList<HashSet<Long>> sets=new ArrayList<>();
+			for(
+				final Iterator<Entry<Long, ArrayList<Long>>> iterator
+					=sym.entrySet().iterator();
+				iterator.hasNext();
+			){
+				final Entry<Long, ArrayList<Long>> entry=iterator.next();
+				if(sym.containsKey(entry.getKey())){//Is this required?
+					final HashSet<Long> set=new HashSet<>();
+					set.add(entry.getKey());
+					sets.add(set);
+					Detect.fixSynonyms(
+						sym, entry.getKey(), entry.getValue(), set
+					);
+				}
+			}
+			//Transfer to mapset
+			final HashMap<Long, Long> mapset=new HashMap<>(sets.size()*10);
+			{
+				long key=0;
+				for(final HashSet<Long> set : sets){
+					key++;
+					for(final long value : set){
+						mapset.put(value, key);
+					}
+				}
+			}
+			//Simplify map and get pixel range
+			this.keys=new HashMap<>();
+			for(int row=0; row<this.map.length; row++){
+				for(int col=0; col<this.map[row].length; col++){
+					this.map[row][col]=mapset.get(this.map[row][col]);
+					final byte[][] key=this.keys.get(this.map[row][col]);
+					if(key!=null){
+						//Min
+						for(int i=0; i<key.length; i++){
+							if(this.img[row][col][i]<key[0][i]){
+								key[0][i]=this.img[row][col][i];
+							}
+						}
+						//Max
+						for(int i=0; i<key.length; i++){
+							if(this.img[row][col][i]>key[1][i]){
+								key[1][i]=this.img[row][col][i];
+							}
+						}
+						this.keys.put(this.map[row][col], key);
+					}
+					else{
+						this.keys.put(
+							this.map[row][col],
+							new byte[][]{Arrays.copyOf(
+								this.img[row][col], this.img[row][col].length
+							), Arrays.copyOf(
+								this.img[row][col], this.img[row][col].length
+							)}
+						);
+					}
+				}
+			}
 		}
 	}
 
@@ -209,154 +354,5 @@ public class Detect{
 			}
 		}
 		return null;
-	}
-
-	/**
-	 * <code><pre>
-	 * 100
-	 * 000
-	 * 000
-	 * </pre></code>
-	 *
-	 * <code><pre>
-	 * 110
-	 * 010
-	 * 000
-	 * </pre></code>
-	 *
-	 * <code><pre>
-	 * 112
-	 * 012
-	 * 000
-	 * </pre></code>
-	 *
-	 * <code><pre>
-	 * 112
-	 * 312
-	 * 030
-	 * </pre></code>
-	 *
-	 * <code><pre>
-	 * 112
-	 * 312
-	 * 430
-	 * </pre></code>
-	 *
-	 * <code><pre>
-	 * 112
-	 * 312
-	 * 435
-	 * </pre></code>
-	 *
-	 * @param  img
-	 *                       The image to analyze
-	 * @param  range
-	 *                       The amount of pixels to look around
-	 * @param  tolerance
-	 *                       How much of a difference to match pixels
-	 * @return           A map of similar pixels
-	 */
-	public static Map
-		map(final byte[][][] img, final int range, final int tolerance){
-		if(range<=0){
-			throw new Error("Range must be positive.");
-		}
-		final long[][] map=new long[img.length][img[0].length];
-		final HashMap<Long, ArrayList<Long>> sym=new HashMap<>();
-		long gen=0;
-		sym.put(gen, new ArrayList<>());
-		for(int row=0; row<img.length; row++){
-			for(int col=0; col<img[row].length; col++){
-				if(map[row][col]==0){
-					map[row][col]=gen++;
-					sym.put(gen, new ArrayList<>());
-				}
-				final int _sCol=Math.min(col+range-1, img[row].length);
-				for(int sCol=col+1; sCol<_sCol; sCol++){
-					if(Detect.equal(img[row][col], img[row][sCol], tolerance)){
-						if(map[row][sCol]!=0){
-							//Add synonym
-							sym.get(map[row][col]).add(map[row][sCol]);
-							sym.get(map[row][sCol]).add(map[row][col]);
-						}
-						else map[row][sCol]=map[row][col];
-					}
-				}
-				final int _sRow=Math.min(row+range-1, img.length);
-				for(int sRow=row+1; sRow<_sRow; sRow++){
-					for(int sCol=col-range; sCol<_sCol; sCol++){
-						if(
-							Detect
-								.equal(img[row][col], img[row][sCol], tolerance)
-						){
-							if(map[row][sCol]!=0){
-								//Add synonym
-								sym.get(map[row][col]).add(map[row][sCol]);
-								sym.get(map[row][sCol]).add(map[row][col]);
-							}
-							else map[row][sCol]=map[row][col];
-						}
-					}
-				}
-			}
-		}
-		//Fix synonyms
-		final ArrayList<HashSet<Long>> sets=new ArrayList<>();
-		for(
-			final Iterator<Entry<Long, ArrayList<Long>>> iterator
-				=sym.entrySet().iterator();
-			iterator.hasNext();
-		){
-			final Entry<Long, ArrayList<Long>> entry=iterator.next();
-			if(sym.containsKey(entry.getKey())){//Is this required?
-				final HashSet<Long> set=new HashSet<>();
-				set.add(entry.getKey());
-				sets.add(set);
-				Detect.fixSynonyms(sym, entry.getKey(), entry.getValue(), set);
-			}
-		}
-		//Transfer to mapset
-		final HashMap<Long, Long> mapset=new HashMap<>(sets.size()*10);
-		{
-			long key=0;
-			for(final HashSet<Long> set : sets){
-				key++;
-				for(final long value : set){
-					mapset.put(value, key);
-				}
-			}
-		}
-		//Simplify map and get pixel range
-		final HashMap<Long, byte[][]> keys=new HashMap<>();
-		for(int row=0; row<map.length; row++){
-			for(int col=0; col<map[row].length; col++){
-				map[row][col]=mapset.get(map[row][col]);
-				final byte[][] key=keys.get(map[row][col]);
-				if(key!=null){
-					//Min
-					for(int i=0; i<key.length; i++){
-						if(img[row][col][i]<key[0][i]){
-							key[0][i]=img[row][col][i];
-						}
-					}
-					//Max
-					for(int i=0; i<key.length; i++){
-						if(img[row][col][i]>key[1][i]){
-							key[1][i]=img[row][col][i];
-						}
-					}
-					keys.put(map[row][col], key);
-				}
-				else{
-					keys.put(
-						map[row][col],
-						new byte[][]{Arrays.copyOf(
-							img[row][col], img[row][col].length
-						), Arrays.copyOf(img[row][col], img[row][col].length)}
-					);
-				}
-			}
-		}
-		return new Map(map, keys, img);
 	}
 }
