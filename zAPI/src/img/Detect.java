@@ -106,13 +106,91 @@ public class Detect{
 	 */
 	public static class Map{
 		/**
+		 * Fix synonyms
+		 *
+		 * @param  sym
+		 *                 The list of all synonyms found
+		 * @return     A simple hashmap of the synonyms
+		 */
+		private static ArrayList<HashSet<Long>>
+			fixSynonyms(final HashMap<Long, ArrayList<Long>> sym){
+			final ArrayList<HashSet<Long>> sets=new ArrayList<>();
+			for(
+				final Iterator<Entry<Long, ArrayList<Long>>> iterator
+					=sym.entrySet().iterator();
+				iterator.hasNext();
+			){
+				final Entry<Long, ArrayList<Long>> entry=iterator.next();
+				if(sym.containsKey(entry.getKey())){//Is this required?
+					final HashSet<Long> set=new HashSet<>();
+					set.add(entry.getKey());
+					sets.add(set);
+					Map.innerFixSynonyms(
+						sym, entry.getKey(), entry.getValue(), set
+					);
+				}
+			}
+			return sets;
+		}
+
+		/**
+		 * The inner part to fix synonyms, to be recursive
+		 *
+		 * @param sym
+		 *                   The list of all synonyms found
+		 * @param key
+		 *                   The current key of the node
+		 * @param values
+		 *                   The list of all connected nodes
+		 * @param set
+		 *                   The set to add the results to
+		 */
+		private static void innerFixSynonyms(
+			final HashMap<Long, ArrayList<Long>> sym, final Long key,
+			final ArrayList<Long> values, final HashSet<Long> set
+		){
+			//Remove from Map
+			sym.remove(key);
+			for(final long value : values){
+				if(set.add(value)){
+					Map.innerFixSynonyms(sym, value, sym.get(value), set);
+				}
+			}
+		}
+
+		/**
+		 * Transfer to mapset
+		 *
+		 * @param  sets
+		 *                  The list of sets to transfer
+		 * @return      A hashmap of synonym-key key-value pairs
+		 */
+		private static HashMap<Long, Long>
+			transfer(final ArrayList<HashSet<Long>> sets){
+			final HashMap<Long, Long> mapset=new HashMap<>(sets.size()*10);
+			{
+				long key=0;
+				for(final HashSet<Long> set : sets){
+					key++;
+					for(final long value : set){
+						mapset.put(value, key);
+					}
+				}
+			}
+			return mapset;
+		}
+
+
+		/**
 		 * The unaltered image
 		 */
 		public byte[][][] img;
+
 		/**
 		 * What each value represents as a range
 		 */
-		public HashMap<Long, byte[][]> keys;
+		public HashMap<Long, byte[][]> keys=new HashMap<>();
+
 		/**
 		 * The map of the image
 		 */
@@ -218,36 +296,17 @@ public class Detect{
 					}
 				}
 			}
-			//Fix synonyms
-			final ArrayList<HashSet<Long>> sets=new ArrayList<>();
-			for(
-				final Iterator<Entry<Long, ArrayList<Long>>> iterator
-					=sym.entrySet().iterator();
-				iterator.hasNext();
-			){
-				final Entry<Long, ArrayList<Long>> entry=iterator.next();
-				if(sym.containsKey(entry.getKey())){//Is this required?
-					final HashSet<Long> set=new HashSet<>();
-					set.add(entry.getKey());
-					sets.add(set);
-					Detect.fixSynonyms(
-						sym, entry.getKey(), entry.getValue(), set
-					);
-				}
-			}
-			//Transfer to mapset
-			final HashMap<Long, Long> mapset=new HashMap<>(sets.size()*10);
-			{
-				long key=0;
-				for(final HashSet<Long> set : sets){
-					key++;
-					for(final long value : set){
-						mapset.put(value, key);
-					}
-				}
-			}
+			this.simplify(Map.transfer(Map.fixSynonyms(sym)));
+		}
+
+		/**
+		 * Simplifies the map to remove synonyms
+		 * 
+		 * @param mapset
+		 *                   The map containing synonym values
+		 */
+		private void simplify(final HashMap<Long, Long> mapset){
 			//Simplify map and get pixel range
-			this.keys=new HashMap<>();
 			for(int row=0; row<this.map.length; row++){
 				for(int col=0; col<this.map[row].length; col++){
 					this.map[row][col]=mapset.get(this.map[row][col]);
@@ -279,6 +338,7 @@ public class Detect{
 					}
 				}
 			}
+
 		}
 	}
 
@@ -319,19 +379,6 @@ public class Detect{
 			) return false;
 		}
 		return true;
-	}
-
-	private static void fixSynonyms(
-		final HashMap<Long, ArrayList<Long>> sym, final Long key,
-		final ArrayList<Long> values, final HashSet<Long> set
-	){
-		//Remove from Map
-		sym.remove(key);
-		for(final long value : values){
-			if(set.add(value)){
-				Detect.fixSynonyms(sym, value, sym.get(value), set);
-			}
-		}
 	}
 
 	private static int[] innerFindIgnoreColor(
