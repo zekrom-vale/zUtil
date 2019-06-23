@@ -7,7 +7,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map.Entry;
 
-import org.w3c.dom.ranges.RangeException;
 
 /**
  * Contains various methods dealing with images
@@ -15,6 +14,91 @@ import org.w3c.dom.ranges.RangeException;
  * @author Zekrom
  */
 public class Detect{
+	/**
+	 * Contains various methods to find the query in a map<br>
+	 * <code>null</code> is returned if no match is found
+	 *
+	 * @author Zekrom
+	 */
+	public static class Find{
+		/**
+		 * Finds the all occurrences of a query in a map, an empty ArrayList if none was found
+		 *
+		 * @param  map
+		 *                   The image map to detect the query in
+		 * @param  query
+		 *                   The map to find, use 0 to ignore
+		 * @return       The top left position of the find
+		 */
+		public static ArrayList<int[]> all(final Map map, final Map query){
+			return null;
+		}
+
+		/**
+		 * Finds the all occurrences of a query in a map, ignoring color range, an empty ArrayList if none
+		 * was found
+		 *
+		 * @param  map
+		 *                   The image map to detect the query in
+		 * @param  query
+		 *                   The map to find, use 0 to ignore
+		 * @return       The top left positions of the finds
+		 */
+		public static ArrayList<int[]>
+			allIgnoreColor(final Map map, final Map query){
+			final int _mapRow=map.map.length-query.map.length,
+				_mapCol=map.map[0].length-query.map[0].length;
+			final ArrayList<int[]> all=new ArrayList<>();
+			for(int mapRow=0; mapRow<_mapRow; mapRow++){
+				for(int mapCol=0; mapCol<_mapCol; mapCol++){
+					//Try to find the query
+					final int[] find=Detect
+						.innerFindIgnoreColor(map, query, mapRow, mapCol);
+					if(find!=null){
+						all.add(find);
+					}
+				}
+			}
+			return all;
+		}
+
+		/**
+		 * Finds the first occurrence of a query in a map, <code>null</code> if no match is found
+		 *
+		 * @param  map
+		 *                   The image map to detect the query in
+		 * @param  query
+		 *                   The map to find, use 0 to ignore
+		 * @return       The top left position of the find
+		 */
+		public static int[] first(final Map map, final Map query){
+			return null;
+		}
+
+		/**
+		 * Finds the first occurrence of a query in a map, ignoring color, <code>null</code> if no match is
+		 * found
+		 *
+		 * @param  map
+		 *                   The image map to detect the query in
+		 * @param  query
+		 *                   The map to find, use 0 to ignore
+		 * @return       The top left position of the find
+		 */
+		public static int[] ignoreColor(final Map map, final Map query){
+			final int _mapRow=map.map.length-query.map.length,
+				_mapCol=map.map[0].length-query.map[0].length;
+			for(int mapRow=0; mapRow<_mapRow; mapRow++){
+				for(int mapCol=0; mapCol<_mapCol; mapCol++){
+					//Try to find the query
+					final int[] find=Detect
+						.innerFindIgnoreColor(map, query, mapRow, mapCol);
+					if(find!=null) return find;
+				}
+			}
+			return null;
+		}
+	}
 	/**
 	 * Contains info about a map
 	 *
@@ -90,72 +174,6 @@ public class Detect{
 			) return false;
 		}
 		return true;
-	}
-
-	/**
-	 * Finds the first occurrence of a query in a map<br>
-	 * null if no match is found
-	 *
-	 * @param  map
-	 *                   The image map to detect the query in
-	 * @param  query
-	 *                   The map to find, use 0 to ignore
-	 * @return       The top left position of the find
-	 */
-	public static long[] find(final Map map, final Map query){
-
-	}
-
-	/**
-	 * Finds the all occurrences of a query in a map, ignoring color range<br>
-	 * an empty ArrayList if none was found
-	 *
-	 * @param  map
-	 *                   The image map to detect the query in
-	 * @param  query
-	 *                   The map to find, use 0 to ignore
-	 * @return       The top left positions of the finds
-	 */
-	public static ArrayList<int[]>
-		findAllIgnoreColor(final Map map, final Map query){
-		final int _mapRow=map.map.length-query.map.length,
-			_mapCol=map.map[0].length-query.map[0].length;
-		final ArrayList<int[]> all=new ArrayList<>();
-		for(int mapRow=0; mapRow<_mapRow; mapRow++){
-			for(int mapCol=0; mapCol<_mapCol; mapCol++){
-				//Try to find the query
-				final int[] find
-					=Detect.innerFindIgnoreColor(map, query, mapRow, mapCol);
-				if(find!=null){
-					all.add(find);
-				}
-			}
-		}
-		return all;
-	}
-
-	/**
-	 * Finds the first occurrence of a query in a map, ignoring color range<br>
-	 * null if no match is found
-	 *
-	 * @param  map
-	 *                   The image map to detect the query in
-	 * @param  query
-	 *                   The map to find, use 0 to ignore
-	 * @return       The top left position of the find
-	 */
-	public static int[] findIgnoreColor(final Map map, final Map query){
-		final int _mapRow=map.map.length-query.map.length,
-			_mapCol=map.map[0].length-query.map[0].length;
-		for(int mapRow=0; mapRow<_mapRow; mapRow++){
-			for(int mapCol=0; mapCol<_mapCol; mapCol++){
-				//Try to find the query
-				final int[] find
-					=Detect.innerFindIgnoreColor(map, query, mapRow, mapCol);
-				if(find!=null) return find;
-			}
-		}
-		return null;
 	}
 
 	private static void fixSynonyms(
@@ -241,7 +259,7 @@ public class Detect{
 	public static Map
 		map(final byte[][][] img, final int range, final int tolerance){
 		if(range<=0){
-			throw new RangeException((short)0, "Range must be positive.");
+			throw new Error("Range must be positive.");
 		}
 		final long[][] map=new long[img.length][img[0].length];
 		final HashMap<Long, ArrayList<Long>> sym=new HashMap<>();
