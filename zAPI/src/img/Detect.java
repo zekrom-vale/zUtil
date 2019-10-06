@@ -15,8 +15,8 @@ import java.util.Map.Entry;
  */
 public class Detect{
 	/**
-	 * Contains various methods to find the query in a map<br>
-	 * <code>null</code> is returned if no match is found
+	 * Contains various methods to find the query in a map. <code>null</code> is returned if no match is
+	 * found
 	 *
 	 * @author Zekrom
 	 */
@@ -301,7 +301,7 @@ public class Detect{
 
 		/**
 		 * Simplifies the map to remove synonyms
-		 * 
+		 *
 		 * @param mapset
 		 *                   The map containing synonym values
 		 */
